@@ -1,0 +1,134 @@
+
+Q1: The file where information about users are stored:
+
+etc/passwd
+/etc/passwd
+/etc/group
+/bin/passwd
+
+Answer  etc/passwd
+
+Q2: I want to learn what is trhe UID and GId of the user mysterioususer
+
+id
+whoami mysterioususer
+id mysterioususer
+showuser mysterioususer
+
+Answer  showuser mysterioususer
+
+Q3: GID is:
+
+Group IDentifier
+Groups IDentifier
+General IDentifier
+
+Answer  Group IDentifier
+
+Q4: ! in /etc/shadow means:
+
+The password is easy to crack
+The password is set
+The password is not set
+The password expired
+
+Answer  encrypted passwords for groups
+
+Q5: adduser is a:
+
+Bash script
+Binary
+Perl script
+A binary used inside useradd
+
+Answer  Perl script
+
+Q6: With useradd I want to provide a shell. Provide the argument:
+
+Answer  file $(which useradd)
+
+Q7: The command for password change is:
+
+Answer  passwd <user>
+
+Q8: The proper arguments for usermod when I want to add another secondary group is:
+
+Answer  grep testuser3 /etc/group
+
+Q9: I want to remove user with all his files
+
+deluser -rf user
+rmuser -rf user
+userdel -ar user
+userdel -rf user
+
+Answer  userdel testuser1
+
+Q10: Normal users are created with UID higher than:
+
+Answer  100
+
+
+ubuntu:~$ history
+    1  exit
+    2  halt
+    3  whoami
+    4  id
+    5  id ubuntu
+    6  cat /etc/shells
+    7  ls
+    8  clear && cat /etc/shadow
+    9  clear && cat /etc/group
+   10  clear && cat /etc/gshadow
+   11  whatis useradd
+   12  whatis adduser
+   13  which useradd
+   14  which adduser
+   15  file $(which useradd)
+   16  file $(which adduser)
+   17  useradd testuser1
+   18  adduser testuser2
+   19  grep testuser /etc/shadow
+   20  ls -l /home
+   21  useradd -h
+   22  useradd testuser3 -s /bin/bash -m
+   23  grep testuser /etc/passwd
+   24  grep testuser /etc/shadow
+   25  ls -l /home
+   26  grep testuser3 /etc/shadow
+   27  passwd testuser3
+   28  grep testuser3 /etc/group
+   29  usermod testuser3 -g 1001
+   30  grep testuser3 /etc/passwd
+   31  grep testuser3 /etc/group
+   32  usermod  testuser3 -G testuser1
+   33  grep testuser3 /etc/group
+   34  usermod  testuser3 -G testuser2
+   35  grep testuser3 /etc/group
+   36  usermod testuser3 -aG 1001
+   37  grep testuser3 /etc/group
+   38  usermod testuser3 -d /home/anotherdir
+   39  grep testuser3 /etc/passwd
+   40  ls -l /home
+   41  usermod testuser3 -d /home/testuser3
+   42  usermod testuser3 -d /home/newdir -m
+   43  grep testuser3 /etc/passwd
+   44  ls -l /home
+   45  ls -l /home/newdir
+   46  usermod testuser3 -s /bin/sh
+   47  grep testuser3 /etc/passwd
+   48  userdel testuser1
+   49  grep testuser /etc/passwd
+   50  grep testuser /etc/group
+   51  usermod testuser3 -G ""
+   52  grep testuser /etc/group
+   53  userdel testuser2
+   54  grep testuser /etc/passwd
+   55  grep testuser /etc/group
+   56  ls -l /home
+   57  userdel -rf testuser3
+   58  grep testuser /etc/passwd
+   59  ls -l /home
+   60  clear
+   61  history
+ubuntu:~$ 

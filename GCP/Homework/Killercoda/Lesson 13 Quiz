@@ -1,0 +1,27 @@
+ubuntu:~$ history
+    1  exit
+    2  halt
+    3  ls
+    4  pwd
+    5  whoami
+    6  id
+    7  su -h
+    8  su - student1
+    9  exit
+   10  ps
+   11  clear
+   12  cat /etc/sudoers
+   13  su - student1
+   14  visudo
+   15  ls -al /etc/sudoers.d
+   16  cat /etc/sudoers.d/README
+   17  sed -i '/student/d' /etc/sudoers
+   18  echo "student2 ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/student2
+   19  echo "student3 ALL=(ALL:ALL) ALL" > /etc/sudoers.d/student3
+   20  ls -al /etc/sudoers.d
+   21  su - student3
+   22  su - student2
+   23  clear
+   24  history
+ubuntu:~$ 
+

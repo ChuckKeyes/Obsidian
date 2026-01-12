@@ -1,0 +1,19 @@
+
+---
+
+## (Optional) `.gitignore` for Obsidian + Terraform
+```gitignore
+# Obsidian noise
+.obsidian/workspace.json
+.obsidian/appearance.json
+
+# Books/manuals
+Books/**
+
+# Terraform artifacts
+**/.terraform/**
+**/terraform.tfstate*
+**/*.tfvars*
+**/*.tfplan
+**/crash.log*
+!**/.terraform.lock.hcl

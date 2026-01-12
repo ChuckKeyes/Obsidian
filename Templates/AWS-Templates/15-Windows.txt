@@ -1,0 +1,76 @@
+# ---------- Latest Windows Server 2022 AMI (Amazon-owned) ----------
+data "aws_ami" "windows" {
+  most_recent = true
+  owners      = ["801119661308"] # Amazon
+  filter {
+    name   = "name"
+    values = ["Windows_Server-2022-English-Full-Base-*"]
+  }
+}
+
+# ---------- Optional Windows vars ----------
+variable "windows_enable"      {
+                               type = bool   
+                               default = false 
+                              }
+variable "windows_type"        {
+                                type = string 
+                                default = "t3.large" 
+                              }
+variable "windows_volume_size" {  
+                              type = number 
+                              default = 60 
+                              }   # GB
+
+# ---------- Windows Security Group (RDP from your admin CIDR) ----------
+resource "aws_security_group" "windows" {
+  count  = var.windows_enable ? 1 : 0
+  name   = "${local.vpc_name}-windows-sg"
+  vpc_id = aws_vpc.this.id
+
+  ingress {
+    description = "RDP access"
+    from_port   = 3389
+    to_port     = 3389
+    protocol    = "tcp"
+    cidr_blocks = [var.admin_cidr]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+  Name = "windows-server-01"
+  Role = "Windows"
+}
+
+}
+
+
+
+# ---------- Windows EC2 (public subnet in first AZ) ----------
+resource "aws_instance" "windows" {
+  count                       = var.windows_enable ? 1 : 0
+  ami                         = data.aws_ami.windows.id
+  instance_type               = var.windows_type
+  subnet_id                   = aws_subnet.public[var.azs[0]].id   # deterministic
+  vpc_security_group_ids      = [aws_security_group.windows[0].id] # dedicated SG
+  associate_public_ip_address = true
+
+  # NOTE: To decrypt the Windows Administrator password, an EC2 key pair is required.
+  key_name = var.key_name != "" ? var.key_name : null
+
+  root_block_device {
+    volume_size = var.windows_volume_size
+    volume_type = "gp3"
+    encrypted   = true
+  }
+
+  tags = merge(var.tags, {
+    Name = "${local.vpc_name}-win-1"
+  })
+}

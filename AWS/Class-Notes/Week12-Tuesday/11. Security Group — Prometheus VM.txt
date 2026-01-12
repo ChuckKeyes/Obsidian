@@ -1,0 +1,35 @@
+resource "aws_security_group" "prometheus_sg" {
+  name        = "ck-prometheus-sg"
+  description = "Security group for Prometheus VM"
+  vpc_id      = aws_vpc.main.id
+
+  # SSH from your admin/workstation
+  ingress {
+    description = "SSH from admin"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = [var.admin_cidr]  # you already use this elsewhere
+  }
+
+  # Prometheus web UI (9090) from your admin/workstation
+  ingress {
+    description = "Prometheus UI from admin"
+    from_port   = 9090
+    to_port     = 9090
+    protocol    = "tcp"
+    cidr_blocks = [var.admin_cidr]
+  }
+
+  # Outbound to scrape node_exporter on web instances, download packages, etc.
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "ck-prometheus-sg"
+  }
+}

@@ -1,0 +1,151 @@
+ChatGPT said:
+Thought for 8s
+
+Short answer:
+
+IP addresses? Yes, you can reference them from Terraform resources (or via remote state).
+
+Secrets/PSKs? No, you can’t safely “look them up” later with a data source – you have to generate + pass them in to both AWS and GCP.
+
+Let’s break it down with what you’re actually doing.
+
+1️⃣ Getting the HA VPN tunnel IPs (4 tunnels)
+
+If Terraform is creating the VPN gateways/tunnels, you don’t need a data block — you just use the resource attributes.
+
+🔹 GCP HA VPN example
+resource "google_compute_ha_vpn_gateway" "gcp_ha" {
+  name    = "gcp-ha-vpn"
+  network = google_compute_network.vpc.self_link
+  region  = var.region
+}
+
+# IPs of the two GCP interfaces:
+# Interface 0:
+# google_compute_ha_vpn_gateway.gcp_ha.vpn_interfaces[0].ip_address
+# Interface 1:
+# google_compute_ha_vpn_gateway.gcp_ha.vpn_interfaces[1].ip_address
+
+
+You then feed those into AWS side resources (or into output / remote state) like:
+
+output "gcp_ha_vpn_ip_0" {
+  value = google_compute_ha_vpn_gateway.gcp_ha.vpn_interfaces[0].ip_address
+}
+
+🔹 AWS VPN side example
+resource "aws_vpn_connection" "aws_to_gcp" {
+  customer_gateway_id = aws_customer_gateway.gcp.id
+  vpn_gateway_id      = aws_vpn_gateway.this.id
+  type                = "ipsec.1"
+
+  # Once created, AWS gives you:
+  # aws_vpn_connection.aws_to_gcp.tunnel1_address
+  # aws_vpn_connection.aws_to_gcp.tunnel2_address
+}
+
+
+So inside Terraform, you can do:
+
+local_tunnel1_ip = aws_vpn_connection.aws_to_gcp.tunnel1_address
+local_tunnel2_ip = aws_vpn_connection.aws_to_gcp.tunnel2_address
+
+
+You don’t need a data "aws_vpn_connection" if you’re the one creating it – you just read the attributes directly.
+
+If AWS and GCP configs are in separate Terraform projects, you use a remote state data source:
+
+data "terraform_remote_state" "gcp" {
+  backend = "gcs"
+  config = {
+    bucket = "kcs-gcp-terraform-state"
+    prefix = "gcp-ncc/terraform.tfstate"
+  }
+}
+
+# Then in AWS code:
+locals {
+  gcp_ha_vpn_ip_0 = data.terraform_remote_state.gcp.outputs.gcp_ha_vpn_ip_0
+}
+
+
+That’s the “get them together” story for IPs: share them via outputs and remote state, not by trying to “query” the cloud directly.
+
+2️⃣ What about secrets / PSKs for the HA VPN?
+
+This is the important part:
+
+You generally CANNOT use Terraform data sources to retrieve PSKs or secrets from AWS/GCP after the fact.
+
+Patterns:
+
+You generate the PSK in Terraform (or outside)
+
+Store it in tfvars / Vault / Secrets Manager / SSM / Secret Manager
+
+Inject the SAME PSK into:
+
+aws_vpn_connection (or aws_vpn_connection arguments)
+
+google_compute_vpn_tunnel or google_compute_ha_vpn_tunnel (shared_secret)
+
+Example:
+
+variable "vpn_shared_secret" {
+  type      = string
+  sensitive = true
+}
+
+resource "aws_vpn_connection" "aws_to_gcp" {
+  # ...
+  tunnel1_preshared_key = var.vpn_shared_secret
+  tunnel2_preshared_key = var.vpn_shared_secret
+}
+
+resource "google_compute_vpn_tunnel" "gcp_to_aws_1" {
+  # ...
+  shared_secret = var.vpn_shared_secret
+}
+
+
+You cannot do something like:
+
+data "aws_vpn_connection" "existing" {}
+# and expect tunnel1_preshared_key back
+
+
+Providers do not expose those secrets in data sources for security reasons.
+
+So for secrets:
+
+✅ Generate once, pass in to both sides (AWS + GCP)
+
+✅ Optionally share via remote state outputs or a password manager
+
+❌ Don’t expect a Terraform data resource to read secrets back out of the cloud.
+
+3️⃣ “For future reference” – what to remember
+
+IP addresses of tunnels / gateways:
+
+Use resource attributes or remote state outputs
+
+You can use data "terraform_remote_state" to link AWS & GCP projects
+
+Secrets (PSKs, keys):
+
+Must be inputs, not discovered later
+
+Store them outside (tfvars, Vault, Secret Manager, SSM, etc.)
+
+Treat them as sensitive = true and protect your state
+
+If you want, next step we can sketch a tiny, clean module that:
+
+Outputs the GCP HA VPN IPs
+
+Outputs the AWS tunnel IPs
+
+Takes a single shared_secret variable
+
+Is ready to wire up into your NCC ↔ TGW design.

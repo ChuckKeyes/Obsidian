@@ -1,0 +1,157 @@
+resource "aws_launch_template" "web" {
+  name_prefix   = "ck-web-lt-"
+  image_id      = "ami-0fa3fe0fa7920f68e"   # Debian/Ubuntu or Amazon Linux in your region
+  instance_type = "t3.micro"
+
+  vpc_security_group_ids = [aws_security_group.targets_sg.id]
+
+  user_data = base64encode(<<-EOF
+    #!/bin/bash
+    set -xe
+
+    # --- Install web server (Apache/HTTPD) ---
+    if command -v yum >/dev/null 2>&1; then
+      yum update -y
+      yum install -y httpd wget tar
+      systemctl enable httpd
+      systemctl start httpd
+      WEBROOT="/var/www/html"
+    elif command -v apt-get >/dev/null 2>&1; then
+      apt-get update -y
+      apt-get install -y apache2 wget tar
+      systemctl enable apache2
+      systemctl start apache2
+      WEBROOT="/var/www/html"
+    else
+      WEBROOT="/var/www/html"
+    fi
+
+    # --- Simple HTML page with background + text + 7 photos ---
+    cat <<HTML > $${WEBROOT}/index.html
+    <html>
+      <head>
+        <title>ck-lab ASG instance</title>
+        <style>
+          body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: #222;
+            background-image: url('https://keyescloudsolutions.s3.us-east-1.amazonaws.com/images/background1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+          }
+          .overlay {
+            background: rgba(255, 255, 255, 0.85);
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+          }
+          h1, h2, h3, p {
+            margin: 10px 0;
+          }
+          .images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 20px;
+          }
+          .images img {
+            max-width: 220px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+          }
+        </style>
+      </head>
+      <body>
+        <div class="overlay">
+          <h1>ck-lab ASG instance: $(hostname -f)</h1>
+          <h2>Owner: Charles Keyes Sr.</h2>
+          <p>S3 bucket: keyescloudsolutions</p>
+
+          <h3>Gallery</h3>
+          <div class="images">
+            <img src="https://keyescloudsolutions.s3.us-east-1.amazonaws.com/images/dominican1.jpg" alt="Photo 1" />
+            <img src="https://keyescloudsolutions.s3.us-east-1.amazonaws.com/images/dominican2.jpg" alt="Photo 2" />
+            <img src="https://keyescloudsolutions.s3.us-east-1.amazonaws.com/images/dominican3.jpg" alt="Photo 3" />
+            <img src="https://keyescloudsolutions.s3.us-east-1.amazonaws.com/images/dominican4.jpg" alt="Photo 4" />
+            <img src="https://keyescloudsolutions.s3.us-east-1.amazonaws.com/images/dominican5.jpg" alt="Photo 5" />
+            <img src="https://keyescloudsolutions.s3.us-east-1.amazonaws.com/images/dominican6.jpg" alt="Photo 6" />
+            <img src="https://keyescloudsolutions.s3.us-east-1.amazonaws.com/images/dominican7.jpg" alt="Photo 7" />
+            <img src="https://keyescloudsolutions.s3.us-east-1.amazonaws.com/images/dominican8.jpg" alt="Photo 8" />
+          </div>
+        </div>
+      </body>
+    </html>
+    HTML
+
+
+    # # --- Simple HTML page with instance + owner + bucket + images ---
+    # cat <<HTML > $${WEBROOT}/index.html
+    # <html>
+    #   <head>
+    #     <title>ck-lab ASG instance</title>
+    #     <style>
+    #       body { font-family: Arial, sans-serif; text-align: center; }
+    #       .images { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    #       .images img { max-width: 300px; border-radius: 8px; }
+    #     </style>
+    #   </head>
+    #   <body>
+    #     <h1>ck-lab ASG instance: $(hostname -f)</h1>
+    #     <h2>Owner: Charles Keyes Sr.</h2>
+    #     <p>S3 bucket: KeyesCloudSolutions</p>
+
+    #     <h3>Gallery</h3>
+    #     <div class="images">
+    #       <img src="https://KeyesCloudSolutions.s3.us-east-1.amazonaws.com/images/dominican1.jpg" alt="Photo 1" />
+    #       <img src="https://KeyesCloudSolutions.s3.us-east-1.amazonaws.com/images/dominican2.jpg" alt="Photo 2" />
+    #       <img src="https://KeyesCloudSolutions.s3.us-east-1.amazonaws.com/images/dominican3.jpg" alt="Photo 3" />
+    #       <img src="https://KeyesCloudSolutions.s3.us-east-1.amazonaws.com/images/dominican4.jpg" alt="Photo 4" />
+    #       <img src="https://KeyesCloudSolutions.s3.us-east-1.amazonaws.com/images/dominican5.jpg" alt="Photo 5" />
+    #       <img src="https://KeyesCloudSolutions.s3.us-east-1.amazonaws.com/images/dominican6.jpg" alt="Photo 6" />
+    #       <img src="https://KeyesCloudSolutions.s3.us-east-1.amazonaws.com/images/dominican7.jpg" alt="Photo 7" />
+    #     </div>
+    #   </body>
+    # </html>
+    # HTML
+
+    # --- Install node_exporter on each web VM ---
+    NODE_VERSION="1.8.2"
+    cd /opt
+    wget -q https://github.com/prometheus/node_exporter/releases/download/v$NODE_VERSION/node_exporter-$NODE_VERSION.linux-amd64.tar.gz
+    tar xzf node_exporter-$NODE_VERSION.linux-amd64.tar.gz
+    cp node_exporter-$NODE_VERSION.linux-amd64/node_exporter /usr/local/bin/
+    rm -rf node_exporter-$NODE_VERSION.linux-amd64*
+
+    # --- systemd service for node_exporter ---
+    cat <<'NODEUNIT' > /etc/systemd/system/node_exporter.service
+    [Unit]
+    Description=Node Exporter
+    Wants=network-online.target
+    After=network-online.target
+
+    [Service]
+    User=root
+    Group=root
+    Type=simple
+    ExecStart=/usr/local/bin/node_exporter
+
+    Restart=on-failure
+
+    [Install]
+    WantedBy=multi-user.target
+    NODEUNIT
+
+    systemctl daemon-reload
+    systemctl enable node_exporter
+    systemctl start node_exporter
+  EOF
+  )
+}

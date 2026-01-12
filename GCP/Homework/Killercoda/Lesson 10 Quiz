@@ -1,0 +1,24 @@
+ubuntu:~$ history
+    1  exit
+    2  halt
+    3  ls -al
+    4  ll
+    5  alias lh='ls -alh'
+    6  lh
+    7  alias
+    8  unalias lh
+    9  unalias ll
+   10  ll
+   11  lh
+   12  if [ -f ~/.bash_aliases ]; then
+   13  fi~
+   14  echo "alias lh1='ls -alh'" >> .bash_aliases
+   15  cat .bash_aliases
+   16  source ./.bashrc
+   17  alias
+   18  alias lh1
+   19  echo "alias lh2='ls -alh'" >> /etc/profile.d/99-aliases.sh
+   20  alias
+   21  clear
+   22  history
+ubuntu:~$ 

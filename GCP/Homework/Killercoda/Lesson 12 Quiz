@@ -1,0 +1,249 @@
+ubuntu:~$ ls -al
+total 36
+drwx------  4 root root 4096 Jul 19 13:02 .
+drwxr-xr-x 22 root root 4096 Jul 19 13:02 ..
+-rw-------  1 root root   10 Feb 10 22:06 .bash_history
+-rw-r--r--  1 root root 3194 Jul 19 13:02 .bashrc
+-rw-r--r--  1 root root  161 Apr 22  2024 .profile
+drwx------  2 root root 4096 Jul 19 13:01 .ssh
+drwxr-xr-x  4 root root 4096 Jul 22 22:09 .theia
+-rw-r--r--  1 root root  109 Jul 19 13:02 .vimrc
+-rw-r--r--  1 root root  165 Jul 19 13:02 .wget-hsts
+lrwxrwxrwx  1 root root    1 Jul 19 13:02 filesystem -> /
+ubuntu:~$ cat .profile
+# ~/.profile: executed by Bourne-compatible login shells.
+
+if [ "$BASH" ]; then
+  if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+  fi
+fi
+
+mesg n 2> /dev/null || true
+ubuntu:~$ ls -alh
+total 36K
+drwx------  4 root root 4.0K Jul 19 13:02 .
+drwxr-xr-x 22 root root 4.0K Jul 19 13:02 ..
+-rw-------  1 root root   10 Feb 10 22:06 .bash_history
+-rw-r--r--  1 root root 3.2K Jul 19 13:02 .bashrc
+-rw-r--r--  1 root root  161 Apr 22  2024 .profile
+drwx------  2 root root 4.0K Jul 19 13:01 .ssh
+drwxr-xr-x  4 root root 4.0K Jul 22 22:09 .theia
+-rw-r--r--  1 root root  109 Jul 19 13:02 .vimrc
+-rw-r--r--  1 root root  165 Jul 19 13:02 .wget-hsts
+lrwxrwxrwx  1 root root    1 Jul 19 13:02 filesystem -> /
+ubuntu:~$ ps
+    PID TTY          TIME CMD
+   1707 pts/0    00:00:00 bash
+   1812 pts/0    00:00:00 ps
+ubuntu:~$ history
+    1  exit
+    2  halt
+    3  ls -al
+    4  cat .profile
+    5  ls -alh
+    6  ps
+    7  history
+ubuntu:~$ history | grep cat
+    4  cat .profile
+    8  history | grep cat
+ubuntu:~$ history 3
+    7  history
+    8  history | grep cat
+    9  history 3
+ubuntu:~$ cat .hushlogin
+cat: .hushlogin: No such file or directory
+ubuntu:~$ cat .bashrc
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+# don't put duplicate lines in the history. See bash(1) for more options
+# ... or force ignoredups and ignorespace
+HISTCONTROL=ignoredups:ignorespace
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color) color_prompt=yes;;
+esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
+    else
+        color_prompt=
+    fi
+fi
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+#if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+#    . /etc/bash_completion
+#fi
+PATH=$PATH:/usr/local/go/bin
+export PS1="\[\e]0;\h: \w\a\]\h:\w$ "
+PATH=$PATH:/snap/bin
+ubuntu:~$ history
+    1  exit
+    2  halt
+    3  ls -al
+    4  cat .profile
+    5  ls -alh
+    6  ps
+    7  history
+    8  history | grep cat
+    9  history 3
+   10  cat .hushlogin
+   11  cat .bashrc
+   12  history
+ubuntu:~$ grep -i hist .bashrc
+# don't put duplicate lines in the history. See bash(1) for more options
+HISTCONTROL=ignoredups:ignorespace
+# append to the history file, don't overwrite it
+shopt -s histappend
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+ubuntu:~$ ls
+filesystem
+ubuntu:~$ history -a
+ubuntu:~$ ls -al .bash_history
+-rw------- 1 root root 148 Jul 22 22:10 .bash_history
+ubuntu:~$ cat .bash_history
+exit
+halt
+ls -al
+cat .profile
+ls -alh
+ps
+history
+history | grep cat
+history 3
+cat .hushlogin
+cat .bashrc
+history
+grep -i hist .bashrc
+ls
+history -a
+ubuntu:~$ echo $HISTSIZE
+1000
+ubuntu:~$ echo HISTSIZE
+HISTSIZE
+ubuntu:~$ echo $HISTSIZE
+1000
+ubuntu:~$ set | grep HIST
+HISTCONTROL=ignoredups:ignorespace
+HISTFILE=/root/.bash_history
+HISTFILESIZE=2000
+HISTSIZE=1000
+ubuntu:~$ HISTCONTROL=ignoredups:ignorespace
+HISTFILE=/root/.bash_history
+HISTFILESIZE=2000
+HISTSIZE=1000
+ubuntu:~$ HISTFILE="/root/.another_history"
+ubuntu:~$ set | grep HIST
+HISTCONTROL=ignoredups:ignorespace
+HISTFILE=/root/.another_history
+HISTFILESIZE=2000
+HISTSIZE=1000
+ubuntu:~$ history -a
+ubuntu:~$ ls -al .another_history
+-rw------- 1 root root 256 Jul 22 22:10 .another_history
+ubuntu:~$ cat .another_history
+ls -al .bash_history
+cat .bash_history
+echo $HISTSIZE
+echo HISTSIZE
+echo $HISTSIZE
+set | grep HIST
+HISTCONTROL=ignoredups:ignorespace
+HISTFILE=/root/.bash_history
+HISTFILESIZE=2000
+HISTSIZE=1000
+HISTFILE="/root/.another_history"
+set | grep HIST
+history -a
+ubuntu:~$ history -c
+ubuntu:~$ > .another_history
+ubuntu:~$ cat .another_history
+ubuntu:~$ set +o history
+ubuntu:~$ echo 'set +o history' >> ~/.bashrc
+ubuntu:~$ echo 'set +o history' >> /etc/profile
+ubuntu:~$ history
+    1  > .another_history
+    2  cat .another_history
+    3  set +o history
+ubuntu:~$ 

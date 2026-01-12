@@ -1,0 +1,26 @@
+ubuntu:~$ man man
+man: can't resolve man7/groff_man.7
+ubuntu:~$ 
+ubuntu:~$ man ls
+ubuntu:~$ man 8 ls
+No manual entry for ls in section 8
+ubuntu:~$ man -f ls
+ls: nothing appropriate.
+ubuntu:~$ man -f intro
+intro: nothing appropriate.
+ubuntu:~$ man
+What manual page do you want?
+For example, try 'man man'.
+ubuntu:~$ man -f ls
+ls: nothing appropriate.
+ubuntu:~$ man intro
+ubuntu:~$ man intro
+ubuntu:~$ whatis ls
+ls: nothing appropriate.
+ubuntu:~$ man -f ls
+ls: nothing appropriate.
+ubuntu:~$ man -k ls
+ls: nothing appropriate.
+ubuntu:~$ man -w ls
+/usr/share/man/man1/ls.1.gz
+ubuntu:~$ 

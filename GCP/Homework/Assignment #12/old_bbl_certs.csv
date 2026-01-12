@@ -1,0 +1,51 @@
+full_name,initials,country,country_code,country_id_numeric,national_identity_card,certs,cert_dates,photo
+Betsaida Beatriz Lozada,BBL,Brazil,BR,76,BR-1849-5931-0341,AWS SAP; Google PCA,2024-02-27; 2024-09-27,gs://ck-cloud-storage-bucket/Latina-certs/photos/BR-1849-5931-0341.jpg
+Belinda Brenda Lagos,BBL,Guatemala,GT,320,GT-4192-8327-6483,AWS Machine Learning Specialty; Google ACE; Google CDL,2023-11-10; 2024-05-05; 2023-10-16,gs://ck-cloud-storage-bucket/Latina-certs/photos/GT-4192-8327-6483.jpg
+Belinda Belkis León,BBL,Mexico,MX,484,MX-1395-3767-2423,AWS DevOps Pro; AWS Networking Specialty; Google PCSE,2025-05-03; 2024-10-26; 2024-09-18,gs://ck-cloud-storage-bucket/Latina-certs/photos/MX-1395-3767-2423.jpg
+Bárbara Bianca Llumiquinga, ,Guatemala,GT,320,GT-7101-2269-1669,AWS DevOps Pro; Google PCSE,2023-09-25; 2025-08-10,gs://ck-cloud-storage-bucket/Latina-certs/photos/GT-7101-2269-1669.jpg
+Betania Beatriz Lagos,BBL,Costa Rica,CR,188,CR-8451-4627-0482,AWS Developer Associate; Google ACE; AWS Machine Learning Specialty,2024-07-15; 2025-06-29; 2025-02-14,gs://ck-cloud-storage-bucket/Latina-certs/photos/CR-8451-4627-0482.jpg
+Bibiana Brenda Lozano,BBL,Uruguay,UY,858,UY-5288-0957-0154,AWS Security Specialty; Google CDL,2023-12-10; 2025-01-23,gs://ck-cloud-storage-bucket/Latina-certs/photos/UY-5288-0957-0154.jpg
+Bianca Benita Luján,BBL,Chile,CL,152,CL-2278-2489-6383,AWS Security Specialty; AWS SysOps Associate; Google PCA,2024-12-05; 2025-02-24; 2024-12-19,gs://ck-cloud-storage-bucket/Latina-certs/photos/CL-2278-2489-6383.jpg
+Bianca Brenda Larraín,BBL,Uruguay,UY,858,UY-1509-8393-0103,AWS AI Practitioner,11/25/2023,gs://ck-cloud-storage-bucket/Latina-certs/photos/UY-1509-8393-0103.jpg
+Betsaida Brenda León,BBL,Dominican Republic,DO,214,DO-7382-9973-7631,AWS SysOps Associate; Google PCSE,2023-11-08; 2025-08-03,gs://ck-cloud-storage-bucket/Latina-certs/photos/DO-7382-9973-7631.jpg
+Bernarda Belinda López,BBL,Costa Rica,CR,188,CR-0651-3338-7262,Google PCA; AWS Developer Associate,2023-11-30; 2024-12-10,gs://ck-cloud-storage-bucket/Latina-certs/photos/CR-0651-3338-7262.jpg
+Betsaida Beatriz Ledesma,BBL,Mexico,MX,484,MX-8013-2677-3602,AWS CCP; Google PCA,2024-12-22; 2024-07-02,gs://ck-cloud-storage-bucket/Latina-certs/photos/MX-8013-2677-3602.jpg
+Betsy Betania Lucero,BBL,Uruguay,UY,858,UY-8723-4309-8050,AWS DevOps Pro; Google ACE,2023-11-11; 2025-02-15,gs://ck-cloud-storage-bucket/Latina-certs/photos/UY-8723-4309-8050.jpg
+Bianca Bianca López,BBL,Argentina,AR,32,AR-9136-1939-9091,AWS Machine Learning Specialty; Google PCA,2024-06-07; 2024-04-10,gs://ck-cloud-storage-bucket/Latina-certs/photos/AR-9136-1939-9091.jpg
+Bernarda Betania Luna,BBL,Colombia,CO,170,CO-3462-4751-0799,AWS DevOps Pro; Google PCA,2024-01-27; 2024-09-05,gs://ck-cloud-storage-bucket/Latina-certs/photos/CO-3462-4751-0799.jpg
+Bianca Brenda Luna,BBL,Colombia,CO,170,CO-4278-4980-8412,AWS Developer Associate; Google PCA,2024-01-01; 2025-04-02,gs://ck-cloud-storage-bucket/Latina-certs/photos/CO-4278-4980-8412.jpg
+Brenda Brígida León,BBL,Chile,CL,152,CL-9353-4874-0164,AWS SAA; Google PCA,2024-02-26; 2024-12-09,gs://ck-cloud-storage-bucket/Latina-certs/photos/CL-9353-4874-0164.jpg
+Betsaida Betania Lozada,BBL,Paraguay,PY,600,PY-8011-2805-9826,AWS CCP; Google PCA,2024-04-16; 2025-08-12,gs://ck-cloud-storage-bucket/Latina-certs/photos/PY-8011-2805-9826.jpg
+Bárbara Belinda López,BBL,Argentina,AR,32,AR-5869-2322-6025,AWS SAP; Google ACE,2025-09-01; 2024-01-02,gs://ck-cloud-storage-bucket/Latina-certs/photos/AR-5869-2322-6025.jpg
+Betsy Belén Ledezma,BBL,Guatemala,GT,320,GT-7337-5433-0365,AWS SAA; Google CDL,2024-06-25; 2024-09-07,gs://ck-cloud-storage-bucket/Latina-certs/photos/GT-7337-5433-0365.jpg
+Bernarda Benita Lozada,BBL,Argentina,AR,32,AR-8501-4294-0196,AWS Machine Learning Specialty; Google CDL,2024-10-12; 2025-04-26,gs://ck-cloud-storage-bucket/Latina-certs/photos/AR-8501-4294-0196.jpg
+Bárbara Brígida Ledesma,BBL,Mexico,MX,484,MX-6088-3561-5951,AWS Security Specialty; AWS DevOps Pro; Google PCSE,2024-08-13; 2024-10-30; 2025-08-27,gs://ck-cloud-storage-bucket/Latina-certs/photos/MX-6088-3561-5951.jpg
+Berenice Benita Lozano,BBL,Ecuador,EC,218,EC-3662-9946-8044,Google ACE,5/27/2025,gs://ck-cloud-storage-bucket/Latina-certs/photos/EC-3662-9946-8044.jpg
+Bernarda Brigitte Lora,BBL,Uruguay,UY,858,UY-7738-7214-8951,AWS Developer Associate; Google ACE,2023-10-09; 2023-10-31,gs://ck-cloud-storage-bucket/Latina-certs/photos/UY-7738-7214-8951.jpg
+Bárbara Berenice Lezcano,BBL,Argentina,AR,32,AR-1769-3676-3201,AWS SAP; Google PCSE,2023-11-04; 2025-04-06,gs://ck-cloud-storage-bucket/Latina-certs/photos/AR-1769-3676-3201.jpg
+Bárbara Beatriz Lora,BBL,Dominican Republic,DO,214,DO-2788-9579-8687,AWS Developer Associate; Google PCA,2025-02-28; 2025-01-22,gs://ck-cloud-storage-bucket/Latina-certs/photos/DO-2788-9579-8687.jpg
+Bernarda Brenda León,BBL,Ecuador,EC,218,EC-7143-4558-1223,AWS Machine Learning Associate; Google ACE,2023-11-18; 2024-11-11,gs://ck-cloud-storage-bucket/Latina-certs/photos/EC-7143-4558-1223.jpg
+Betsy Brigitte Llumiquinga,BBL,Costa Rica,CR,188,CR-7603-6690-9670,AWS Security Specialty; Google CDL,2024-10-17; 2024-11-16,gs://ck-cloud-storage-bucket/Latina-certs/photos/CR-7603-6690-9670.jpg
+Betsaida Betania Lucero,BBL,Peru,PE,604,PE-8937-3467-0656,AWS Data Engineer Associate; Google ACE; AWS SAP,2024-01-22; 2025-06-12; 2025-03-13,gs://ck-cloud-storage-bucket/Latina-certs/photos/PE-8937-3467-0656.jpg
+Beatriz Belkis Lezcano,BBL,Paraguay,PY,600,PY-9016-2720-4653,AWS Machine Learning Specialty; Google PCSE,2024-06-24; 2024-11-18,gs://ck-cloud-storage-bucket/Latina-certs/photos/PY-9016-2720-4653.jpg
+Berenice Beatriz Lora,BBL,Ecuador,EC,218,EC-0805-3100-3309,AWS Machine Learning Specialty; Google CDL,2025-04-13; 2024-04-24,gs://ck-cloud-storage-bucket/Latina-certs/photos/EC-0805-3100-3309.jpg
+Bruna Betania León,BBL,Paraguay,PY,600,PY-5299-1241-9049,Google CDL; AWS SysOps Associate; AWS Networking Specialty,2024-04-04; 2023-11-30; 2025-05-12,gs://ck-cloud-storage-bucket/Latina-certs/photos/PY-5299-1241-9049.jpg
+Betania Belinda Larraín,BBL,Argentina,AR,32,AR-1491-9058-6518,AWS Machine Learning Specialty; AWS CCP; Google ACE,2024-11-17; 2025-01-27; 2023-12-31,gs://ck-cloud-storage-bucket/Latina-certs/photos/AR-1491-9058-6518.jpg
+Betsy Brigitte Lagos,BBL,Peru,PE,604,PE-7262-8498-7769,AWS Machine Learning Specialty; Google ACE,2024-05-22; 2023-12-11,gs://ck-cloud-storage-bucket/Latina-certs/photos/PE-7262-8498-7769.jpg
+Berenice Berenice Larraín,BBL,Peru,PE,604,PE-7996-5075-2735,AWS Machine Learning Specialty; Google PCA,2025-04-05; 2023-09-24,gs://ck-cloud-storage-bucket/Latina-certs/photos/PE-7996-5075-2735.jpg
+Betsaida Brenda López,BBL,Brazil,BR,76,BR-3678-3777-0143,AWS SAP; Google PCA,2025-01-10; 2025-04-02,gs://ck-cloud-storage-bucket/Latina-certs/photos/BR-3678-3777-0143.jpg
+Betsaida Brigitte Lozada,BBL,Brazil,BR,76,BR-8557-4443-1351,AWS Data Engineer Associate; AWS Developer Associate; Google PCA,2025-01-21; 2024-06-23; 2025-05-09,gs://ck-cloud-storage-bucket/Latina-certs/photos/BR-8557-4443-1351.jpg
+Bianca Brenda León,BBL,Guatemala,GT,320,GT-3524-0824-0084,AWS Machine Learning Associate; AWS Machine Learning Specialty; Google ACE,2025-01-28; 2023-12-28; 2023-09-26,gs://ck-cloud-storage-bucket/Latina-certs/photos/GT-3524-0824-0084.jpg
+Bibiana Brígida Lora,BBL,Chile,CL,152,CL-7752-0471-1671,AWS AI Practitioner; AWS SAA; Google PCA,2025-04-12; 2024-07-21; 2023-12-10,gs://ck-cloud-storage-bucket/Latina-certs/photos/CL-7752-0471-1671.jpg
+Bárbara Beatriz Llumiquinga,BBL,Colombia,CO,170,CO-6999-3867-7496,AWS AI Practitioner; Google CDL,2024-04-13; 2025-06-15,gs://ck-cloud-storage-bucket/Latina-certs/photos/CO-6999-3867-7496.jpg
+Bárbara Brígida Lagos,BBL,Brazil,BR,76,BR-1232-8120-6797,AWS AI Practitioner; Google PCA,2025-09-06; 2024-06-29,gs://ck-cloud-storage-bucket/Latina-certs/photos/BR-1232-8120-6797.jpg
+Betania Berenice López,BBL,Dominican Republic,DO,214,DO-3493-6183-2421,AWS Data Engineer Associate,5/15/2025,gs://ck-cloud-storage-bucket/Latina-certs/photos/DO-3493-6183-2421.jpg
+Betania Brenda León,BBL,Paraguay,PY,600,PY-7174-6488-7719,Google ACE,5/24/2025,gs://ck-cloud-storage-bucket/Latina-certs/photos/PY-7174-6488-7719.jpg
+Berenice Belén López,BBL,Ecuador,EC,218,EC-3990-4902-7874,Google ACE,1/29/2025,gs://ck-cloud-storage-bucket/Latina-certs/photos/EC-3990-4902-7874.jpg
+Bianca Berenice Luna,BBL,Peru,PE,604,PE-6551-2567-4680,AWS SAA; Google PCA,2024-08-10; 2024-01-10,gs://ck-cloud-storage-bucket/Latina-certs/photos/PE-6551-2567-4680.jpg
+Betsy Benita Ledezma,BBL,Chile,CL,152,CL-0876-0385-9770,AWS Machine Learning Associate; Google PCSE,2025-08-29; 2025-01-22,gs://ck-cloud-storage-bucket/Latina-certs/photos/CL-0876-0385-9770.jpg
+Bianca Belén Lagos,BBL,Colombia,CO,170,CO-9324-8086-1317,AWS Networking Specialty; Google PCA,2025-02-16; 2025-09-05,gs://ck-cloud-storage-bucket/Latina-certs/photos/CO-9324-8086-1317.jpg
+Berenice Belkis Ledezma,BBL,Dominican Republic,DO,214,DO-7737-8263-9821,Google ACE; AWS Data Engineer Associate,2025-02-14; 2024-06-13,gs://ck-cloud-storage-bucket/Latina-certs/photos/DO-7737-8263-9821.jpg
+Beatriz Brígida Lucero,BBL,Brazil,BR,76,BR-4997-2787-5588,AWS Data Engineer Associate; Google PCSE,2024-03-25; 2025-08-28,gs://ck-cloud-storage-bucket/Latina-certs/photos/BR-4997-2787-5588.jpg
+Bárbara Brenda Lozada,BBL,Mexico,MX,484,MX-3605-7662-7028,AWS Machine Learning Specialty; Google ACE; AWS AI Practitioner,2024-12-07; 2023-12-25; 2025-03-05,gs://ck-cloud-storage-bucket/Latina-certs/photos/MX-3605-7662-7028.jpg
+Bruna Belén Lucero,BBL,Costa Rica,CR,188,CR-2621-7459-6158,AWS Machine Learning Specialty; Google PCSE,2025-01-25; 2025-03-21,gs://ck-cloud-storage-bucket/Latina-certs/photos/CR-2621-7459-6158.jpg

@@ -1,0 +1,24 @@
+✅ Make sure the EC2 instance has a key pair attached (key_name)
+
+If there’s no key pair, SSH will never work — even if port 22 is open.
+
+Quick checklist in the right order (do in this order)
+1) Key pair exists AND is attached to the instance
+
+EC2 Console → Instances → select your instance → Key pair name
+
+If it says “—” / none → you must recreate the instance (or use SSM)
+
+2) Security Group inbound allows SSH
+
+Inbound rule:
+
+TCP 22
+
+Source: your public IP /32 (not the whole internet)
+
+3) Connect using the right username
+
+For your AMI ami-0c02fb55956c7d316 (Amazon Linux 2), use:
+
+ssh -i /path/to/key.pem ec2-user@34.207.74.170

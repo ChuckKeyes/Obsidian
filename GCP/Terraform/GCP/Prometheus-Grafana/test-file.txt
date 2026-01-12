@@ -1,0 +1,187 @@
+# -------- Variables --------
+variable "project"        { type = string }
+variable "region"         { type = string  default = "us-east1" }
+variable "zone"           { type = string  default = "us-east1-b" }
+variable "machine_type"   { type = string  default = "e2-standard-2" }
+variable "media_disk_size_gb" { type = number default = 200 }
+variable "admin_cidr"     { type = string  description = "Your /32 or office CIDR for HTTPS/Jellyfin/Prometheus" }
+
+# -------- Network (minimal) --------
+resource "google_compute_firewall" "allow_jellyfin_prom" {
+  name    = "allow-jellyfin-prometheus"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22","8096","9100","9090","8080"]
+  }
+
+  source_ranges = [var.admin_cidr]
+  description   = "SSH, Jellyfin (8096), Node Exporter (9100), Prometheus (9090), cAdvisor (8080)"
+}
+
+# -------- Data disk --------
+resource "google_compute_disk" "media" {
+  name  = "disk-media-data"
+  type  = "pd-balanced"
+  zone  = var.zone
+  size  = var.media_disk_size_gb
+}
+
+# -------- VM --------
+resource "google_compute_instance" "jf" {
+  name         = "jf-prom-server"
+  machine_type = var.machine_type
+  zone         = var.zone
+
+  boot_disk {
+    initialize_params {
+      image = "ubuntu-os-cloud/ubuntu-2204-lts"
+      size  = 20
+      type  = "pd-balanced"
+    }
+  }
+
+  # Attach the media disk
+  attached_disk {
+    source = google_compute_disk.media.id
+    mode   = "READ_WRITE"
+  }
+
+  network_interface {
+    network = "default"
+    access_config {}
+  }
+
+  metadata_startup_script = <<'BASH'
+#!/usr/bin/env bash
+set -euxo pipefail
+
+# ---------- Constants ----------
+DATA_DEV="/dev/disk/by-id/google-disk-media-data"
+MNT="/mnt/media"
+COMPOSE_DIR="$MNT/compose"
+JF_CONFIG="$MNT/jellyfin/config"
+JF_CACHE="$MNT/jellyfin/cache"
+MEDIA_DIR="$MNT/library"
+PROM_DIR="$MNT/prometheus"
+CADVISOR_DATA="$MNT/cadvisor"
+
+# ---------- Wait for disk & format if needed ----------
+mkdir -p "$MNT"
+# If not yet formatted, mkfs
+if ! blkid "$DATA_DEV" >/dev/null 2>&1; then
+  mkfs.ext4 -F "$DATA_DEV"
+fi
+
+# Mount via fstab using UUID for persistence
+UUID=$(blkid -s UUID -o value "$DATA_DEV")
+grep -q "$UUID" /etc/fstab || echo "UUID=$UUID  $MNT  ext4  defaults,nofail  0  2" >> /etc/fstab
+mount -a
+
+# ---------- Install Docker ----------
+apt-get update
+apt-get install -y ca-certificates curl gnupg lsb-release
+install -m 0755 -d /etc/apt/keyrings
+[ -f /etc/apt/keyrings/docker.gpg ] || curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+  https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+  > /etc/apt/sources.list.d/docker.list
+apt-get update
+apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+usermod -aG docker ${SUDO_USER:-ubuntu} || true
+systemctl enable --now docker
+
+# ---------- Folders on data disk ----------
+mkdir -p "$COMPOSE_DIR" "$JF_CONFIG" "$JF_CACHE" "$MEDIA_DIR" "$PROM_DIR" "$CADVISOR_DATA"
+
+# ---------- Prometheus config ----------
+cat > "$PROM_DIR/prometheus.yml" <<'YML'
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["prometheus:9090"]
+
+  - job_name: "node"
+    static_configs:
+      - targets: ["node-exporter:9100"]
+
+  - job_name: "cadvisor"
+    static_configs:
+      - targets: ["cadvisor:8080"]
+YML
+
+# ---------- docker-compose ----------
+cat > "$COMPOSE_DIR/docker-compose.yml" <<'YML'
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    restart: unless-stopped
+    network_mode: bridge
+    ports:
+      - "8096:8096"
+    volumes:
+      - ../jellyfin/config:/config
+      - ../jellyfin/cache:/cache
+      - ../library:/media
+    # Optional: hardware acceleration later (add VAAPI/NVENC devices)
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    restart: unless-stopped
+    network_mode: bridge
+    ports:
+      - "9090:9090"
+    volumes:
+      - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    restart: unless-stopped
+    network_mode: bridge
+    ports:
+      - "9100:9100"
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    restart: unless-stopped
+    network_mode: bridge
+    ports:
+      - "8080:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+YML
+
+# ---------- Compose up ----------
+cd "$COMPOSE_DIR"
+docker compose up -d
+
+# ---------- Nice-to-have: symlink for media mgmt ----------
+[ -d /srv ] || mkdir /srv
+ln -sfn "$MEDIA_DIR" /srv/media
+BASH
+}
+
+output "jellyfin_url" {
+  value = "http://${google_compute_instance.jf.network_interface[0].access_config[0].nat_ip}:8096"
+}
+
+output "prometheus_url" {
+  value = "http://${google_compute_instance.jf.network_interface[0].access_config[0].nat_ip}:9090"
+}
+
+output "cadvisor_url" {
+  value = "http://${google_compute_instance.jf.network_interface[0].access_config[0].nat_ip}:8080"
+}

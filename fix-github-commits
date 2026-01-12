@@ -1,0 +1,169 @@
+git rm -r --cached **/.terraform
+git rm -r --cached Books
+git rm -r --cached GCP/GCP-Books
+git rm -r --cached GCP/PDF
+git rm -r --cached AWS/AWS_Books
+
+
+git rm -r --cached .terraform
+git rm -r --cached */.terraform
+git rm -r --cached */*/.terraform
+
+
+git commit -m "Stop tracking terraform caches and book PDFs"
+##################################################################################################################
+##################################################################################################################
+
+3) Remove the big file from Git history (recommended method)
+
+Use git filter-repo (best tool for this).
+
+Install (Git Bash):
+pip install git-filter-repo
+
+Remove terraform caches + big binaries everywhere:
+git filter-repo --path-glob "**/.terraform/**" --invert-paths
+
+
+Also remove big PDFs if you want them gone from history too:
+
+git filter-repo --path-glob "**/*.pdf" --invert-paths
+
+
+(Only do the pdf command if you truly want all PDFs removed.)
+
+4) Force push the cleaned repo
+git push origin main --force
+
+Quick safety note
+
+After rewriting history, anyone else using the repo must re-clone or reset.
+
+Why your .gitignore lines didn’t stop it
+
+Because at some point you committed:
+
+.terraform/ provider cache (huge exe)
+
+some PDFs
+
+From then on, Git keeps tracking them until you git rm --cached and/or rewrite history.
+
+If you want the simplest “tell me exactly what to run” path:
+Run this sequence in order:
+
+pip install git-filter-repo
+git filter-repo --path-glob "**/.terraform/**" --invert-paths
+git push origin main --force
+
+
+That alone should fix the 685 MB provider block.
+
+If you paste the output of:
+
+git rev-list --objects --all | head
+
+##########################################################################################################
+
+Here’s how to fix it, in the order that works most often.
+
+1) Confirm whether the remote actually received anything
+
+Run:
+
+git status
+git log --oneline --decorate -5
+git ls-remote --heads origin
+
+
+If your latest commit hash is not on origin/main, the push didn’t make it.
+
+2) Find what’s making the push 536MB (biggest offenders)
+
+This lists the biggest blobs in your repo history:
+
+git rev-list --objects --all |
+  git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' |
+  awk '$1=="blob"{print $3"\t"$4}' |
+  sort -n |
+  tail -20
+
+
+If you see .terraform/ provider exe or big PDFs/videos, that’s why.
+
+3) If ANY .terraform or binaries are in history, remove them properly (best fix)
+
+You already hit this earlier: .gitignore won’t fix history.
+
+Install filter-repo (if needed)
+pip install git-filter-repo
+
+Strip terraform caches from history
+git filter-repo --path-glob "**/.terraform/**" --invert-paths
+
+
+Optional (also strip provider binaries everywhere):
+
+git filter-repo --path-glob "**/terraform-provider-*" --invert-paths
+git filter-repo --path-glob "**/*.exe" --invert-paths
+
+
+Then force push:
+
+git push origin main --force
+
+
+This usually turns a 536MB push into a tiny one.
+
+4) If you really are clean but the push is still large: make Git more tolerant
+
+These help with flaky HTTPS pushes:
+
+git config --global http.postBuffer 524288000
+git config --global http.lowSpeedLimit 0
+git config --global http.lowSpeedTime 999999
+
+
+Then try again:
+
+git push
+
+
+(These don’t fix GitHub size limits — they only reduce disconnect pain.)
+
+5) Switch to SSH (often fixes curl/SSL issues on Windows)
+Check remotes
+git remote -v
+
+Change origin to SSH
+git remote set-url origin git@github.com:ChuckKeyes/Obsidian.git
+
+
+Then:
+
+git push
+
+
+If you haven’t set up SSH keys yet, GitHub has a quick setup flow, but try the history-cleaning first because your pack size screams “big files”.
+
+6) Make sure your .gitignore is actually excluding what you think (going forward)
+
+From repo root, run:
+
+git check-ignore -v AWS/Class-Notes/Week-14/Week14-Sunday/.terraform/providers/registry.terraform.io/hashicorp/aws/5.100.0/windows_amd64/terraform-provider-aws_v5.100.0_x5.exe
+
+
+If it prints a matching rule, ignore is fine.
+If it prints nothing, your pattern isn’t matching that path.
+
+What I’d do in your case (fastest path to success)
+
+Because your pack is 536 MiB, I’d assume big stuff is still in history and do:
+
+pip install git-filter-repo
+git filter-repo --path-glob "**/.terraform/**" --invert-paths
+git push origin main --force
+
+
+If you paste the last ~20 lines of output from step 2 (the bigg
+

@@ -1,0 +1,21 @@
+ubuntu:~$ history
+    1  exit
+    2  halt
+    3  df /dev/vda1
+    4  df -i /dev/vda1
+    5  blockdev --getbsz /dev/vda
+    6  df -B 4096 /dev/vda1
+    7  df /dev/vda1
+    8  df -B 4096 /dev/vda1
+    9  echo 'this is my new file with some content' > testfile
+   10  df /dev/vda1
+   11  df -B 4096 /dev/vda1
+   12  debugfs -R "stat <$(ls -il testfile |  awk '{print $1}')>" /dev/vda1
+   13  debugfs -R "stat <$(ls -il /var/log/syslog |  awk '{print $1}')>" /dev/vda1
+   14  pwd
+   15  ls -ild /root
+   16  ls -ild /
+   17  ls -ial /root
+   18  clear
+   19  history
+ubuntu:~$ 

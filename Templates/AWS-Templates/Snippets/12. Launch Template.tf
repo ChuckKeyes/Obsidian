@@ -1,0 +1,34 @@
+
+## 12. Launch Template — Defines how ASG instances are created
+resource "aws_launch_template" "web" {
+  name_prefix   = "ck-web-lt-"
+  image_id      = "ami-xxxxxxxx"   # Debian or Amazon Linux AMI ID
+  instance_type = "t3.micro"
+
+  vpc_security_group_ids = [aws_security_group.targets_sg.id]
+
+  # Simple user_data: install web server + show instance details
+  user_data = base64encode(<<-EOF
+    #!/bin/bash
+    set -xe
+    if command -v yum >/dev/null 2>&1; then
+      yum update -y
+      yum install -y httpd
+      systemctl enable httpd
+      systemctl start httpd
+      WEBROOT="/var/www/html"
+    elif command -v apt-get >/dev/null 2>&1; then
+      apt-get update -y
+      apt-get install -y apache2
+      systemctl enable apache2
+      systemctl start apache2
+      WEBROOT="/var/www/html"
+    else
+      WEBROOT="/var/www/html"
+    fi
+
+    echo "<h1>ck-lab ASG instance: $(hostname -f)</h1>" > $${WEBROOT}/index.html
+  EOF
+  )
+}
+

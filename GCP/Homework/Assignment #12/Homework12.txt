@@ -1,0 +1,125 @@
+In our last post, we’ve covered the containerization of our eCommerce platform based on Magento. We created a CDK template sample that deploys all the application stacks including the orchestration service, container images and the database instances. While our team was continuing to enhance it into a production ready deployment template, we were in the midst of achieving a new challenge — moving our data and switching the traffic from our current eCommerce application to the new application in the cloud.
+
+In this blog I will discuss the approach we went through to ensure that the transition to the new environment will be seamless for our customers with a zero downtime migration from the on-premises environment to the cloud.
+
+Disclaimer
+I Love My Local Farmer is a fictional company inspired by customer interactions with AWS Solutions Architects. Any stories told in this blog are not related to a specific customer. Similarities with any real companies, people, or situations are purely coincidental. Stories in this blog represent the views of the authors and are not endorsed by AWS.
+
+Organizing the migration
+The decision to migrate our eCommerce application to the cloud was quite easy to take. The current architecture was reaching its limit in term of scalability and capacity to grow and was not adapted to our international expansion strategy. However, we needed several discussions between IT department and business teams to prepare the migration and align on the strategy.
+We needed to identify an approach that will allow to balance our business drivers for the migration with other considerations as time, business and financial constraints, and resource requirements. We ended-up with the definition of 2 core principles that drove our migration strategy:
+
+The switchover to the new platform needed to be done with a near zero downtime. Our eCommerce application was used continuously in different geos. We needed to avoid any potential loss of sales that can result of interruption of the service.
+The migration project needed to last as short as possible. Because the containerization is just the first step of the modernization of our eCommerce application (stay tune for the next steps in coming episodes), we decided to move fast and to limit the time spent by our development and operation teams on this migration. We decided to perform the migration in less than 4 weeks.
+We also identified two main factors of success to achieve our objective of a zero downtime migration: Eliminate the risk of data loss and inconsistencies during the migration of the data, and reduce the time required for switching the traffic to our new application during the cutover.
+All our next decisions for the migration were driven by these core principles and key factor of success.
+
+During the preparation phase, we also identified all the tasks required for the execution of the migration. We decided to organize these tasks in 3 steps.
+
+Step 1- Preparation of the target environment
+
+The objective of this step is to install all the components of the application in the AWS environment.
+
+As mentioned, as part of the PoC, our development team created a CDK template sample that deploys an ECS cluster running the Magento containers on Fargate, an Elasticsearch engine using OpenSearch Cluster and a RDS MariaDB database. The template can be quickly adjusted and reused to create our new production environment on AWS.
+
+Step 2- Migration of the database
+
+This step includes the conversion of the database schema, migration of the data and the test of the database migration. It also includes performing any updates on the web applications that would be required by the database migration (SQL queries, stored procedures, web application code…).
+
+Step 3- Roll out the new version of the application
+
+The objective of this phase is to switch the user traffic to the new version of application with a minimum downtime.
+
+From the requirements standpoint all looks nice on the paper, but we had to go through set of discussions and technical decision to align on the approach and tooling. Read further to get the details.
+
+Migrating our data with zero data loss
+Database migration was the most critical task of the project. And based on the business priorities and key factor of success, we needed to determine what database migration strategies to adopt.
+
+Lift and shift — Move our database to the cloud in an EC2 instance without making any changes
+Replatform — Move our database to RDS and introduce some level of optimizations offered by managed databases
+Refactor — Move the database and modify its architecture to take advantages of cloud-native features.
+We explained in the previous post that for simplicity and time to market, we chose to use the same MariaDB database engine on AWS as on-premises. However, we decided to replatform our database to a managed RDS database to reduce the overhead of running a self-managed database.
+
+Now that the target database engine was defined, it was time to start the migration. We listed the different tasks that will be required to execute the migration: converting the database schema, migrating the data and the test of the database migration.
+As we were performing a homogeneous database migration, we didn’t need to convert the schema or make modifications in the code of the web application. So, we were ready to start directly the data migration.
+We had to select the right tool that will allow us to import the data from our on-premises MariaDB database to our RDS MariaDB database. As part of our selection, we defined several requirements that the tool needed to cover:
+
+Footprint: minimal impact on eCommerce application availability during the export of the data
+Polyvalence: ability to import a full copy and then replicate the incremental changes from source database to target database
+Performance: Ability to execute the import of our 500 GB size database as short as possible
+One of the advantages of running a popular open source relational database as MariaDB (with its MySQL compatible engine) is the variety of the tools available to import the data from one database to another. However, we needed to define which one will be the most adapted to our use case.
+
+We knew that AWS provides a managed service that helps to migrate database to AWS with near-zero downtime. This service is AWS Data Migration Service (DMS) and it offers different options to migrate the data from source to target databases such as remapping schema or table names, data filtering, and migrating from multiple sources to a single database on AWS. It also integrates change data capture (CDC) replication.
+However, as we were running homogenous migration (from MariaDB database to MariaDB database), using native tools integrated with the database was a more effective option for us as it was straight-forward and wouldn’t require the configuration of additional services.
+
+So we decided to explore new options and after going through different articles and blog posts, we identified two approaches for the migration of our database: logical migration that creates logical backup of the database by generating SQL statements in text or SQL files, and physical migration that works by copying the physical data files from the source and restoring them on the target.
+
+For our project, we considered mysqldump and mydumper/myloader for logical migration tools and Percona XtraBackup for physical migration.
+I will not detail these tools in this post, you can find plenty information on internet explaining how to import data to self-managed or fully managed databases on AWS, for example here, here or here. However, I will explain how we selected what we thought was the right tool for our context and requirements.
+
+Get Karim Ichallamene’s stories in your inbox
+Join Medium for free to get updates from this writer.
+
+Enter your email
+Subscribe
+Finding the winner…
+
+Physical migration with Percona XtraBackup was our first preferred solution for simplicity and performance. It works by copying the physical data files from the source and restoring them on the target. It is faster than logical migration because using logical migration replays all of the commands to recreate the schema and data from your source database in the target database. Unfortunately, this solution was not compatible with our MariaDB engine.
+
+So we considered mysqldump and liked its ease of use and the fact that it doesn’t require additional installation as it is available with MariaDB standard installation. However, we were not satisfied with the performance and the unique (big) file generated during the export process that makes it difficult to transfer without affecting our internal network bandwidth.
+
+So we decided to test mydumper configured with 4 parallel threads (mysqldump is mono thread) to leverage all the CPU core available on the server. We got better performance during our tests with 2X faster extraction job compared to mysqldump. We also decided to split big tables to multiple chunks written in separate files to be able to load them in parallel and reduce the import duration.
+Our approach was to create full dumps of our database, transfer these copies of the database data to an Amazon EC2 instance and import the data into our Amazon RDS MariaDB instance. To restore the backup, we used myloader configured with 8 threads to leverage the 8 vCPU available in our RDS instance type (db.m5.2xlarge).
+Using multiple threads allowed to load multiple tables in parallel and insert multiple chunks on the same table concurrently.
+We ran different tests in advance to measure the time needed to create the dump and evaluate the time required for the migration. We needed to test the import with different database configuration to optimize the time required for the import. For example, we improved the performance of the import by temporarily reducing the commits speed by setting innodb_flush_log_at_trx_commit parameter to 0 in the parameter group of RDS database. Other tips that we applied to reduce the load time including optimization of the indexes, the FK constraints and Primary Keys are available here.
+
+Finally, to achieve our zero downtime objective, we also needed to use the replication to bring the Amazon RDS instance up-to-date with our on-premises instance. We were able to do that using mydumper as it captures the binary log and its positions in a metadata file before taking the backup. These information can be used later to set up the replication.
+
+For reference, we followed the instructions provided here and here to perform the copy/restore and then the replication from our source database to the RDS database instance.
+
+The following diagram shows the high-level steps involved in migrating data using mydumper method:
+
+Press enter or click to view image in full size
+
+All along the data migration, we performed functional and performance testing.
+The objective of functional testing was to make sure of the consistency of data between the source and target and that the web application was working with the new database without any issues. We prepared some unit tests that we ran regularly to test out the application workflows.
+We also performed performance testing to ensure that the database response times were within an acceptable time range.
+
+After making the RDS MariaDB instance up-to-date with the source replication instance, the next step was to stop the transactions on the source database when the replication lag is zero and to switch the traffic to the new application with near zero down time and that’s what I going to describe now.
+
+Switching the traffic to the new web application with zero downtime
+In parallel of the work related to the migration of the data from on-premises database to the RDS database in the cloud, we had to prepare the approach for switching the traffic to the new application as soon as the migration of the database will be completed to achieve our zero downtime objective.
+
+We knew that the main challenge for this step will be to ensure that our users will end at the correct end point after the cutover. When a user enters an URL of an application in his browser, the DNS servers allow to return the IP address or a DNS name related to the application endpoint. However, because DNS servers use caching to reduce the latency of fetching IP addresses related to domain names, we needed to ensure that the endpoint returned to our end clients will correspond to our new environment on AWS.
+The TTL (time to live) setting for a DNS record specifies how long a DNS resolvers will cache the record and use the cached information. Lowering the TTL for the NS record in advance reduces the cache and the time needed to propagate the IP address of the new endpoint to DNS servers. The typical TTL setting for the NS record is 172800 seconds, or two days. We decided to lower the value of the TTL to 60 seconds during the migration to force DNS resolvers to pull the DNS changes more frequently .
+
+Lowering TTL to manage DNS cache works well for most of cases but we also had to anticipate DNS propagation issues and problem related to client behavior. During our investigation, we discovered for example that some browsers are caching the DNS answers independently of the DNS server resolver caching. There are also applications that hold persistent connections to the original endpoints.
+Our approach to handle these behaviors was to add a HTTP 301 redirect in our legacy application to redirect the traffic to a new temporary subdomain. We would just need to add a DNS record in the DNS server that will point the temporary subdomain to the DNS name of the Application Load Balancer.
+During our investigation on this issue, we also discovered that it was also possible to manage the redirection without updating the application logic. The approach is to use Lambda Edge on CloudFront to manage the redirection at CDN level but we didn’t want to introduce new layers and services that would have required additional work to be tested and deployed. As mentioned earlier, we wanted this migration to be fast and with minimal efforts.
+
+The last factor that had added some complexity to our work was that we decided as part of the migration of the application to migrate our DNS zones to Route 53. Indeed, as we are moving additional workloads to AWS, we were interested to take benefits of some features that Route 53 provides as the native integration with AWS services such as Elastic Load balancers, EC2 instances, CloudFront…, Alias records and multiple available routing policies. Consequently, we also needed to integrate the migration to Route 53 as part of our migration plan.
+
+The following diagram shows the high-level steps involved in switching the traffic to the cloud during the cutover:
+
+
+Ready, set, go…
+With the D day approaching and to ensure the success of the cutover, we decided to set-up a war room and we engaged SMEs to be able to face any problem during the cutover.
+Based on the 3 migrations steps defined earlier, we prepared a check list with the tasks that we needed to execute to roll out the new version of the application.
+
+Deploy the components of the eCommerce application on AWS using the adjusted CDK template
+Create a first full copy of the source database and import the dump into the MariaDB RDS instance
+Configure Route53 to be the new DNS server for our eCommerce domain name including the creation of a hosted zone and definition of DNS records that point to the application load balancer created by the CDK template
+Lower TTL setting in our existing DNS server to 60 seconds to force the DNS resolver to pull the IP address more frequently. We did that 2 days before the cutover to ensure the propagation of the new TTL value on the domain name servers all around the world. We also defined the same low TTL value on NS Records in Route53 hosted zone to be able to switch over the the legacy application in case we discover a problem during the migration
+Wait the expiration of the old TTL value. We also used a DNS checking tool to check the propagation of the update on the DNS records
+Start the replication of binary log to capture the updates on the source database. On the MariaDB RDS DB instance, run the SHOW REPLICA STATUS command to determine when the new database is up-to-date with the source instance.
+At the end of the replication, lock the on-premises database to ensure that we don’t loose any data when we are cutting over
+Add a HTTP 301 redirect in our on-premises application to redirect the traffic to the temporary subdomain.
+Update the information of the NS record at our registrar to use Route 53 name servers
+Wrap-up and next steps
+We learned many valuable lessons from the process of migrating our eCommerce application to the cloud with zero downtime that I would like to highlight here.
+
+Achieving near zero-downtime created many challenges and added complexity to our migration. This must be balanced with business and financial constraints related to the downtime. Other approaches leading to some downtime, for example offline migration, should be privileged when possible as they provide additional flexibility.
+Define early the business outcome expected from the migration and align on the priorities. Because this migration was only the first step of the modernization of our eCommerce application, we needed to carefully balance the benefits of any change that we operate with the efforts for our team to implement it. This led us for example to adopt a replatform approach for the database. In other situations, adopting other approach like refactoring to a cloud native database would have brought more benefits.
+The time required for the migration of the database should be anticipated and secured. The import of data using myloader is a long process and we needed to tests different parameters and configurations on RDS database to reduce the duration. The tool used for the database migration should also be selected carefully based on the business and technical requirements and the constraints. Using a managed service like DMS if possible should be considered to help and secure the migration of the database and validation of the data on AWS.
+While we had anticipated that the migration of the data without any data loss and without performance impacts would be a challenge, we discovered the challenges related to DNS propagation lag and we had to find mitigations for caching problems at both DNS server and clients side.
+Finally, we also needed before taking a decision to evaluate the benefits that the modifications on our architecture will bring for the next step : building our next generation eCommerce application based on micro services. So stay tune to discover the new steps of the cloud transformation journey of our eCommerce application.

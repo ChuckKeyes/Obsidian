@@ -1,0 +1,43 @@
+
+Q1: How to check the current directory?
+
+Answer  pwd
+
+Q2: I am in /home/user1. I want to go to /home/user2 using absolute path. How should I do it?
+
+Answer  cd /home/user2
+
+Q3: what ~ means?
+
+root directory
+home directory
+temp directory
+previous directory
+
+Answer  HOME DIRECTORY
+
+Q5: I want to navigate to my home directory. Select all proper options
+
+cd HOME
+cd
+cd /home/mydir
+cd $HOME
+cd ~    
+
+Answer  cd ~    cd $HOME
+
+Q6: I want to navigate to my home directory, using $HOME, and further to app/tests directory:
+
+Answer  cd app/tests
+
+Q7: I want to create 100 directories named hello001 to hello100. What is the command?
+
+Answer  mkdir (hello001..100)
+
+Q8: To remove all directories from /directory I have to run (do not use rm command):
+
+Answer  rmdir -p /directory/*
+
+Q9: How to remove everything without confirmation from /mydir/somedir? Consider you are in /mydir and somedir must be removed as well (do not use absolute path).
+
+Answer  rm -rf /mydir/somedir

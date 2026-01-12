@@ -1,0 +1,63 @@
+
+# Ignore the Books folder completely
+<<<<<<< HEAD
+Books/**
+GCP/GCP-Books/**
+GCP/PDF/**
+AWS/AWS_Books/**
+=======
+Books/
+GCP/GCP-Books
+GCP/PDF
+AWS/AWS_Books
+>>>>>>> 9911d879902207ad42e898bb4513e878248f5488
+############################
+# Obsidian vault hygiene
+############################
+# keep settings but ignore local layout/state
+.obsidian/workspace.json
+.obsidian/appearance.json
+# (optional) plugin caches; keep if you want portable settings
+# .obsidian/plugins/*/data.json
+.obsidian/app.json
+.obsidian/plugins/*/data.json
+############################
+# Keep big books/manuals out of Git
+############################
+Books/**
+###  No Videos up-load
+Videos/**
+############################
+# Terraform (apply everywhere in the vault)
+############################
+**/.terraform/**              # provider cache
+**/terraform.tfstate          # state files
+**/terraform.tfstate.*        # state backups
+**/terraform.tfstate.backup
+**/*.tfvars                   # secrets/vars
+**/*.tfstate
+**/*.tfstate.backup
+**/*.tfvars.json
+**/*.auto.tfvars
+**/*.auto.tfvars.json
+**/override.tf                # local overrides
+**/override.tf.json
+**/*_override.tf
+**/*_override.tf.json
+**/*.tfplan                   # plan outputs
+**/crash.log*                 # crash files
+
+# IMPORTANT: keep lockfile for reproducible builds
+!**/.terraform.lock.hcl
+
+############################
+# OS noise
+############################
+.DS_Store
+Thumbs.db
+# Ignore Portfolio folder so it doesn’t push to Obsidian repo
+Portfolio Files/
+
+# Terraform provider binaries (any platform)
+**/terraform-provider-*
+**/*.exe

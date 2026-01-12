@@ -1,0 +1,8 @@
+target_group_arns = var.alb_enable ? [aws_lb_target_group.web[0].arn] : []
+
+
+# From your home into Prometheus
+ssh -i mykey.pem ec2-user@<prometheus-public-ip>
+
+# From Prometheus into private VM
+ssh -i mykey.pem ec2-user@10.10.x.x

@@ -1,0 +1,13 @@
+module "r53_www" {
+  source = "./modules/route53_alias"
+
+  enabled          = true
+  hosted_zone_name = "keyescloudsolutions.com"
+  record_name      = "www.keyescloudsolutions.com"
+
+  alias_dns_name   = aws_cloudfront_distribution.portfolio.domain_name
+  alias_zone_id    = aws_cloudfront_distribution.portfolio.hosted_zone_id
+
+  evaluate_target_health = false
+  create_aaaa            = true
+}

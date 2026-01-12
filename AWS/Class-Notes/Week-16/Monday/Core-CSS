@@ -1,0 +1,107 @@
+/* ===== Dark Executive Theme ===== */
+
+:root {
+  --navy: #0B1C2D;
+  --navy-dark: #122A44;
+  --accent: #2F80ED;
+  --text-main: #FFFFFF;
+  --text-muted: #C7D1E0;
+  --border: #1E3A5F;
+  --card-bg: #0F2238;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(180deg, var(--navy), var(--navy-dark));
+  color: var(--text-main);
+}
+
+/* ===== Header ===== */
+header {
+  padding: 40px 20px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+header h1 {
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+}
+
+header h2 {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/* ===== Navigation ===== */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 15px;
+  background-color: rgba(11, 28, 45, 0.9);
+  border-bottom: 1px solid var(--border);
+}
+
+nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+/* ===== Section ===== */
+section {
+  max-width: 1100px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+/* ===== Cards ===== */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+.card h3 {
+  margin-top: 0;
+  color: var(--accent);
+}
+
+/* ===== Buttons ===== */
+button, .btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover, .btn:hover {
+  background: #1f6fe0;
+  transform: translateY(-1px);
+}
+
+/* ===== Footer ===== */
+footer {
+  text-align: center;
+  padding: 25px;
+  font-size: 14px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}

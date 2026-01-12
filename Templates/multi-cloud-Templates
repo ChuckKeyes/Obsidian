@@ -1,0 +1,57 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 5.0"
+    }
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 4.0"
+    }
+  }
+  required_version = ">= 1.8.0"
+}
+
+provider "aws" {
+  region  = var.aws_region
+  profile = var.aws_profile
+}
+
+provider "google" {
+  project = var.gcp_project_id
+  region  = var.gcp_region
+}
+
+provider "azurerm" {
+  features {}
+}
+#########################################################################################################
+
+Templates/
+  AWS-Templates/
+    providers.tf
+    vpc.tf
+    subnets.tf
+    ec2.tf
+    asg-alb.tf
+    iam.tf
+  GCP-Templates/
+    providers.tf
+    vpc.tf
+    subnet.tf
+    vm.tf
+    ncc-vpn.tf
+  Azure-Templates/
+    providers.tf
+    vnet.tf
+    subnet.tf
+    vm.tf
+    vpn-gateway.tf
+  Multicloud-Patterns/
+    aws-gcp-vpn-bgp.tf
+    aws-azure-site2site.tf
+    gcp-azure-vpn.tf

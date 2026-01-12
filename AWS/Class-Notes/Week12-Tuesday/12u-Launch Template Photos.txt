@@ -1,0 +1,139 @@
+resource "aws_launch_template" "web" {
+  name_prefix   = "ck-web-lt-"
+  image_id      = "ami-0fa3fe0fa7920f68e"   # same AMI you used before
+  instance_type = "t3.micro"
+
+  vpc_security_group_ids = [aws_security_group.targets_sg.id]
+
+  user_data = base64encode(<<-EOF
+    #!/bin/bash
+    set -xe
+
+    # --- Install web server (Apache/HTTPD) + git ---
+    if command -v yum >/dev/null 2>&1; then
+      yum update -y
+      yum install -y httpd wget tar git curl
+      systemctl enable httpd
+      systemctl start httpd
+      WEBROOT="/var/www/html"
+    elif command -v apt-get >/dev/null 2>&1; then
+      apt-get update -y
+      apt-get install -y apache2 wget tar git curl
+      systemctl enable apache2
+      systemctl start apache2
+      WEBROOT="/var/www/html"
+    else
+      WEBROOT="/var/www/html"
+    fi
+
+    # --- Clone GitHub repo with photos and copy to web root ---
+    git clone https://github.com/ChuckKeyes/Obsidian.git /opt/obsidian || true
+
+    mkdir -p "$WEBROOT/images"
+    cp /opt/obsidian/Photos/*.jpg "$WEBROOT/images/" || true
+
+    # ------------------------------------------------------
+    # Detect this instance's subnet + AZ from IMDS
+    # ------------------------------------------------------
+    METADATA_BASE="http://169.254.169.254/latest/meta-data"
+
+    # Take the first network interface MAC
+    MAC=$(curl -s "$METADATA_BASE/network/interfaces/macs/" | head -n1)
+
+    # Get subnet-id and AZ for logging
+    SUBNET_ID=$(curl -s "$METADATA_BASE/network/interfaces/macs/$MAC/subnet-id" || echo "unknown-subnet")
+    AZ=$(curl -s "$METADATA_BASE/placement/availability-zone" || echo "unknown-az")
+
+    BG_IMAGE="background1.jpg"
+    TITLE="ck-lab ASG instance"
+
+    # Pick background based on AZ instead of Terraform subnet IDs
+    case "$AZ" in
+      "us-east-1a")
+        BG_IMAGE="background1.jpg"
+        TITLE="Public Subnet 1 (AZ: $AZ)"
+        ;;
+      "us-east-1b")
+        BG_IMAGE="background2.jpg"
+        TITLE="Public Subnet 2 (AZ: $AZ)"
+        ;;
+      "us-east-1c")
+        BG_IMAGE="background3.jpg"
+        TITLE="Public Subnet 3 (AZ: $AZ)"
+        ;;
+      *)
+        BG_IMAGE="background3.jpg"
+        TITLE="Unknown Subnet (AZ: $AZ)"
+        ;;
+    esac
+
+    echo "AZ: $AZ  SUBNET_ID: $SUBNET_ID  ->  Background: $BG_IMAGE" >> /var/log/user-data.log
+
+    # --- HTML page with dynamic background + text + 8 photos ---
+    cat <<HTML > "$WEBROOT/index.html"
+    <html>
+      <head>
+        <title>$TITLE</title>
+        <style>
+          body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: #222;
+            background-image: url('/images/$BG_IMAGE');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+          }
+          .overlay {
+            background: rgba(255, 255, 255, 0.85);
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+          }
+          h1, h2, h3, p {
+            margin: 10px 0;
+          }
+          .images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 20px;
+          }
+          .images img {
+            max-width: 220px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+          }
+        </style>
+      </head>
+      <body>
+        <div class="overlay">
+          <h1>$TITLE</h1>
+          <h2>Owner: Charles Keyes Sr.</h2>
+          <p>Repo: ChuckKeyes/Obsidian (Photos copied locally)</p>
+          <p>Subnet ID: $SUBNET_ID &nbsp; | &nbsp; AZ: $AZ</p>
+
+          <h3>Gallery</h3>
+          <div class="images">
+            <img src="/images/dominican1.jpg" alt="Photo 1" />
+            <img src="/images/dominican2.jpg" alt="Photo 2" />
+            <img src="/images/dominican3.jpg" alt="Photo 3" />
+            <img src="/images/dominican4.jpg" alt="Photo 4" />
+            <img src="/images/dominican5.jpg" alt="Photo 5" />
+            <img src="/images/dominican6.jpg" alt="Photo 6" />
+            <img src="/images/dominican7.jpg" alt="Photo 7" />
+            <img src="/images/dominican7.jpg" alt="Photo 8" />
+          </div>
+        </div>
+      </body>
+    </html>
+    HTML
+  EOF
+  )
+}

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KCS Portfolio | Keyes Cloud Solutions</title>
+  <style>
+    :root{
+      --bg:#071625;           /* navy */
+      --panel:#0b2236;        /* darker navy */
+      --text:#eaf2ff;         /* near-white */
+      --muted:#b7c7de;        /* muted text */
+      --accent:#2f7df6;       /* accent blue */
+      --line:rgba(255,255,255,.08);
+      --shadow: 0 14px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1080px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      background: radial-gradient(900px 500px at 20% 0%, rgba(47,125,246,.20), transparent 60%),
+                  radial-gradient(700px 500px at 100% 0%, rgba(47,125,246,.10), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:26px 18px 60px}
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:10px 0 26px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+    }
+    .logo{
+      width:40px; height:40px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(47,125,246,.95), rgba(47,125,246,.35));
+      box-shadow: var(--shadow);
+      position:relative;
+    }
+    .logo:after{
+      content:""; position:absolute; inset:10px;
+      border-radius:10px; border:1px solid rgba(255,255,255,.25);
+    }
+    .brand h1{font-size:16px; margin:0; letter-spacing:.4px}
+    .brand p{margin:0; color:var(--muted); font-size:13px}
+    nav{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .btn{
+      padding:10px 12px; border-radius:12px; border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      transition:.15s ease;
+      font-size:13px;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(47,125,246,.45)}
+    .btn.primary{
+      background: rgba(47,125,246,.16);
+      border-color: rgba(47,125,246,.55);
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap:18px;
+      align-items:stretch;
+      margin-top:6px;
+    }
+    .card{
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:18px;
+    }
+    .hero h2{
+      margin:0 0 10px;
+      font-size:30px;
+      letter-spacing:.2px;
+    }
+    .hero p{
+      margin:0 0 14px;
+      color: var(--muted);
+      font-size:15px;
+    }
+    .pillrow{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 0}
+    .pill{
+      font-size:12px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      color: var(--muted);
+    }
+    .quick{
+      display:grid; gap:10px;
+    }
+    .quick a{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      transition:.15s ease;
+      font-size:13px;
+    }
+    .quick a:hover{border-color: rgba(47,125,246,.45); transform: translateY(-1px)}
+    .arrow{color: rgba(47,125,246,.9)}
+
+    .sectionTitle{
+      margin:22px 0 12px;
+      font-size:14px;
+      color: var(--muted);
+      letter-spacing:.18em;
+      text-transform: uppercase;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .proj h3{margin:0 0 8px; font-size:16px}
+    .proj p{margin:0 0 12px; color:var(--muted); font-size:13px}
+    .meta{
+      display:flex; flex-wrap:wrap; gap:8px;
+    }
+    .tag{
+      font-size:12px; padding:6px 9px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      color: var(--muted);
+    }
+    .row{
+      display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;
+    }
+
+    footer{
+      margin-top:24px;
+      color: var(--muted);
+      font-size:12px;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    }
+
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      header{flex-direction:column; align-items:flex-start}
+      nav{justify-content:flex-start}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Keyes Cloud Solutions (KCS)</h1>
+          <p>Cloud Engineer • Terraform • AWS + GCP</p>
+        </div>
+      </div>
+      <nav>
+        <a class="btn" href="#projects">Projects</a>
+        <a class="btn" href="#skills">Skills</a>
+        <a class="btn primary" href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="card">
+        <h2>Portfolio Landing</h2>
+        <p>
+          Infrastructure-first demos that prove real cloud skills: networking, security, observability,
+          automation, and repeatable Terraform deployments.
+        </p>
+
+        <div class="row">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="#contact">Get in Touch</a>
+        </div>
+
+        <div class="pillrow">
+          <span class="pill">AWS VPC + Subnets + NAT</span>
+          <span class="pill">RDS (MySQL)</span>
+          <span class="pill">Secrets Manager + SSM</span>
+          <span class="pill">CloudWatch + SNS</span>
+          <span class="pill">Terraform Modules</span>
+        </div>
+      </div>
+
+      <div class="card quick">
+        <a href="#">
+          <span>GitHub Repos</span>
+          <span class="arrow">→</span>
+        </a>
+        <a href="#">
+          <span>Resume (PDF)</span>
+          <span class="arrow">→</span>
+        </a>
+        <a href="#">
+          <span>LinkedIn</span>
+          <span class="arrow">→</span>
+        </a>
+        <a href="#">
+          <span>Live Demo Notes</span>
+          <span class="arrow">→</span>
+        </a>
+        <p style="margin:4px 2px 0;color:var(--muted);font-size:12px;">
+          Tip: Replace the “#” links with your real URLs.
+        </p>
+      </div>
+    </section>
+
+    <div class="sectionTitle" id="projects">Projects</div>
+    <section class="grid">
+      <div class="card proj">
+        <h3>KCS AWS Lab Stack</h3>
+        <p>
+          VPC, public/private subnets, NAT, EC2, RDS MySQL, Secrets Manager, Parameter Store,
+          CloudWatch logs, alarms, and SNS notifications — deployed via Terraform.
+        </p>
+        <div class="meta">
+          <span class="tag">Terraform</span>
+          <span class="tag">VPC</span>
+          <span class="tag">RDS</span>
+          <span class="tag">CloudWatch</span>
+          <span class="tag">SNS</span>
+        </div>
+      </div>
+
+      <div class="card proj">
+        <h3>Secure Global Test Platform</h3>
+        <p>
+          Hub-and-spoke design with strict access paths. Thin clients connect through controlled
+          entry points; management plane is isolated for security and auditing.
+        </p>
+        <div class="meta">
+          <span class="tag">Security</span>
+          <span class="tag">Networking</span>
+          <span class="tag">Zero Trust</span>
+          <span class="tag">Automation</span>
+        </div>
+      </div>
+
+      <div class="card proj">
+        <h3>GCP NCC + HA VPN (Multi-Region)</h3>
+        <p>
+          Network Connectivity Center hub with HA VPN spokes across regions/countries. Repeatable
+          modules, consistent naming, and controlled routing domains.
+        </p>
+        <div class="meta">
+          <span class="tag">GCP NCC</span>
+          <span class="tag">HA VPN</span>
+          <span class="tag">BGP</span>
+          <span class="tag">Terraform Modules</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="sectionTitle" id="skills">Skills Snapshot</div>
+    <section class="card">
+      <div class="pillrow">
+        <span class="pill">AWS: VPC • EC2 • RDS • IAM • CloudWatch • SNS • SSM • Secrets</span>
+        <span class="pill">GCP: VPC • NCC • HA VPN • Cloud Router • IAM • Cloud Storage</span>
+        <span class="pill">IaC: Terraform • Modules • State • Reproducible Deployments</span>
+        <span class="pill">Ops: Logs • Metrics • Alarms • Incident Notifications</span>
+      </div>
+    </section>
+
+    <div class="sectionTitle" id="contact">Contact</div>
+    <section class="card">
+      <p style="margin:0;color:var(--muted);">
+        Email: <strong style="color:var(--text);">chuck37080@gmail.com</strong><br/>
+        Region: <strong style="color:var(--text);">us-east-1</strong><br/>
+        Brand: <strong style="color:var(--text);">Keyes Cloud Solutions (KCS)</strong>
+      </p>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> Keyes Cloud Solutions</span>
+      <span>Deployed with Terraform • Dark executive theme</span>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

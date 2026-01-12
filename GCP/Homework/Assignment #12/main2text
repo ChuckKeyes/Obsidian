@@ -1,0 +1,69 @@
+# Derive a default zone like "us-east1-b" if not provided
+locals {
+  zone = coalesce(var.zone, "${var.region}-b")
+}
+
+# -------------------- VPC --------------------
+module "hq-vpc" {
+  source                   = "./modules/vpc"
+  vpc-name                 = var.vpc-name
+  auto-create-subnetworks  = false
+  routing-mode             = "REGIONAL"
+}
+
+# -------------------- Customer Service --------------------
+module "subnet-customer-service" {
+  source        = "./modules/subnet"
+  name          = "subnet-customer-service"
+  ip-cidr-range = "10.100.30.0/24"
+  region        = var.region
+  network       = module.hq-vpc.self-link
+}
+
+module "vm-customer-service" {
+  source      = "./modules/instance"
+  name        = "vm-customer-service"
+  machine-type= "e2-micro"
+  zone        = local.zone
+  subnetwork  = module.subnet-customer-service.self-link
+  tags        = ["test-vm"]
+  image       = "debian-cloud/debian-11"
+}
+
+# -------------------- Production --------------------
+module "subnet-production" {
+  source        = "./modules/subnet"
+  name          = "subnet-production"
+  ip-cidr-range = "10.100.10.0/24"
+  region        = var.region
+  network       = module.hq-vpc.self-link
+}
+
+module "vm-production" {
+  source      = "./modules/instance"
+  name        = "vm-production"
+  machine-type= "e2-micro"
+  zone        = local.zone
+  subnetwork  = module.subnet-production.self-link
+  tags        = ["test-vm"]
+  image       = "debian-cloud/debian-11"
+}
+
+# -------------------- Finance --------------------
+module "subnet-finance" {
+  source        = "./modules/subnet"
+  name          = "subnet-finance"
+  ip-cidr-range = "10.100.20.0/24"
+  region        = var.region
+  network       = module.hq-vpc.self-link
+}
+
+module "vm-finance" {
+  source      = "./modules/instance"
+  name        = "vm-finance"
+  machine-type= "e2-micro"
+  zone        = local.zone
+  subnetwork  = module.subnet-finance.self-link
+  tags        = ["test-vm"]
+  image       = "debian-cloud/debian-11"
+}

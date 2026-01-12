@@ -1,0 +1,100 @@
+ubuntu:/home/student1$ history
+    1  exit
+    2  halt
+    3  ls -al
+    4  ls -al .bashrc
+    5  ls -ld /root
+    6  ls -l /usr/bin/python
+    7  ls -l /dev/vda
+    8  ls -l /dev/random
+    9  ls -al
+   10  ls -l /var/log
+   11  su - student3
+   12  su - student2
+   13  su - student1
+   14  cd /home/student1
+   15  ls -ld student1
+   16  chgrp student2 student1
+   17  ls -ld student1
+   18  ls -l student1
+   19  chgrp -R student2 student1 && ls -l student1
+   20  touch test{01..03} && ls -l test*
+   21  chown student2 test01
+   22  chown :student2 test02
+   23  chown student1:student3 test03
+   24  ls -l test*
+   25  chown -R student2:student3 student1
+   26  ls -ld student1
+   27  ls -al student1
+   28  clear
+   29  history
+ubuntu:/home/student1$ 
+.q:Sno@zv<q(V3;
+]L|&~Mxc;gE+p7]
+
+
+---
+
+### **Q1: I want to add write permission for the group**
+
+* ✅ **Answer: `g+w`**
+
+Explanation:
+
+* `g` = group
+* `+w` = add write permission
+  So `g+w` adds write permission for the group.
+
+---
+
+### **Q2: 752 represents**
+
+* ✅ **Answer: `rwxr-x-w-`**
+
+Explanation:
+Break down `752` into owner-group-others:
+
+* `7` = `rwx`
+* `5` = `r-x`
+* `2` = `-w-`
+  So the permission is `rwxr-x-w-`.
+
+---
+
+### **Q3: I want to force `rwx` permissions for owner, `rw` for group and `r` only for others**
+
+* ✅ **Answer: `u=rwx,g=rw,o=r`**
+
+Explanation:
+
+* `u=rwx` → owner: read, write, execute
+* `g=rw` → group: read, write
+* `o=r` → others: read only
+
+---
+
+### **Q4: `u=rwx,g=r,o=r` in digits will be**
+
+* ✅ **Answer: `744`**
+
+Explanation:
+
+* `u=rwx` = 7
+* `g=r` = 4
+* `o=r` = 4
+  So the numeric mode is `744`.
+
+---
+
+### **Q5: I have the script in my home directory. I want to ensure the group is able to read and execute (not write), and others can execute the script. What should I set?**
+
+* ✅ **Answer: `5 for group and 1 for others`**
+
+Explanation:
+
+* `5` = `r-x` (read + execute) → group
+* `1` = `--x` (execute only) → others
+
+---
+
+Let me know if you want to practice more Linux permission scenarios!

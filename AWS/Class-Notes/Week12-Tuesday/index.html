@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CK-Lab Slideshow</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #fff;
+            text-align: center;
+        }
+        h1, h2 {
+            margin-top: 20px;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 900px;
+            margin: 30px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+            background: #000;
+        }
+        .slide {
+            display: none;
+        }
+        .slide img {
+            width: 100%;
+            display: block;
+        }
+        /* Next & previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background: rgba(0,0,0,0.5);
+        }
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .prev:hover, .next:hover {
+            background: rgba(0,0,0,0.8);
+        }
+        /* Dots */
+        .dots {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 4px;
+            border-radius: 50%;
+            display: inline-block;
+            background-color: #777;
+        }
+        .active-dot {
+            background-color: #fff;
+        }
+        .caption {
+            position: absolute;
+            bottom: 8px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: #f2f2f2;
+            background: rgba(0,0,0,0.4);
+            padding: 8px 12px;
+            font-size: 16px;
+        }
+        .footer {
+            margin: 20px 0;
+            font-size: 14px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <h1>CK-Lab Gallery Slideshow</h1>
+    <h2>Owner: Charles Keyes Sr.</h2>
+
+    <div class="slideshow-container">
+
+        <div class="slide">
+            <img src="images/dominican1.jpg" alt="Dominican 1">
+            <div class="caption">Dominican 1</div>
+        </div>
+
+        <div class="slide">
+            <img src="images/dominican2.jpg" alt="Dominican 2">
+            <div class="caption">Dominican 2</div>
+        </div>
+
+        <div class="slide">
+            <img src="images/dominican3.jpg" alt="Dominican 3">
+            <div class="caption">Dominican 3</div>
+        </div>
+
+        <div class="slide">
+            <img src="images/dominican4.jpg" alt="Dominican 4">
+            <div class="caption">Dominican 4</div>
+        </div>
+
+        <div class="slide">
+            <img src="images/dominican5.jpg" alt="Dominican 5">
+            <div class="caption">Dominican 5</div>
+        </div>
+
+        <div class="slide">
+            <img src="images/dominican6.jpg" alt="Dominican 6">
+            <div class="caption">Dominican 6</div>
+        </div>
+
+        <div class="slide">
+            <img src="images/dominican7.jpg" alt="Dominican 7">
+            <div class="caption">Dominican 7</div>
+        </div>
+
+        <!-- Next/prev buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <!-- Dots -->
+    <div class="dots">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span>
+        <span class="dot" onclick="currentSlide(6)"></span>
+        <span class="dot" onclick="currentSlide(7)"></span>
+    </div>
+
+    <div class="footer">
+        Hosted on Amazon S3 • Static HTML + JavaScript slideshow
+    </div>
+
+    <script>
+        let slideIndex = 1;
+        let autoTimer = null;
+
+        function showSlides(n) {
+            const slides = document.getElementsByClassName("slide");
+            const dots = document.getElementsByClassName("dot");
+
+            if (n > slides.length) { slideIndex = 1; }
+            if (n < 1) { slideIndex = slides.length; }
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active-dot", "");
+            }
+
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active-dot";
+        }
+
+        function plusSlides(n) {
+            slideIndex += n;
+            showSlides(slideIndex);
+            resetAutoSlide();
+        }
+
+        function currentSlide(n) {
+            slideIndex = n;
+            showSlides(slideIndex);
+            resetAutoSlide();
+        }
+
+        function autoSlide() {
+            slideIndex++;
+            showSlides(slideIndex);
+        }
+
+        function resetAutoSlide() {
+            if (autoTimer) {
+                clearInterval(autoTimer);
+            }
+            autoTimer = setInterval(autoSlide, 5000); // 5 seconds
+        }
+
+        // Initialize
+        showSlides(slideIndex);
+        resetAutoSlide();
+    </script>
+</body>
+</html>

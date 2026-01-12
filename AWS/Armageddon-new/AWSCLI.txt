@@ -1,0 +1,6 @@
+ARN : arn:aws:iam::557690581423:user/AWSCLI
+
+console: https://557690581423.signin.aws.amazon.com/console
+
+Tags-Key: AKIAYDWHS6GX7YTZPP4Q
+

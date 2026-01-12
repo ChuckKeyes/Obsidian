@@ -1,0 +1,104 @@
+Keyes-Cloud-Solutions/
+│
+├── 00-Shared-Templates/
+│   ├── AWS-Templates/
+│   ├── GCP-Templates/
+│   ├── Azure-Templates/
+│   ├── MultiCloud-Patterns/
+│   └── Module-Library/
+│
+├── Portfolio/
+│   ├── Case-Studies/
+│   ├── Images/
+│   └── Website-Files/
+│
+├── Project-01-AWS-GCP-MultiCloud/
+│   ├── Architecture/
+│   │   ├── Diagrams/
+│   │   ├── Design-Docs/
+│   │   └── Reference/
+│   │
+│   ├── Terraform/
+│   │   ├── AWS/
+│   │   ├── GCP/
+│   │   ├── Modules/
+│   │   ├── env-dev/
+│   │   └── env-prod/
+│   │
+│   ├── Documentation/
+│   │   ├── Instructor-Version/
+│   │   └── Portfolio-Version/
+│   │
+│   ├── Testing/
+│   │   ├── Test-Results/
+│   │   │   ├── ping-tests/
+│   │   │   ├── traceroute-tests/
+│   │   │   └── web-access-tests/
+│   │   └── Troubleshooting.md (optional)
+│   │
+│   ├── Deliverables/
+│   │   ├── PDFs/
+│   │   └── Slide-Decks/
+│   │
+│   ├── Assets/
+│   │   ├── Screenshots/
+│   │   └── Exports/
+│   │       ├── PNG/
+│   │       └── PDF/
+│   │
+│   └── Local-Only/
+│       └── (ignored from Git)
+│
+├── Project-02-AWS-Network-Redesign/
+│   ├── Architecture/
+│   │   ├── Diagrams/
+│   │   ├── Design-Docs/
+│   │   └── Reference/
+│   │
+│   ├── Terraform/
+│   │   ├── AWS/
+│   │   ├── Modules/
+│   │   ├── env-dev/
+│   │   └── env-prod/
+│   │
+│   ├── Documentation/
+│   │   ├── Instructor-Version/
+│   │   └── Portfolio-Version/
+│   │
+│   ├── Testing/
+│   │   ├── Test-Results/
+│   │   │   ├── ping-tests/
+│   │   │   ├── traceroute-tests/
+│   │   │   └── web-access-tests/
+│   │   └── Troubleshooting.md
+│   │
+│   ├── Deliverables/
+│   ├── Assets/
+│   └── Local-Only/
+│
+└── Project-03-GCP-DataCenter-Migration/
+    ├── Architecture/
+    │   ├── Diagrams/
+    │   ├── Design-Docs/
+    │   └── Reference/
+    │
+    ├── Terraform/
+    │   ├── GCP/
+    │   ├── Modules/
+    │   ├── env-dev/
+    │   └── env-prod/
+    │
+    ├── Documentation/
+    │   ├── Instructor-Version/
+    │   └── Portfolio-Version/
+    │
+    ├── Testing/
+    │   ├── Test-Results/
+    │   │   ├── ping-tests/
+    │   │   ├── traceroute-tests/
+    │   │   └── web-access-tests/
+    │   └── Troubleshooting.md
+    │
+    ├── Deliverables/
+    ├── Assets/
+    └── Local-Only/

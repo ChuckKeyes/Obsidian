@@ -1,0 +1,13 @@
+
+
+project_name   = "ck-asg-demo"
+region         = "us-east-1"
+admin_cidr     = "0.0.0.0/0" # replace with your real IP
+alb_enable     = true
+nat_mode       = "single"
+key_name       = "ck-keypair"
+windows_enable = true
+asg_enable     = true
+asg_min_size   = 3
+asg_max_size   = 10
+asg_desired    = 3

@@ -1,0 +1,40 @@
+resource "google_data_loss_prevention_job_trigger" "bq_scan_daily" {
+  parent       = "projects/${var.project_id}/locations/global"
+  display_name = "bq-daily-dlp-scan"
+  description  = "Daily DLP inspect of a BigQuery table"
+
+  triggers {
+    schedule {
+      recurrence_period_duration = "86400s" # daily
+    }
+  }
+
+  inspect_job {
+    inspect_template_name = google_data_loss_prevention_inspect_template.basic.name
+
+    storage_config {
+      big_query_options {
+        table_reference {
+          project_id = var.project_id
+          dataset_id = var.dataset_id
+          table_id   = var.table_id
+        }
+        sample_method = "RANDOM_START" # or "TOP"
+      }
+    }
+
+    actions {
+      save_findings {
+        output_config {
+          table {
+            project_id = var.project_id
+            dataset_id = var.results_dataset_id
+            table_id   = "dlp_findings_${var.table_id}"
+          }
+        }
+      }
+    }
+  }
+
+  depends_on = [google_project_service.dlp, google_bigquery_dataset_iam_member.dlp_can_read]
+}

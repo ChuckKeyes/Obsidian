@@ -1,0 +1,3 @@
+AKIA****************==>REDACTED_AWS_ACCESS_KEY_ID
+********************==>REDACTED_AWS_SECRET_ACCESS_KEY
+

@@ -1,0 +1,45 @@
+# modules/remote_site/main.tf
+
+resource "google_compute_network" "remote_vpc" {
+  name                    = var.vpc_name
+  auto_create_subnetworks = false
+  routing_mode            = "REGIONAL"
+}
+
+resource "google_compute_subnetwork" "remote_subnet" {
+  name          = "subnet-${var.country}"
+  ip_cidr_range = var.subnet_cidr
+  region        = var.region
+  network       = google_compute_network.remote_vpc.id
+}
+
+resource "google_compute_router" "remote_router" {
+  name    = "router-${var.country}"
+  region  = var.region
+  network = google_compute_network.remote_vpc.id
+
+  bgp {
+    asn = var.bgp_asn
+  }
+}
+
+resource "google_compute_vpn_gateway" "remote_vpn_gateway" {
+  name    = "vpn-gw-${var.country}"
+  network = google_compute_network.remote_vpc.id
+  region  = var.region
+}
+
+resource "google_network_connectivity_spoke" "remote_spoke" {
+  provider    = google-beta
+  name        = "spoke-${var.country}"
+  location    = var.region
+  project     = var.project_id
+  hub         = var.ncc_hub_id
+  description = "Spoke from ${var.country} to NCC hub"
+
+  linked_vpn_tunnels {
+    uris = var.vpn_tunnel_uris
+  }
+}
+
+# You can add vpn_tunnel separately using output from this module if needed

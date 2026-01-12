@@ -1,0 +1,19 @@
+individual-armageddon/
+  providers.tf
+  variables.tf
+  main.tf
+  outputs.tf
+  terraform.tfvars         # your real values go here
+  modules/
+    vpc/
+      main.tf
+      variables.tf
+      outputs.tf
+    subnet/
+      main.tf
+      variables.tf
+      outputs.tf
+    instance/
+      main.tf
+      variables.tf
+      outputs.tf

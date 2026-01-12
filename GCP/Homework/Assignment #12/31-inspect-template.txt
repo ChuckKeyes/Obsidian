@@ -1,0 +1,14 @@
+resource "google_data_loss_prevention_inspect_template" "basic" {
+  parent = "projects/${var.project_id}/locations/global"
+  display_name = "bq-basic-inspect"
+
+  inspect_config {
+    info_types = [
+      { name = "PERSON_NAME" },
+      { name = "EMAIL_ADDRESS" },
+      { name = "CREDIT_CARD_NUMBER" }
+    ]
+    include_quote = false
+    min_likelihood = "POSSIBLE"
+  }
+}

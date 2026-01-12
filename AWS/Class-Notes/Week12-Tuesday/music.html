@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page with Background Music</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px;
+        }
+        #music-toggle {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>CK-Lab Gallery</h1>
+    <h2>Background Music Demo</h2>
+
+    <!-- 🎵 Hidden audio element -->
+    <!-- Put your .mp3 file in the same bucket/folder and update src -->
+    <audio id="bg-music" src="music/green-eyed-lady.mp3" loop></audio>
+
+    <!-- 🔘 Toggle button -->
+    <button id="music-toggle">Play Music</button>
+
+    <script>
+        const audio = document.getElementById('bg-music');
+        const btn   = document.getElementById('music-toggle');
+
+        let isPlaying = false;
+
+        btn.addEventListener('click', async () => {
+            try {
+                if (!isPlaying) {
+                    await audio.play();
+                    isPlaying = true;
+                    btn.textContent = 'Pause Music';
+                } else {
+                    audio.pause();
+                    isPlaying = false;
+                    btn.textContent = 'Play Music';
+                }
+            } catch (e) {
+                console.error('Audio play error:', e);
+            }
+        });
+    </script>
+
+</body>
+</html>
+###################################################################################################
+
+📁 S3 Folder Layout Example
+
+In your S3 bucket:
+
+index.html
+music/
+  green-eyed-lady.mp3
+
+
+Update the src line to match where your file is:
+
+<audio id="bg-music" src="music/green-eyed-lady.mp3" loop></audio>

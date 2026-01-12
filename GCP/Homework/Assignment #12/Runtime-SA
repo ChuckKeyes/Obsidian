@@ -1,0 +1,21 @@
+resource "google-service-account" "app" {
+  account_id   = "exam-app"
+  display_name = "Exam App Runtime"
+}
+
+locals {
+  app_roles = [
+    "roles/cloudsql.client",
+    "roles/secretmanager.secretAccessor",
+    "roles/logging.logWriter",
+    "roles/monitoring.metricWriter",
+    # optional: "roles/pubsub.publisher",
+  ]
+}
+
+resource "google-project-iam-member" "app-bindings" {
+  for_each = toset(local.app-roles)
+  project  = var.project-id
+  role     = each.key
+  member   = "serviceAccount:${google-service-account.app.email}"
+}

@@ -1,0 +1,39 @@
+ubuntu:~$ history
+    1  exit
+    2  halt
+    3  ls -al /dev/fd/
+    4  tty
+    5  cat noexist.txt
+    6  cat notexists.txt 2> errorfile
+    7  cat errorfile
+    8  cat notexists2.txt 2> errorfile
+    9  cat errorfile
+   10  cat notexists.txt 2> /dev/null
+   11  cat catfile
+   12  cat errorfile
+   13  rm catfile errorfile
+   14  cat .profile 1> catfile 2> errorfile
+   15  cat catfile
+   16  cat errorfile
+   17  cat notexists.txt > capture.txt 2>&1
+   18  cat capture.txt
+   19  cat .profile > capture.txt 2>&1
+   20  cat capture.txt
+   21  #!/bin/bash
+   22  if [ -t 0 ]; then   echo stdin coming from keyboard; else   echo stdin coming from a pipe or a file; fi
+   23  ./script.sh
+   24  ./script.sh < dummy.txt
+   25  cat dummy.txt | ./script.sh
+   26  echo 'whatever' > /dev/null
+   27  cat /dev/null
+   28  echo 'whatever' > tmpfile && mv tmpfile /dev/null
+   29  cat /dev/null
+   30  file /dev/null
+   31  ls -al /dev/null
+   32  rm /dev/null
+   33  mknod -m 0666 /dev/null c 1 3
+   34  ls -al /dev/null
+   35  file /dev/null
+   36  clear
+   37  history
+ubuntu:~$ 

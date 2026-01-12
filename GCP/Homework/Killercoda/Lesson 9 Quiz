@@ -1,0 +1,18 @@
+ubuntu:~$ history
+    1  exit
+    2  halt
+    3  ps
+    4  ps a
+    5  ps -a
+    6  ps T
+    7  ps -A
+    8  ps -f -u syslog
+    9  clear
+   10  ps -f -u syslog
+   11  ps -f -C cron
+   12  ps -f -p 1
+   13  ps -f --ppid 1
+   14  man ps
+   15  clear
+   16  history
+ubuntu:~$ 

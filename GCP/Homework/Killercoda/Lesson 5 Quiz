@@ -1,0 +1,41 @@
+Quiz
+Q1: The sign | is used for pipe or redirection?
+
+Answer  |
+
+Q2: Which example represents the situation, when Command2 operates on output from Command1?
+
+Command2 | Command1
+Command1 || Command2
+Command1 | Command2
+Command1 | Command3 | Command2
+
+Answer  Command1 | Command2
+
+Q3: I have a file where each line contains one word. I want to know how many unique words I have in file. What command will do the job?
+
+cat file | sort | wc -l
+cat file | sort | wc -l | uniq
+cat file | uniq | sort | wc -l
+cat file | wc -l | uniq | sort
+cat file | sort | uniq | wc -l
+
+Answer  cat file | sort | uniq | wc -l
+
+Q4: What sign I have to use in order to append the file when redirection is used?
+
+>>
+>
+>=
+<
+<<
+
+Answer  >>
+
+Q5: the wc -l < numbers.txt command will
+
+count letters in the filename of the file
+count number of lines in numbers.txt file
+write count into numbers.txt file
+
+Answer  count number of lines in numbers.txt file

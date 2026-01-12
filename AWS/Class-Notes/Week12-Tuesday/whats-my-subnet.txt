@@ -1,0 +1,73 @@
+resource "aws_launch_template" "web" {
+  name_prefix   = "ck-web-lt-"
+  image_id      = "ami-0fa3fe0fa7920f68e"
+  instance_type = "t3.micro"
+
+  vpc_security_group_ids = [aws_security_group.targets_sg.id]
+
+  user_data = base64encode(<<-EOF
+    #!/bin/bash
+    set -xe
+
+    # --- Install Apache ---
+    if command -v yum >/dev/null 2>&1; then
+      yum update -y
+      yum install -y httpd curl
+      systemctl enable httpd
+      systemctl start httpd
+      WEBROOT="/var/www/html"
+    elif command -v apt-get >/dev/null 2>&1; then
+      apt-get update -y
+      apt-get install -y apache2 curl
+      systemctl enable apache2
+      systemctl start apache2
+      WEBROOT="/var/www/html"
+    else
+      exit 1
+    fi
+
+    # --- Get subnet-id from EC2 instance metadata (IMDSv2) ---
+    TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" \
+      -H "X-aws-ec2-metadata-token-ttl-seconds: 21600)
+
+    MAC=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" \
+      http://169.254.169.254/latest/meta-data/network/interfaces/macs/ | head -n1)
+
+    SUBNET_ID=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" \
+      "http://169.254.169.254/latest/meta-data/network/interfaces/macs/$${MAC}subnet-id")
+
+    # --- Choose background color based on subnet-id ---
+    BG_COLOR="white"
+    TITLE="Default Subnet"
+
+    case "$SUBNET_ID" in
+      "${aws_subnet.public[0].id}")
+        BG_COLOR="lightblue"
+        TITLE="Public Subnet A"
+        ;;
+      "${aws_subnet.public[1].id}")
+        BG_COLOR="lightgreen"
+        TITLE="Public Subnet B"
+        ;;
+      "${aws_subnet.public[2].id}")
+        BG_COLOR="lightpink"
+        TITLE="Public Subnet C"
+        ;;
+    esac
+
+    # --- Create web page ---
+    cat > "$WEBROOT/index.html" <<HTML
+    <html>
+      <head>
+        <title>$TITLE</title>
+      </head>
+      <body style="background-color: $BG_COLOR; font-family: sans-serif; text-align: center;">
+        <h1>$TITLE</h1>
+        <h2>Subnet ID: $SUBNET_ID</h2>
+        <p>This VM chose its background based on its own subnet.</p>
+      </body>
+    </html>
+    HTML
+  EOF
+  )
+}

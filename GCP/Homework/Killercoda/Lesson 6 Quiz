@@ -1,0 +1,59 @@
+Quiz
+Q1: Which command shows the whole file?
+
+cat
+show
+edit
+print
+
+Answer  cat
+
+Q2: This command allows to navigate and search through the file
+
+more
+edit
+cat
+less
+more
+
+Answer  less
+
+Q3: I want to see 5 first lines from the file
+
+cat file
+less -N5 file
+less --head file
+head -n5 file
+head -N5 file
+
+Answer  head -n5 file
+
+ubuntu:~$ history
+    1  exit
+    2  halt
+    3  ls
+    4  ls -l testfile
+    5  file testfile
+    6  cat testfile
+    7  vim testfile
+    8  clear
+    9  view testfile
+   10  more testfile
+   11  clear
+   12  less testfile
+   13  cat testfile | more
+   14  clear
+   15  cat testfile | less
+   16  head testfile
+   17  head -n2 testfile
+   18  head -n22 testfile
+   19  clear
+   20  tail testfile
+   21  tail -n2 testfile
+   22  tail -n22 testfile
+   23  cat testfile | tail -n1
+   24  cat testfile | head
+   25  cat testfile | head -n4 | tail -n2
+   26  clear
+   27  history
+ubuntu:~$ 

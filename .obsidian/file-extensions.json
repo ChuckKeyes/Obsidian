@@ -1,0 +1,61 @@
+{
+  "file-extension-associations": {
+    // ─── Terraform & Cloud Infra ───
+    "tf": "plaintext",
+    "tfvars": "plaintext",
+    "tfstate": "plaintext",
+    "tfstate.backup": "plaintext",
+    "yaml": "plaintext",
+    "yml": "plaintext",
+    "json": "plaintext",
+    "hcl": "plaintext",
+    "ini": "plaintext",
+    "cfg": "plaintext",
+    "env": "plaintext",
+
+    // ─── Shell & Scripts ───
+    "sh": "plaintext",
+    "bash": "plaintext",
+    "zsh": "plaintext",
+    "bat": "plaintext",
+    "cmd": "plaintext",
+    "ps1": "plaintext",
+
+    // ─── Programming / Data / Web ───
+    "py": "plaintext",
+    "js": "plaintext",
+    "ts": "plaintext",
+    "html": "plaintext",
+    "css": "plaintext",
+    "scss": "plaintext",
+    "sql": "plaintext",
+    "xml": "plaintext",
+    "mdx": "plaintext",
+
+    // ─── Documentation / Config ───
+    "log": "plaintext",
+    "conf": "plaintext",
+    "properties": "plaintext",
+    "dockerfile": "plaintext",
+    "gitignore": "plaintext",
+    "gitattributes": "plaintext",
+    "toml": "plaintext",
+
+    // ─── Diagrams & Images ───
+    "png": "plaintext",
+    "jpg": "plaintext",
+    "jpeg": "plaintext",
+    "svg": "plaintext",
+    "drawio": "plaintext",
+    "dio": "plaintext",
+    "io": "plaintext",
+
+    // ─── Misc Dev Files ───
+    "csv": "plaintext",
+    "tsv": "plaintext",
+    "dat": "plaintext",
+    "pem": "plaintext",
+    "crt": "plaintext",
+    "key": "plaintext"
+  }
+}

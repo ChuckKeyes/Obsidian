@@ -1,0 +1,31 @@
+#cloud-config
+package_update: true
+runcmd:
+  - apt-get install -y docker.io docker-compose-plugin
+  - usermod -aG docker ${USER}
+
+  # Mount attached PD at /data
+  - mkfs.ext4 -F /dev/disk/by-id/google-disk-media-data
+  - mkdir -p /data
+  - echo '/dev/disk/by-id/google-disk-media-data /data ext4 defaults 0 2' >> /etc/fstab
+  - mount -a
+
+  # Jellyfin (host networking -> 8096)
+  - mkdir -p /opt/media/{config,cache,transcodes}
+  - bash -lc 'cat >/opt/media/docker-compose.yaml <<EOF
+version: "3.9"
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /opt/media/config:/config
+      - /opt/media/cache:/cache
+      - /data:/media
+      - /opt/media/transcodes:/transcodes
+EOF'
+  - docker compose -f /opt/media/docker-compose.yaml up -d
+
+  # Node exporter (host port 9100, internal-only by firewall)
+  - docker run -d --name=node-exporter --restart unless-stopped --network host prom/node-exporter:latest

@@ -1,0 +1,64 @@
+ubuntu:~/target$ history
+    1  exit
+    2  halt
+    3  mkdir source target
+    4  touch source/file1
+    5  touch source/file2
+    6  echo 'hello!'> source/file1
+    7  echo 'hello!'> source/file2
+    8  cd target
+    9  ls
+   10  ln SOURCE TARGET
+   11  cat ../source/file1
+   12  ln -s ../source/file1 softlink
+   13  ls -al
+   14  ln -s /root/source/file1 softlink2
+   15  ls -al
+   16  cat softlink
+   17  echo 'change to origin' >> /root/source/file1
+   18  echo 'change to softlink' >> softlink
+   19  echo 'change to softlink2' >> softlink2
+   20  cat softlink2
+   21  ls -il ../source/file1
+   22  ls -il
+   23  file softlink
+   24  stat softlink
+   25  stat ../source/file1
+   26  unlink softlink2
+   27  ls -al
+   28  rm ../source/file1
+   29  ls -al
+   30  file softlink
+   31  stat softlink
+   32  cat softlink
+   33  touch ../source/file1 && echo 'hello!'> ../source/file1
+   34  ls -al
+   35  cat softlink
+   36  rm softlink
+   37  ls -al
+   38  ln ../source/file2 hardlink
+   39  ls -al
+   40  ls -il ../source/file2
+   41  ls -il
+   42  file hardlink
+   43  stat hardlink
+   44  stat ../source/file2
+   45  echo 'this is added to original file' >> ../source/file2
+   46  echo 'this is added to hard link' >> hardlink
+   47  cat hardlink
+   48  cat ../source/file2
+   49  rm ../source/file2
+   50  ls -al
+   51  file hardlink
+   52  stat hardlink
+   53  cat hardlink
+   54  touch ../source/file2 && echo 'hello!'> ../source/file2
+   55  ls -il ../source/file2
+   56  ls -il hardlink
+   57  cat ../source/file2
+   58  cat hardlink
+   59  stat ../source/file2
+   60  stat hardlink
+   61  clear
+   62  history
+ubuntu:~/target$ 

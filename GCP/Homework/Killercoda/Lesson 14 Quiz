@@ -1,0 +1,32 @@
+ubuntu:/var/log/journal$ history
+    1  exit
+    2  halt
+    3  ls
+    4  pwd
+    5  cd /var/log
+    6  ls -al
+    7  ls -al /var/log/nginx
+    8  cat /var/log/dpkg.log
+    9  tail /var/log/syslog
+   10  cat /var/log/nginx/access.log
+   11  tail -f /var/log/nginx/access.log
+   12  journalctl
+   13  cd /var/log
+   14  ls -al
+   15  cd journal
+   16  ls -al
+   17  cat /etc/systemd/journald.conf
+   18  journalctl --list-boots
+   19  journalctl -b 0
+   20  journalctl --since "$(date '+%Y-%m-%d %H:%M:%S' --date='5 minutes ago')" --until "$(date '+%Y-%m-%d %H:%M:%S' --date='2 minutes ago')"
+   21  journalctl --since yesterday
+   22  journalctl -u nginx.service
+   23  journalctl _PID=$(pgrep nginx| tail -n1)
+   24  id -u www-data
+   25  journalctl _UID=33 --since today
+   26  journalctl _UID=$(id -u www-data)
+   27  journalctl -F _GID
+   28  journalctl -k
+   29  clear
+   30  history
+ubuntu:/var/log/journal$ 

@@ -1,0 +1,49 @@
+############################################
+# NAT Gateway (simple single-AZ setup)
+############################################
+
+# Allocate an Elastic IP for the NAT Gateway
+resource "aws_eip" "nat_eip" {
+  domain = "vpc"
+
+  tags = merge(var.tags, {
+    Name = "${var.project_name}-nat-eip"
+  })
+}
+
+# NAT Gateway in a PUBLIC subnet (pick one AZ, e.g. us-east-1a)
+resource "aws_nat_gateway" "nat_gw" {
+  allocation_id = aws_eip.nat_eip.id
+  subnet_id     = aws_subnet.public_us-east_1a.id
+
+  tags = merge(var.tags, {
+    Name = "${var.project_name}-nat-gw"
+  })
+
+  # Use whichever IGW resource you actually have:
+  depends_on = [aws_internet_gateway.this]
+  # or: depends_on = [aws_internet_gateway_attachment.ck_igw_attach]
+}
+
+# Private Route Table (routes private subnet traffic through the NAT)
+resource "aws_route_table" "private_rt" {
+  vpc_id = aws_vpc.this.id
+
+  tags = merge(var.tags, {
+    Name = "${var.project_name}-private-rt"
+  })
+}
+
+# Default route to the NAT Gateway
+resource "aws_route" "private_default_route" {
+  route_table_id         = aws_route_table.private_rt.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.nat_gw.id
+}
+
+# Associate PRIVATE subnets with the private route table
+resource "aws_route_table_association" "private_assoc" {
+  for_each  = aws_subnet.private
+  subnet_id = each.value.id
+  route_table_id = aws_route_table.private_rt.id
+}

@@ -1,0 +1,47 @@
+#cloud-config
+package_update: true
+write_files:
+  - path: /opt/gmp/otel-collector.yaml
+    permissions: "0644"
+    content: |
+      receivers:
+        prometheus:
+          config:
+            global:
+              scrape_interval: 15s
+            scrape_configs:
+              - job_name: "media-node"
+                static_configs:
+                  - targets: ["vm-media:9100"]   # replaced below with IP
+              - job_name: "collector-node"
+                static_configs:
+                  - targets: ["localhost:9100"]
+
+      processors:
+        batch: {}
+        memory_limiter:
+          check_interval: 5s
+          limit_percentage: 80
+          spike_limit_percentage: 25
+
+      exporters:
+        googlemanagedprometheus: {}   # uses GCE ADC + project/region automatically
+
+      service:
+        pipelines:
+          metrics:
+            receivers: [prometheus]
+            processors: [memory_limiter, batch]
+            exporters: [googlemanagedprometheus]
+runcmd:
+  - apt-get install -y docker.io jq
+  - usermod -aG docker ${USER}
+  # Node exporter for the collector VM itself
+  - docker run -d --name=node-exporter --restart unless-stopped --network host prom/node-exporter:latest
+  # Inject INTERNAL IP of media VM into otel config (replace vm-media:9100)
+  - ? MEDIA_IP="$(getent hosts vm-media | awk '{print $1}')"; if [ -z "$MEDIA_IP" ]; then MEDIA_IP="$(curl -s http://metadata.google.internal/computeMetadata/v1/instance/attributes/media-internal-ip -H 'Metadata-Flavor
+    : Google' || true)"; fi
+  - if [ -z "$MEDIA_IP" ]; then MEDIA_IP="$(gcloud compute instances list --filter='name=vm-media' --format='value(INTERNAL_IP)' || true)"; fi
+  - sed -i "s/vm-media:9100/${MEDIA_IP}:9100/g" /opt/gmp/otel-collector.yaml
+  # Run OpenTelemetry Collector (contrib) with GMP exporter
+  - docker run -d --name=otelcol --restart unless-stopped \ -v /opt/gmp/otel-collector.yaml:/etc/otelcol-contrib/config.yaml:ro \ -p 4317:4317 -p 4318:4318 \ otel/opentelemetry-collector-contrib:latest \ --config=/etc/otelcol-contrib/config.yaml

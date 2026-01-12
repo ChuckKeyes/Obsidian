@@ -1,0 +1,6 @@
+# Replace with your group and the IAP resource ID you create for the Thin Client
+resource "google_iap_web_iam_member" "tester_access" {
+  project = var.project_id
+  role    = "roles/iap.httpsResourceAccessor"
+  member  = "group:testers-jp@your-domain.com"
+}

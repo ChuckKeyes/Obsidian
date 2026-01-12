@@ -1,0 +1,28 @@
+ubuntu:~$ vim mynewfile
+ubuntu:~$ ls -l mynewfile
+-rw-r--r-- 1 root root 23 Jul 16 14:05 mynewfile
+ubuntu:~$ history
+    1  exit
+    2  halt
+    3  ls
+    4  touch testfile
+    5  ls -l testfile
+    6  touch my{01..100}file
+    7  ls my*file
+    8  ls -l testfile
+    9  touch try1 try2 try01
+   10  ls try*
+   11  ls try?
+   12  mkdir testdir
+   13  touch testdir/mytest{01..1000} testdir/file{01..1000}
+   14  ls
+   15  rm try01
+   16  rm try1 try2
+   17  rm testdir/mytest{01..1000}
+   18  rm -rf testdir
+   19  ls
+   20  clear
+   21  vim mynewfile
+   22  ls -l mynewfile
+   23  history
+ubuntu:~$ 

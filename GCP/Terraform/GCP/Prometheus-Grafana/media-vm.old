@@ -1,0 +1,47 @@
+
+# ---- MEDIA VM
+resource "google_compute_disk" "media_data" {
+  name = "disk-media-data"
+  type = "pd-balanced"
+  zone = var.zone
+  size = var.disk_media_gb
+}
+
+resource "google_compute_instance" "media" {
+  name         = "vm-media"
+  machine_type = var.machine_media
+  zone         = var.zone
+
+  boot_disk {
+    initialize_params {
+      size  = 20
+      image = "debian-cloud/debian-12"
+    }
+  }
+
+  attached_disk {
+    source      = google_compute_disk.media_data.id
+    device_name = "disk-media-data" # matches /dev/disk/by-id/google-disk-media-data
+    mode        = "READ_WRITE"
+    # auto_delete = false # optional, default is false for attached_disk
+  }
+
+resource "google_compute_address" "ip_media" {
+  name   = "ip-media"
+  region = var.region
+}
+
+ network_interface {
+
+  subnetwork = google_compute_subnetwork.subnet.id
+  access_config {
+    # nat_ip = google_compute_address.ip_media.address
+    nat_ip = google_compute_address.ip_media.count.index
+  }
+}
+  metadata = {
+    user-data = local.startup_media
+  }
+
+  tags = ["media", "ssh"]
+}

@@ -1,0 +1,25 @@
+ubuntu:~$ history
+    1  exit
+    2  halt
+    3  ls
+    4  pwd
+    5  systemctl status cron.service
+    6  ps aux | grep cron
+    7  ls -al /etc/crontab
+    8  ls -al /etc/cron.d
+    9  ls -al /etc/cron.* -d
+   10  ls -al /etc/cron.daily
+   11  cat /etc/cron.daily/dpkg
+   12  cat /etc/crontab
+   13  ls -al /var/spool/cron/crontabs
+   14  crontab -l
+   15  crontab -e
+   16  crontab -l
+   17  cat logfile
+   18  ls -al /var/spool/cron/crontabs/root
+   19  cat /var/spool/cron/crontabs/root
+   20  cat /var/log/syslog
+   21  journalctl -u cron
+   22  clear
+   23  history
+ubuntu:~$ 

@@ -1,0 +1,142 @@
+ubuntu:~$ ls
+filesystem  sourcedir
+ubuntu:~$ pwd
+/root
+ubuntu:~$ tree sourcedir
+sourcedir
+|-- one
+|-- sourcesubdir
+|   |-- four01
+|   |-- four02
+|   |-- four03
+|   |-- four04
+|   |-- four05
+|   |-- four06
+|   |-- four07
+|   |-- four08
+|   |-- four09
+|   `-- four10
+|-- three01
+|-- three02
+|-- three03
+|-- three04
+|-- three05
+|-- three06
+|-- three07
+|-- three08
+|-- three09
+|-- three10
+|-- two01
+`-- two02
+
+2 directories, 23 files
+ubuntu:~$ mkdir targetdir
+ubuntu:~$ cd sourcedir
+ubuntu:~/sourcedir$ cp one ../targetdir
+ubuntu:~/sourcedir$ ls -l ../targetdir/one
+-rw-r--r-- 1 root root 0 Jul 19 17:40 ../targetdir/one
+ubuntu:~/sourcedir$ ls -l one
+-rw-r--r-- 1 root root 0 Jul 19 17:39 one
+ubuntu:~/sourcedir$ cp one ../targetdir/another-one
+ubuntu:~/sourcedir$ ls -l ../targetdir
+total 0
+-rw-r--r-- 1 root root 0 Jul 19 17:41 another-one
+-rw-r--r-- 1 root root 0 Jul 19 17:40 one
+ubuntu:~/sourcedir$ cp file1tocopy file2copy file3tocopy targetlocation
+cp: target 'targetlocation': No such file or directory
+ubuntu:~/sourcedir$ cp two01 two02 ../targetdir
+ubuntu:~/sourcedir$ ls -l ../targetdir
+total 0
+-rw-r--r-- 1 root root 0 Jul 19 17:41 another-one
+-rw-r--r-- 1 root root 0 Jul 19 17:40 one
+-rw-r--r-- 1 root root 0 Jul 19 17:41 two01
+-rw-r--r-- 1 root root 0 Jul 19 17:41 two02
+ubuntu:~/sourcedir$ ls -l three*
+-rw-r--r-- 1 root root 0 Jul 19 17:39 three01
+-rw-r--r-- 1 root root 0 Jul 19 17:39 three02
+-rw-r--r-- 1 root root 0 Jul 19 17:39 three03
+-rw-r--r-- 1 root root 0 Jul 19 17:39 three04
+-rw-r--r-- 1 root root 0 Jul 19 17:39 three05
+-rw-r--r-- 1 root root 0 Jul 19 17:39 three06
+-rw-r--r-- 1 root root 0 Jul 19 17:39 three07
+-rw-r--r-- 1 root root 0 Jul 19 17:39 three08
+-rw-r--r-- 1 root root 0 Jul 19 17:39 three09
+-rw-r--r-- 1 root root 0 Jul 19 17:39 three10
+ubuntu:~/sourcedir$ ls -l three* | wc -l
+10
+ubuntu:~/sourcedir$ cp three0? ../targetdir
+ubuntu:~/sourcedir$ ls -l ../targetdir/three*
+-rw-r--r-- 1 root root 0 Jul 19 17:42 ../targetdir/three01
+-rw-r--r-- 1 root root 0 Jul 19 17:42 ../targetdir/three02
+-rw-r--r-- 1 root root 0 Jul 19 17:42 ../targetdir/three03
+-rw-r--r-- 1 root root 0 Jul 19 17:42 ../targetdir/three04
+-rw-r--r-- 1 root root 0 Jul 19 17:42 ../targetdir/three05
+-rw-r--r-- 1 root root 0 Jul 19 17:42 ../targetdir/three06
+-rw-r--r-- 1 root root 0 Jul 19 17:42 ../targetdir/three07
+-rw-r--r-- 1 root root 0 Jul 19 17:42 ../targetdir/three08
+-rw-r--r-- 1 root root 0 Jul 19 17:42 ../targetdir/three09
+ubuntu:~/sourcedir$ ls -l ../targetdir/three* | wc -l
+9
+ubuntu:~/sourcedir$ cd
+ubuntu:~$ cp -R sourcedir anotherdir
+ubuntu:~$ ls -l anotherdir
+total 4
+-rw-r--r-- 1 root root    0 Jul 19 17:42 one
+drwxr-xr-x 2 root root 4096 Jul 19 17:42 sourcesubdir
+-rw-r--r-- 1 root root    0 Jul 19 17:42 three01
+-rw-r--r-- 1 root root    0 Jul 19 17:42 three02
+-rw-r--r-- 1 root root    0 Jul 19 17:42 three03
+-rw-r--r-- 1 root root    0 Jul 19 17:42 three04
+-rw-r--r-- 1 root root    0 Jul 19 17:42 three05
+-rw-r--r-- 1 root root    0 Jul 19 17:42 three06
+-rw-r--r-- 1 root root    0 Jul 19 17:42 three07
+-rw-r--r-- 1 root root    0 Jul 19 17:42 three08
+-rw-r--r-- 1 root root    0 Jul 19 17:42 three09
+-rw-r--r-- 1 root root    0 Jul 19 17:42 three10
+-rw-r--r-- 1 root root    0 Jul 19 17:42 two01
+-rw-r--r-- 1 root root    0 Jul 19 17:42 two02
+ubuntu:~$ cp -R sourcedir testdir
+ubuntu:~$ ls -l testdir
+total 4
+-rw-r--r-- 1 root root    0 Jul 19 17:43 one
+drwxr-xr-x 2 root root 4096 Jul 19 17:43 sourcesubdir
+-rw-r--r-- 1 root root    0 Jul 19 17:43 three01
+-rw-r--r-- 1 root root    0 Jul 19 17:43 three02
+-rw-r--r-- 1 root root    0 Jul 19 17:43 three03
+-rw-r--r-- 1 root root    0 Jul 19 17:43 three04
+-rw-r--r-- 1 root root    0 Jul 19 17:43 three05
+-rw-r--r-- 1 root root    0 Jul 19 17:43 three06
+-rw-r--r-- 1 root root    0 Jul 19 17:43 three07
+-rw-r--r-- 1 root root    0 Jul 19 17:43 three08
+-rw-r--r-- 1 root root    0 Jul 19 17:43 three09
+-rw-r--r-- 1 root root    0 Jul 19 17:43 three10
+-rw-r--r-- 1 root root    0 Jul 19 17:43 two01
+-rw-r--r-- 1 root root    0 Jul 19 17:43 two02
+ubuntu:~$ ls -l testdir/*
+-rw-r--r-- 1 root root    0 Jul 19 17:43 testdir/one
+-rw-r--r-- 1 root root    0 Jul 19 17:43 testdir/three01
+-rw-r--r-- 1 root root    0 Jul 19 17:43 testdir/three02
+-rw-r--r-- 1 root root    0 Jul 19 17:43 testdir/three03
+-rw-r--r-- 1 root root    0 Jul 19 17:43 testdir/three04
+-rw-r--r-- 1 root root    0 Jul 19 17:43 testdir/three05
+-rw-r--r-- 1 root root    0 Jul 19 17:43 testdir/three06
+-rw-r--r-- 1 root root    0 Jul 19 17:43 testdir/three07
+-rw-r--r-- 1 root root    0 Jul 19 17:43 testdir/three08
+-rw-r--r-- 1 root root    0 Jul 19 17:43 testdir/three09
+-rw-r--r-- 1 root root    0 Jul 19 17:43 testdir/three10
+-rw-r--r-- 1 root root    0 Jul 19 17:43 testdir/two01
+-rw-r--r-- 1 root root    0 Jul 19 17:43 testdir/two02
+
+testdir/sourcesubdir:
+total 0
+-rw-r--r-- 1 root root 0 Jul 19 17:43 four01
+-rw-r--r-- 1 root root 0 Jul 19 17:43 four02
+-rw-r--r-- 1 root root 0 Jul 19 17:43 four03
+-rw-r--r-- 1 root root 0 Jul 19 17:43 four04
+-rw-r--r-- 1 root root 0 Jul 19 17:43 four05
+-rw-r--r-- 1 root root 0 Jul 19 17:43 four06
+-rw-r--r-- 1 root root 0 Jul 19 17:43 four07
+-rw-r--r-- 1 root root 0 Jul 19 17:43 four08
+-rw-r--r-- 1 root root 0 Jul 19 17:43 four09
+-rw-r--r-- 1 root root 0 Jul 19 17:43 four10
+ubuntu:~$   

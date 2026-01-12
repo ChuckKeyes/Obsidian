@@ -1,0 +1,31 @@
+ubuntu:~$ history
+    1  exit
+    2  halt
+    3  touch myfile
+    4  file myfile
+    5  echo 'this is my very creative text!' > myfile
+    6  touch mybashscript.sh
+    7  file mybashscript.sh
+    8  echo "#! /bin/bash" > mybashscript.sh
+    9  file mybashscript.sh
+   10  echo "#! /bin/perl" > myperlscript.nomatterwhat
+   11  file myperlscript.nomatterwhat
+   12  echo "#! /bin/notexistinginterpreter" > mymysteryscript
+   13  file /var/log
+   14  file /bin/bash
+   15  file /usr/local/go/lib/time/zoneinfo.zip
+   16  file /usr/local/go/src/archive/tar/testdata/xattrs.tar
+   17  file /dev/vda1
+   18  file /dev/null
+   19  file /dev/random
+   20  stat -s /dev/vda
+   21  stat -s /dev/vda1
+   22  stat -s /dev/null
+   23  stat mybashscript.sh
+   24  stat -f mybashscript.sh
+   25  stat -t mybashscript.sh
+   26  stat --printf="File %n is %s bytes, and is a %F\n" mybashscript.sh
+   27  clear
+   28  history
+ubuntu:~$ 
+

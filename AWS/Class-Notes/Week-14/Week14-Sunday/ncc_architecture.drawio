@@ -1,0 +1,60 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="NCC-Diagram" name="NCC Architecture">
+    <mxGraphModel dx="1000" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Network Connectivity Center -->
+        <mxCell id="ncc" value="Network Connectivity Center" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=16;" vertex="1">
+          <mxGeometry x="500" y="100" width="260" height="400" as="geometry"/>
+        </mxCell>
+
+        <!-- Cloud Router -->
+        <mxCell id="router" value="Cloud Router&#10;us-east1" style="rounded=1;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1">
+          <mxGeometry x="350" y="250" width="120" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- Japan -->
+        <mxCell id="japan" value="Japan&#10;10.70.0.0/24" style="rounded=1;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1">
+          <mxGeometry x="100" y="100" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Brazil -->
+        <mxCell id="brazil" value="Brazil&#10;10.80.0.0/24" style="rounded=1;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1">
+          <mxGeometry x="100" y="200" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Italy -->
+        <mxCell id="italy" value="Italy&#10;10.90.0.0/24" style="rounded=1;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1">
+          <mxGeometry x="100" y="300" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Thailand/Philippines -->
+        <mxCell id="asia" value="Thailand / Philippines&#10;10.100.0.0/24" style="rounded=1;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1">
+          <mxGeometry x="100" y="400" width="160" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Headquarters 1 -->
+        <mxCell id="hq1" value="Headquarters 1&#10;Production + Finance" style="rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1">
+          <mxGeometry x="500" y="520" width="220" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- Headquarters 2 -->
+        <mxCell id="hq2" value="Headquarters 2&#10;Data Center + Test Web + Thin Client" style="rounded=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1">
+          <mxGeometry x="500" y="660" width="260" height="150" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell id="edge1" edge="1" source="japan" target="router" style="endArrow=block;strokeWidth=2;" />
+        <mxCell id="edge2" edge="1" source="brazil" target="router" style="endArrow=block;strokeWidth=2;" />
+        <mxCell id="edge3" edge="1" source="italy" target="router" style="endArrow=block;strokeWidth=2;" />
+        <mxCell id="edge4" edge="1" source="asia" target="router" style="endArrow=block;strokeWidth=2;" />
+        <mxCell id="edge5" edge="1" source="router" target="ncc" style="endArrow=block;strokeWidth=2;" />
+        <mxCell id="edge6" edge="1" source="hq1" target="ncc" style="endArrow=block;strokeWidth=2;" />
+        <mxCell id="edge7" edge="1" source="hq2" target="ncc" style="endArrow=block;strokeWidth=2;" />
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,3 @@
+https://raw.githubusercontent.com/aaron-dm-mcdonald/aws-image-resizer/refs/heads/main/.gitignore
+
+https://registry.terraform.io/browse/providers

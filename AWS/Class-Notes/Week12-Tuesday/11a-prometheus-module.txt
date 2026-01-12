@@ -1,0 +1,16 @@
+module "prometheus_vm" {
+  source = "./modules/prometheus_vm"
+  count  = var.enable_prometheus ? 1 : 0
+
+  vpc_id        = aws_vpc.main.id
+  subnet_id     = aws_subnet.public_a.id
+  ami_id_linux  = var.ami_id_linux
+  admin_cidr    = var.admin_cidr
+
+  # These should be the private IPs or DNS names where node_exporter is listening
+  node_targets = [
+    "10.100.1.10:9100",
+    "10.100.2.10:9100",
+    "10.100.3.10:9100",
+  ]
+}

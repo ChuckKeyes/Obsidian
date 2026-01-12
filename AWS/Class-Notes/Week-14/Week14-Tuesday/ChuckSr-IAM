@@ -1,0 +1,23 @@
+AKIAYDWHS6GX4ITFPJFY
+AKIAYDWHS6GX3LDLE6BV
+
+🎯 If you want multiple AWS users, you can use profiles:
+aws configure --profile my-user
+
+
+Then in Terraform:
+
+provider "aws" {
+  region  = "us-east-1"
+  profile = "my-user"
+}
+
+
+If you'd like, I can also create:
+
+✔ A providers.tf template
+✔ A variables.tf for AWS settings
+✔ A README.md explaining AWS authentication for Terraform
+
+Just say:
+“Create the AWS Terraform templates.”

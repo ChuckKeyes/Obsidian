@@ -1,0 +1,31 @@
+🔍 How to find & remove stray .git folders:
+
+You can list them:
+
+
+find . -name ".git" -type d
+
+
+Delete ALL except the root one:
+
+find . -name ".git" -type d -exec rm -rf {} +
+
+
+################################################################################
+
+✅ Windows (Git Bash / WSL / Linux Command Line)
+
+Run this inside the root of your Obsidian vault:
+
+find . -type d -name ".terraform" -prune -exec rm -rf {} +
+
+
+✔ Deletes every .terraform directory
+✔ Leaves all .tf files untouched
+✔ Safe for Templates, Notes, Projects
+
+#################################################################################
+
+chuck@LAPTOP-1B94MM1R:/d/New Obsidian/New Obsidian$ find . -type d -name ".terraform"
+./AWS/Class-Notes/Week11-Sunday/.terraform
+./AWS/Class-Notes/Week9-Saturday/.terraform
