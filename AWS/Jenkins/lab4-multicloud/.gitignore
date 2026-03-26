@@ -1,0 +1,16 @@
+.terraform/
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+*.log
+*.pem
+*.key
+*.bak
+*.tmp
+*~$
+terraform.tfvars
+*.auto.tfvars
+!.gitkeep
+.DS_Store
+Thumbs.db

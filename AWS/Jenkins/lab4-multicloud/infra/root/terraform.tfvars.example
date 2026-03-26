@@ -1,0 +1,60 @@
+project_name = "lab3-vpc"
+vpc_cidr = "10.10.0.0/16"
+tokyo_vpc_cidr = "10.10.0.0/16"
+
+azs = ["ap-northeast-1a", "ap-northeast-1c"]
+
+public_subnet_cidrs      = ["10.10.10.0/24", "10.10.11.0/24"]
+private_app_subnet_cidrs = ["10.10.20.0/24", "10.10.21.0/24"]
+private_db_subnet_cidrs  = ["10.10.30.0/24", "10.10.31.0/24"]
+vpc_name  = "vpc-lab3"
+
+tags = {
+  Project = "Armageddon-Lab3"
+  Owner   = "CK"
+}
+
+alb_acm_cert_arn = "arn:aws:acm:ap-northeast-1:123456789012:certificate/...."
+
+app_ami_id         = "ami-088103e734f7e0529"
+app_instance_type  = "t3.micro"
+app_az             = "ap-northeast-1a"   # must match your AZ-keyed subnet keys
+app_port           = 80
+
+db_name        = "appdb"
+db_username    = "appuser"
+db_secret_name = "armageddon/lab2/tokyo/rds"  # whatever you named it
+db_port        = 5432
+db_password = "Nicholas111317!"
+
+############################################
+# Route53 / Domain
+############################################
+
+domain_name   = "keyescloudsolutions.com"
+app_subdomain = "www"
+
+website_bucket = "kcs-lab3-site-557690581423"
+website_index_key = "index.html"  # optional, default is index.html
+
+##########################################################################
+
+saopaulo_vpc_cidr             = "10.20.0.0/16"
+saopaulo_azs                  = ["sa-east-1a", "sa-east-1b"]
+saopaulo_public_subnet_cidrs  = ["10.20.10.0/24", "10.20.11.0/24"]
+saopaulo_private_app_subnet_cidrs = ["10.20.20.0/24", "10.20.21.0/24"]
+saopaulo_app_ami_id           = "ami-025f404fafb21297b"
+saopaulo_app_instance_type    = "t3.micro"
+
+##########################################################################
+
+gcp_project_id   = "lab4-gcp-project-id"
+gcp_region       = "us-central1"
+
+iowa_vpc_cidr    = "10.30.0.0/16"
+iowa_subnet_cidr = "10.30.1.0/24"
+
+ny_vpc_cidr      = "10.40.0.0/16"
+ny_subnet_cidr   = "10.40.1.0/24"
+
+gcp_project = "ck-armageddon"

@@ -1,0 +1,143 @@
+<mxfile host="65bd71144e">
+    <diagram name="Lab4 Architecture Updated" id="0">
+        <mxGraphModel dx="1381" dy="971" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="user" value="User / Admin" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="520" y="20" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="dns" value="Route 53&#xa;jenkins.keyescloudsolutions.com" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="490" y="110" width="200" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="alb" value="AWS ALB&#xa;HTTPS 443" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="515" y="210" width="150" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="jenkins" value="Jenkins CI/CD&#xa;Terraform / AWS CLI / gcloud" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="455" y="320" width="270" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="aws_title" value="AWS" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=18;" parent="1" vertex="1">
+                    <mxGeometry x="190" y="250" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="tokyo" value="Tokyo (ap-northeast-1)&#xa;VPC&#xa;Transit Gateway (TGW)&#xa;App / DB / Lab resources" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="310" width="260" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="saopaulo" value="São Paulo (sa-east-1)&#xa;VPC&#xa;Transit Gateway (TGW)&#xa;Regional resources" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="740" width="260" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="gcp_title" value="GCP" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=18;" parent="1" vertex="1">
+                    <mxGeometry x="980" y="260" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="ny" value="New York (GCP)&#xa;VPC / Subnets&#xa;NCC-connected site" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="880" y="320" width="240" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="iowa" value="Iowa (GCP)&#xa;VPC / Subnets&#xa;NCC-connected site" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="885" y="750" width="240" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="ncc" value="Network Connectivity Center (NCC)&#xa;Hub / Spokes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d4e1f5;strokeColor=#6c8ebf;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="890" y="575" width="230" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="vpnnote" value="HA VPN + BGP&#xa;NY → Tokyo TGW&#xa;Iowa → Tokyo TGW" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="550" width="280" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" style="endArrow=block;html=1;strokeWidth=2;" parent="1" source="user" target="dns" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" style="endArrow=block;html=1;strokeWidth=2;" parent="1" source="dns" target="alb" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e3" style="endArrow=block;html=1;strokeWidth=2;" parent="1" source="alb" target="jenkins" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" value="Terraform apply" style="endArrow=block;html=1;strokeWidth=2;" parent="1" source="jenkins" target="tokyo" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e6" value="Terraform apply" style="endArrow=block;html=1;strokeWidth=2;" parent="1" source="jenkins" target="ny" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e9" style="endArrow=block;html=1;strokeWidth=2;exitX=0.542;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="ny" target="ncc" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e10" style="endArrow=block;html=1;strokeWidth=2;" parent="1" source="iowa" target="ncc" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e11" value="HA VPN + BGP to Tokyo TGW" style="endArrow=block;html=1;strokeWidth=3;strokeColor=#1a73e8;entryX=1;entryY=0.558;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryPerimeter=0;" parent="1" source="ncc" target="vpnnote" edge="1">
+                    <mxGeometry x="0.6219" y="-16" relative="1" as="geometry">
+                        <mxPoint x="825" y="703.2278481012659" as="sourcePoint"/>
+                        <mxPoint x="570" y="700" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="6" value="Apply" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="420" y="770" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;exitX=1;exitY=0.342;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="vpnnote" target="ncc">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="620" y="650" as="sourcePoint"/>
+                        <mxPoint x="670" y="600" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="8" value="" style="endArrow=classic;startArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.538;entryY=1.025;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="vpnnote" target="tokyo">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="620" y="650" as="sourcePoint"/>
+                        <mxPoint x="670" y="600" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="9" value="" style="endArrow=classic;startArrow=classic;html=1;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="220" y="738" as="sourcePoint"/>
+                        <mxPoint x="220" y="680" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="10" value="Apply" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="740" y="770" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0.53;entryY=0.99;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="jenkins">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="600" y="800" as="sourcePoint"/>
+                        <mxPoint x="640" y="750" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="12" value="" style="endArrow=classic;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="saopaulo">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="600" y="800" as="sourcePoint"/>
+                        <mxPoint x="565" y="820" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="13" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="iowa">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="600" y="800" as="sourcePoint"/>
+                        <mxPoint x="750" y="850" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="14" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+                    <mxGeometry x="80" y="97.5" width="220" height="95" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="Cloudfront&amp;nbsp;&lt;div&gt;&amp;amp; WAF&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=17;" vertex="1" parent="1">
+                    <mxGeometry x="150" y="120" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="" style="endArrow=classic;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="dns" target="14">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="390" y="240" as="sourcePoint"/>
+                        <mxPoint x="410" y="100" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="17" value="Terraform" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="420" y="750" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="Terraform" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="740" y="740" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="www.keyescloudsolutions.com" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="90" y="162.5" width="200" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="" style="endArrow=classic;startArrow=classic;html=1;exitX=1.006;exitY=0.889;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.019;entryY=0.137;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="14" target="alb">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="375" y="270" as="sourcePoint"/>
+                        <mxPoint x="425" y="220" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

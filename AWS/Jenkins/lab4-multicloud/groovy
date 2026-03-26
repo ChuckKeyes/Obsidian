@@ -1,0 +1,31 @@
+pipeline {
+  agent any
+
+  parameters {
+    choice(name: 'SITE', choices: ['aws-tokyo', 'aws-saopaulo', 'gcp-ny', 'gcp-iowa'], description: 'Select site')
+    choice(name: 'ACTION', choices: ['plan', 'apply'], description: 'Terraform action')
+  }
+
+  stages {
+    stage('Checkout') {
+      steps {
+        checkout scm
+      }
+    }
+
+    stage('Terraform') {
+      steps {
+        dir("terraform/${params.SITE}") {
+          sh 'terraform init'
+          sh 'terraform validate'
+          sh 'terraform plan -out=tfplan'
+          script {
+            if (params.ACTION == 'apply') {
+              sh 'terraform apply -auto-approve tfplan'
+            }
+          }
+        }
+      }
+    }
+  }
+}

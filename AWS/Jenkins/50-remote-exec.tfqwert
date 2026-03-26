@@ -1,0 +1,6 @@
+provisioner "remote-exec" {
+  inline = [
+    "df -h / > /home/ec2-user/root_disk.txt",
+    "df -h /tmp > /home/ec2-user/tmp_disk.txt"
+  ]
+}

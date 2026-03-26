@@ -1,0 +1,103 @@
+#!/bin/bash
+set -euxo pipefail
+
+exec > >(tee /var/log/jenkins-bootstrap.log | logger -t jenkins-bootstrap -s 2>/dev/console) 2>&1
+
+echo "[INFO] Updating OS packages"
+dnf update -y
+
+echo "[INFO] Installing required packages"
+dnf install -y wget git unzip fontconfig java-21-amazon-corretto
+
+echo "[INFO] Adding Jenkins repository"
+wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+echo "[INFO] Installing Jenkins"
+dnf clean all
+dnf makecache
+dnf install -y jenkins
+
+echo "[INFO] Configuring Java 21 as default"
+alternatives --set java /usr/lib/jvm/java-21-amazon-corretto.x86_64/bin/java || true
+alternatives --set javac /usr/lib/jvm/java-21-amazon-corretto.x86_64/bin/javac || true
+
+echo "[INFO] Preparing Jenkins home"
+mkdir -p /var/lib/jenkins/init.groovy.d
+chown -R jenkins:jenkins /var/lib/jenkins
+
+cat > /var/lib/jenkins/init.groovy.d/01-install-plugins.groovy <<'GROOVY'
+import jenkins.model.Jenkins
+import java.util.logging.Logger
+
+def log = Logger.getLogger("init.plugins")
+def j = Jenkins.get()
+def pm = j.pluginManager
+def uc = j.updateCenter
+
+def plugins = [
+  "aws-credentials",
+  "pipeline-aws",
+  "terraform",
+  "github",
+  "pipeline-github"
+]
+
+log.info("Refreshing update center metadata...")
+uc.updateAllSites()
+
+int tries = 0
+while (uc.sites.any { it.data == null } && tries < 12) {
+    log.info("Waiting for update center metadata... attempt ${tries + 1}")
+    sleep(5000)
+    tries++
+}
+
+def installedAny = false
+
+plugins.each { id ->
+    if (pm.getPlugin(id) == null) {
+        def p = uc.getPlugin(id)
+        if (p != null) {
+            log.info("Installing plugin: ${id}")
+            p.deploy(true)
+            installedAny = true
+        } else {
+            log.warning("Plugin not found in update center: ${id}")
+        }
+    } else {
+        log.info("Already installed: ${id}")
+    }
+}
+
+if (installedAny) {
+    log.info("Plugins requested. Scheduling safe restart.")
+    j.save()
+    j.safeRestart()
+} else {
+    log.info("No new plugins needed.")
+}
+GROOVY
+
+chown jenkins:jenkins /var/lib/jenkins/init.groovy.d/01-install-plugins.groovy
+chmod 644 /var/lib/jenkins/init.groovy.d/01-install-plugins.groovy
+
+echo "[INFO] Cleaning package caches"
+dnf clean all
+rm -rf /var/cache/dnf/*
+
+echo "[INFO] Enabling and starting Jenkins"
+systemctl daemon-reload
+systemctl enable jenkins
+systemctl start jenkins
+
+echo "[INFO] Waiting for Jenkins service"
+for i in {1..36}; do
+  if systemctl is-active --quiet jenkins; then
+    echo "[INFO] Jenkins is running"
+    break
+  fi
+  sleep 5
+done
+
+echo "[INFO] Bootstrap finished"
