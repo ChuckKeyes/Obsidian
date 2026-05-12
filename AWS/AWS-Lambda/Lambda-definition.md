@@ -20,6 +20,8 @@ Given your Jenkins + Terraform + S3 setup, Lambda typically sits in the middle o
 <font color="#ff0000">CloudWatch Event → Lambda → Scheduled Job</font>
 <font color="#ff0000">GitHub Webhook → Lambda → Trigger pipeline (optional)</font>
 
+[Function as a Service (Faas) - System Design - GeeksforGeeks](https://www.geeksforgeeks.org/system-design/function-as-a-service-faas-system-design/)
+
 Think of Lambda as a reaction engine:
 
 “When X happens, run this code.”

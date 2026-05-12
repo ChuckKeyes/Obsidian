@@ -1,0 +1,38 @@
+# Day 3 — Pods & YAML
+
+## Commands Learned
+
+kubectl get pods
+
+kubectl describe pod nginx
+
+kubectl logs nginx
+
+---
+
+## YAML Learned
+
+apiVersion
+kind
+metadata
+spec
+
+---
+
+## Problems I Hit
+
+### Pod stuck Pending
+
+Cause:
+No resources
+
+Fix:
+kubectl describe pod
+
+---
+
+## Fast Commands
+
+kubectl get pods -A
+kubectl get events
+kubectl logs

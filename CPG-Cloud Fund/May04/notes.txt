@@ -1,0 +1,8 @@
+pwd
+
+ls
+
+cd dir_name
+
+mkdir new_folder
+
