@@ -69,12 +69,14 @@ AlloyDB
 Machine Learning (MLOps)
 Large Language Model (LLM)
 BigQuery ML
+Vertex AI Vizier
 Vertex AI Vision
 Vertex AI Prediction
 Vertex AI Pipelines
 Vertex AI Workbench
 Vertex AI Tabular Workflows
 Vertex AI Model Garden
+Vertex AI Explainable AI
 Vertex AI Search and Conversation
 Retrieval-augmented generation (RAG)
 Cloud Natural Language API
@@ -102,6 +104,7 @@ Apigee
 Sensitive Data Loss Protection DLP
 Customer-Managed Encryption Key (CMEK/KMS)
 Security Command Center Premium (SCC)
+Workload Identity Federation
 Binary Authorization
 Identity-Aware Proxy (IAP)
 Integrity Policy Baseline

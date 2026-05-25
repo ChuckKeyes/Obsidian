@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-04-02T00:00:00.000Z" agent="OpenAI" version="24.7.17" type="device">
+  <diagram id="jenkins-aws-icons" name="Jenkins AWS Icons">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Title -->
+        <mxCell id="title" value="Jenkins CI/CD Pipeline with Terraform and AWS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=24;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="380" y="40" width="840" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Subtitle -->
+        <mxCell id="subtitle" value="GitHub webhook triggers Jenkins on EC2, which executes Terraform to provision and validate AWS resources" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=12;fontColor=#5F6B7A;" vertex="1" parent="1">
+          <mxGeometry x="320" y="82" width="960" height="24" as="geometry"/>
+        </mxCell>
+
+        <!-- Nodes -->
+        <mxCell id="userIcon" value="" style="shape=mxgraph.aws4.user;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="300" width="78" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="userLabel" value="Developer" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontSize=13;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="60" y="388" width="138" height="24" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="githubIcon" value="" style="shape=image;html=1;imageAspect=1;aspect=fixed;image=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OTYgNTEyIj48IS0tISBGb250IEF3ZXNvbWUgRnJlZSA2LjcuMiBieSBAZm9udGF3ZXNvbWUgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbSBMaWNlbnNlIC0gaHR0cHM6Ly9mb250YXdlc29tZS5jb20vbGljZW5zZS9mcmVlIChJY29uczogQ0MgQlkgNC4wLCBGb250czogU0lMIE9GTCAxLjEsIENvZGU6IE1JVCBMaWNlbnNlKSBDb3B5cmlnaHQgMjAyNCBGb250aWNvbnMsIEluYy4gLS0+PHBhdGggZD0iTTE2NS45IDM5Ny40YzAgMi0yLjMgMy42LTUuMiAzLjYtMy4zLjMtNS42LTEuMy01LjYtMy42IDAtMiAyLjMtMy42IDUuMi0zLjYgMy0uMyA1LjYgMS4zIDUuNiAzLjZ6bS0zMS4xLTQuNWMtLjcgMiAxLjMgNC4zIDQuMyA0LjkgMi42IDEgNS42IDAgNi4yLTJzLTEuMy00LjMtNC4zLTUuMmMtMi42LS43LTUuNS4zLTYuMiAyLjN6bTQ0LjItMS43Yy0yLjkuNy00LjkgMi42LTQuNiA0LjkuMyAyIDIuOSAzLjMgNS45IDIuNiAyLjktLjcgNC45LTIuNiA0LjYtNC42LS4zLTEuOS0zLTMuMi01LjktMi45ek0yNDQuOCA4QzEwNi4xIDggMCAxMTMuMyAwIDI1MmMwIDExMC45IDY5LjggMjA1LjggMTY5LjUgMjM5LjIgMTIuOCAyLjMgMTcuMy01LjYgMTcuMy0xMi4xIDAtNi4yLS4zLTQwLjQtLjMtNjEuNCAwIDAtNzAgMTUtODQuNy0yOS44IDAgMC0xMS40LTI5LjEtMjcuOC0zNi42IDAgMC0yMi45LTE1LjcgMS42LTE1LjQgMCAwIDI0LjkgMiAzOC42IDI1LjggMjEuOSAzOC42IDU4LjYgMjcuNSA3Mi45IDIwLjkgMi4zLTE2IDguOC0yNy4xIDE2LTMzLjctNTUuOS02LjItMTEyLjMtMTQuMy0xMTIuMy0xMTAuNSAwLTI3LjUgNy42LTQxLjMgMjMuNi01OC45LTIuNi02LjUtMTEuMS0zMy4zIDIuNi02Ny45IDIwLjktNi41IDY5IDI3IDY5IDI3IDIwLTUuNiA0MS41LTguNSA2Mi44LTguNXM0Mi44IDIuOSA2Mi44IDguNWMwIDAgNDguMS0zMy42IDY5LTI3IDEzLjcgMzQuNyA1LjIgNjEuNCAyLjYgNjcuOSAxNiAxNy43IDI1LjggMzEuNSAyNS44IDU4LjkgMCA5Ni41LTU4LjkgMTA0LjItMTE0LjggMTEwLjUgOS4yIDcuOSAxNyAyMi45IDE3IDQ2LjQgMCAzMy43LS4zIDc1LjQtLjMgODMuNiAwIDYuNSA0LjYgMTQuNCAxNy4zIDEyLjFDNDI4LjIgNDU3LjggNDk2IDM2Mi45IDQ5NiAyNTIgNDk2IDExMy4zIDM4My41IDggMjQ0LjggOHpNOTcuMiAzNTIuOWMtMS4zIDEtMSAzLjMuNyA1LjIgMS42IDEuNiAzLjkgMi4zIDUuMiAxIDEuMy0xIDEtMy4zLS43LTUuMi0xLjYtMS42LTMuOS0yLjMtNS4yLTF6bS0xMC44LTguMWMtLjcgMS4zLjMgMi45IDIuMyAzLjkgMS42IDEgMy42LjcgNC4zLS43LjctMS4zLS4zLTIuOS0yLjMtMy45LTItLjYtMy42LS4zLTQuMy43em0zMi40IDM1LjZjLTEuNiAxLjMtMSA0LjMgMS4zIDYuMiAyLjMgMi4zIDUuMiAyLjYgNi41IDEgMS4zLTEuMy43LTQuMy0xLjMtNi4yLTIuMi0yLjMtNS4yLTIuNi02LjUtMXptLTExLjQtMTQuN2MtMS42IDEtMS42IDMuNiAwIDUuOSAxLjYgMi4zIDQuMyAzLjMgNS42IDIuMyAxLjYtMS4zIDEuNi0zLjkgMC02LjItMS40LTIuMy00LTMuMy01LjYtMnoiLz48L3N2Zz4=;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="255" y="298" width="84" height="84" as="geometry"/>
+        </mxCell>
+        <mxCell id="githubLabel" value="GitHub Repository" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontSize=13;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="215" y="388" width="164" height="24" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="internetIcon" value="" style="shape=mxgraph.aws4.internet;html=1;" vertex="1" parent="1">
+          <mxGeometry x="445" y="300" width="78" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="internetLabel" value="Internet / Webhook Path" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontSize=13;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="390" y="388" width="188" height="24" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ec2Icon" value="" style="shape=mxgraph.aws4.instance;html=1;" vertex="1" parent="1">
+          <mxGeometry x="635" y="300" width="78" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="ec2Label" value="Amazon EC2" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontSize=13;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="600" y="388" width="148" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="jenkinsIcon" value="" style="shape=image;html=1;imageAspect=1;aspect=fixed;image=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48IS0tISBGb250IEF3ZXNvbWUgRnJlZSA2LjcuMiBieSBAZm9udGF3ZXNvbWUgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbSBMaWNlbnNlIC0gaHR0cHM6Ly9mb250YXdlc29tZS5jb20vbGljZW5zZS9mcmVlIChJY29uczogQ0MgQlkgNC4wLCBGb250czogU0lMIE9GTCAxLjEsIENvZGU6IE1JVCBMaWNlbnNlKSBDb3B5cmlnaHQgMjAyNCBGb250aWNvbnMsIEluYy4gLS0+PHBhdGggZD0iTTQ4Ny4xIDQyNWMtMS40LTExLjItMTktMjMuMS0yOC4yLTMxLjktNS4xLTUtMjktMjMuMS0zMC40LTI5LjktMS40LTYuNiA5LjctMjEuNSAxMy4zLTI4LjkgNS4xLTEwLjcgOC44LTIzLjcgMTEuMy0zMi42IDE4LjgtNjYuMSAyMC43LTE1Ni45LTYuMi0yMTEuMi0xMC4yLTIwLjYtMzguNi00OS01Ni40LTYyLjUtNDItMzEuNy0xMTkuNi0zNS4zLTE3MC4xLTE2LjYtMTQuMSA1LjItMjcuOCA5LjgtNDAuMSAxNy4xLTMzLjEgMTkuNC02OC4zIDMyLjUtNzguMSA3MS42LTI0LjIgMTAuOC0zMS41IDQxLjgtMzAuMyA3Ny44LjIgNyA0LjEgMTUuOCAyLjcgMjIuNC0uNyAzLjMtNS4yIDcuNi02LjEgOS44LTExLjYgMjcuNy0yLjMgNjQgMTEuMSA4My43IDguMSAxMS45IDIxLjUgMjIuNCAzOS4yIDI1LjIuNyAxMC42IDMuMyAxOS43IDguMiAzMC40IDMuMSA2LjggMTQuNyAxOSAxMC40IDI3LjctMi4yIDQuNC0yMSAxMy44LTI3LjMgMTcuNkM4OSA0MDcuMiA3My43IDQxNSA1NC4yIDQyOWMtMTIuNiA5LTMyLjMgMTAuMi0yOS4yIDMxLjEgMi4xIDE0LjEgMTAuMSAzMS42IDE0LjcgNDUuOC43IDIgMS40IDQuMSAyLjEgNmg0MjJjNC45LTE1LjMgOS43LTMwLjkgMTQuNi00Ny4yIDMuNC0xMS40IDEwLjItMjcuOCA4LjctMzkuN3pNMjA1LjkgMzMuN2MxLjgtLjUgMy40LjcgNC45IDIuNC0uMiA1LjItNS40IDUuMS04LjkgNi44LTUuNCA2LjctMTMuNCA5LjgtMjAgMTcuMi02LjggNy41LTE0LjQgMjcuNy0yMy40IDMwLTQuNSAxLjEtOS43LS44LTEzLjYtLjUtMTAuNC43LTE3LjcgNi0yOC4zIDcuNSAxMy42LTI5LjkgNTYuMS01NCA4OS4zLTYzLjR6bS0xMDQuOCA5My42YzEzLjUtMTQuOSAzMi4xLTI0LjEgNTQuOC0yNS45IDExLjcgMjkuNy04LjQgNjUtLjkgOTcuNiAyLjMgOS45IDEwLjIgMjUuNC0yLjQgMjUuNy4zLTI4LjMtMzQuOC00Ni4zLTYxLjMtMjkuNi0xLjgtMjEuNS00LjktNTEuNyA5LjgtNjcuOHptMzYuNyAyMDAuMmMtMS00LjEtMi43LTEyLjktMi4zLTE1LjEgMS42LTguNyAxNy4xLTEyLjUgMTEtMjQuNy0xMS4zLS4xLTEzLjggMTAuMi0yNC4xIDExLjMtMjYuNyAyLjYtNDUuNi0zNS40LTQ0LjQtNTguNCAxLTE5LjUgMTcuNi0zOC4yIDQwLjEtMzUuOCAxNiAxLjggMjEuNCAxOS4yIDI0LjUgMzQuNyA5LjIuNSAyMi41LS40IDI2LjktNy42LS42LTE3LjUtOC44LTMxLjYtOC4yLTQ3LjcgMS0zMC4zIDE3LjUtNTcuNiA0LjgtODcuNCAxMy42LTMwLjkgNTMuNS01NS4zIDgzLjEtNzAgMzYuNi0xOC4zIDk0LjktMy43IDEyOS4zIDE1LjggMTkuNyAxMS4xIDM0LjQgMzIuNyA0OC4zIDUwLjctMTkuNS01LjgtMzYuMSA0LjItMzMuMSAyMC4zIDE2LjMtMTQuOSA0NC4yLS4yIDUyLjUgMTYuNCA3LjkgMTUuOCA3LjggMzkuMyA5IDYyLjggMi45IDU3LTEwLjQgMTE1LjktMzkuMSAxNTcuMS03LjcgMTEtMTQuMSAyMy0yNC45IDMwLjYtMjYgMTguMi02NS40IDM0LjctOTkuMiAyMy40LTQ0LjctMTUtNjUtNDQuOC04OS41LTc4LjguNyAxOC43IDEzLjggMzQuMSAyNi44IDQ4LjQgMTEuMyAxMi41IDI1IDI2LjYgMzkuNyAzMi40LTEyLjMtMi45LTMxLjEtMy44LTM2LjIgNy4yLTI4LjYtMS45LTU1LjEtNC44LTY4LjctMjQuMi0xMC42LTE1LjQtMjEuNC00MS40LTI2LjMtNjEuNHptMjIyIDEyNC4xYzQuMS0zIDExLjEtMi45IDE3LjQtMy42LTUuNC0yLjctMTMtMy43LTE5LjMtMi4yLS4xLTQuMi0yLTYuOC0zLjItMTAuMiAxMC42LTMuOCAzNS41LTI4LjUgNDkuNi0yMC4zIDYuNyAzLjkgOS41IDI2LjIgMTAuMSAzNyAuNCA5LS44IDE4LTQuNSAyMi44LTE4LjgtLjYtMzUuOC0yLjgtNTAuNy03IC45LTYuMS0xLTEyLjEuNi0xNi41em0tMTcuMi0yMGMtMTYuOC44LTI2LTEuMi0zOC4zLTEwLjguMi0uOCAxLjQtLjUgMS41LTEuNCAxOCA4IDQwLjgtMy4zIDU5LTQuOS03LjkgNS4xLTE0LjYgMTEuNi0yMi4yIDE3LjF6bS0xMi4xIDMzLjJjLTEuNi05LjQtMy41LTEyLTIuOC0yMC4yIDI1LTE2LjYgMjkuNyAyOC42IDIuOCAyMC4yek0yMjYgNDM4LjZjLTExLjYtLjctNDguMS0xNC0zOC41LTIzLjcgOS40IDYuNSAyNy41IDQuOSA0MS4zIDcuMy44IDQuNC0yLjggMTAuMi0yLjggMTYuNHpNNTcuNyA0OTcuMWMtNC4zLTEyLjctOS4yLTI1LjEtMTQuOC0zNi45IDMwLjgtMjMuOCA2NS4zLTQ4LjkgMTAyLjItNjMuNSAyLjgtMS4xIDIzLjIgMjUuNCAyNi4yIDI3LjYgMTYuNSAxMS43IDM3IDIxIDU2LjIgMzAuMiAxLjIgOC44IDMuOSAyMC4yIDguNyAzNS41LjcgMi4zIDEuNCA0LjcgMi4yIDcuMkg1Ny43em0yNDAuNiA1LjdoLS44Yy4zLS4yLjUtLjQuOC0uNXYuNXptNy41LTUuN2MyLjEtMS40IDQuMy0yLjggNi40LTQuMyAxLjEgMS40IDIuMiAyLjggMy4yIDQuM2gtOS42em0xNS4xLTI0LjdjLTEwLjggNy4zLTIwLjYgMTguMy0zMy4zIDI1LjItNiAzLjMtMjcgMTEuNy0zMy40IDEwLjItMy42LS44LTMuOS01LjMtNS40LTkuNS0zLjEtOS0xMC4xLTIzLjQtMTAuOC0zNy0uOC0xNy4yLTIuNS00NiAxNi00Mi40IDE0LjkgMi45IDMyLjMgOS43IDQzLjkgMTYuMSA3LjEgMy45IDExLjEgOC42IDIxLjkgOS41LS4xIDEuNC0uMSAyLjgtLjIgNC4zLTUuOSAzLjktMTUuMyAzLjgtMjEuOCA3LjEgOS41LjQgMTcgMi43IDIzLjUgNS45LS4xIDMuNC0uMyA3LS40IDEwLjZ6bTUzLjQgMjQuN2gtMTRjLS4xLTMuMi0yLjgtNS44LTYuMS01LjhzLTUuOSAyLjYtNi4xIDUuOGgtMTcuNGMtMi44LTQuNC01LjctOC42LTguOS0xMi41IDIuMS0yLjIgNC00LjcgNi02LjkgOSAzLjcgMTQuOC00LjkgMjEuNy00LjIgNy45LjggMTQuMiAxMS43IDI1LjQgMTFsLS42IDEyLjZ6bTguNyAwYy4yLTQgLjQtNy44LjYtMTEuNSAxNS42LTcuMyAyOSAxLjMgMzUuNyAxMS41SDM4M3ptODMuNC0zN2MtMi4zIDExLjItNS44IDI0LTkuOSAzNy4xLS4yLS4xLS40LS4xLS42LS4xSDQyOGMuNi0xLjEgMS4yLTIuMiAxLjktMy4zLTIuNi02LjEtOS04LjctMTAuOS0xNS41IDEyLjEtMjIuNyA2LjUtOTMuNC0yNC4yLTc4LjUgNC4zLTYuMyAxNS42LTExLjUgMjAuOC0xOS4zIDEzIDEwLjQgMjAuOCAyMC4zIDMzLjIgMzEuNCA2LjggNiAyMCAxMy4zIDIxLjQgMjMuMS44IDUuNS0yLjYgMTguOS0zLjggMjUuMXpNMjIyLjIgMTMwLjVjNS40LTE0LjkgMjcuMi0zNC43IDQ1LTMyIDcuNyAxLjIgMTggOC4yIDEyLjIgMTcuNy0zMC4yLTctNDUuMiAxMi42LTU0LjQgMzMuMS04LjEtMi00LjktMTMuMS0yLjgtMTguOHptMTg0LjEgNjMuMWM4LjItMy42IDIyLjQtLjcgMjkuNi01LjMtNC4yLTExLjUtMTAuMy0yMS40LTkuMy0zNy43LjUgMCAxIDAgMS40LjEgNi44IDE0LjIgMTIuNyAyOS4yIDIxLjQgNDEuNy01LjcgMTMuNS00My42IDI1LjQtNDMuMSAxLjJ6bTIwLjQtNDN6bS0xMTcuMiA0NS43Yy02LjgtMTAuOS0xOS0zMi41LTE0LjUtNDUuMyA2LjUgMTEuOSA4LjYgMjQuNCAxNy44IDMzLjMgNC4xIDQgMTIuMiA5IDguMiAyMC4yLS45IDIuNy03LjggOC42LTExLjcgOS43LTE0LjQgNC4zLTQ3LjkuOS0zNi42LTE3LjEgMTEuOS43IDI3LjkgNy44IDM2LjgtLjh6bTI3LjMgNzBjMy44IDYuNiAxLjQgMTguNyAxMi4xIDIwLjYgMjAuMiAzLjQgNDMuNi0xMi4zIDU4LjEtMTcuOCA5LTE1LjItLjgtMjAuNy04LjktMzAuNS0xNi42LTIwLTM4LjgtNDQuOC0zOC03NC43IDYuNy00LjkgNy4zIDcuNCA4LjIgOS43IDguNyAyMC4zIDMwLjQgNDYuMiA0Ni4zIDYzLjUgMy45IDQuMyAxMC4zIDguNCAxMSAxMS4yIDIuMSA4LjItNS40IDE4LTQuNSAyMy41LTIxLjcgMTMuOS00NS44IDI5LjEtODEuNCAyNS42LTcuNC02LjctMTAuMy0yMS40LTIuOS0zMS4xem0tMjAxLjMtOS4yYy02LjgtMy45LTguNC0yMS0xNi40LTIxLjQtMTEuNC0uNy05LjMgMjIuMi05LjMgMzUuNS03LjgtNy4xLTkuMi0yOS4xLTMuNS00MC4zLTYuNi0zLjItOS41IDMuNi0xMy4xIDUuOSA0LjctMzQuMSA0OS44LTE1LjggNDIuMyAyMC4zem0yOTkuNiAyOC44Yy0xMC4xIDE5LjItMjQuNCA0MC40LTU0IDQxLS42LTYuMi0xLjEtMTUuNiAwLTE5LjQgMjIuNy0yLjIgMzYuNi0xMy43IDU0LTIxLjZ6bS0xNDEuOSAxMi40YzE4LjkgOS45IDUzLjYgMTEgNzkuMyAxMC4yIDEuNCA1LjYgMS4zIDEyLjYgMS40IDE5LjQtMzMgMS44LTcyLTYuNC04MC43LTI5LjZ6bTkyLjIgNDYuN2MtMS43IDQuMy01LjMgOS4zLTkuOCAxMS4xLTEyLjEgNC45LTQ1LjYgOC43LTYyLjQtLjMtMTAuNy01LjctMTcuNS0xOC41LTIzLjQtMjYtMi44LTMuNi0xNi45LTEyLjktLjItMTIuOSAxMy4xIDMyLjcgNTggMjkgOTUuOCAyOC4xeiIvPjwvc3ZnPg==;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="652" y="230" width="44" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="jenkinsLabel" value="Jenkins Server" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontColor=#5F6B7A;" vertex="1" parent="1">
+          <mxGeometry x="612" y="408" width="124" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="roleIcon" value="" style="shape=mxgraph.aws4.role;html=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="300" width="78" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="roleLabel" value="IAM Role" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontSize=13;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="810" y="388" width="138" height="24" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="tfText" value="Terraform CLI" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#5C4EE5;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="325" width="170" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="tfSub" value="init • validate • plan • apply" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=12;fontColor=#5F6B7A;" vertex="1" parent="1">
+          <mxGeometry x="980" y="356" width="210" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="s3Icon" value="" style="shape=mxgraph.aws4.bucket;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="300" width="78" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3Label" value="Amazon S3 Bucket" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontSize=13;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="388" width="178" height="24" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="secretsIcon" value="" style="shape=mxgraph.aws4.secrets_manager;html=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="540" width="74" height="74" as="geometry"/>
+        </mxCell>
+        <mxCell id="secretsLabel" value="Secrets Manager / Credentials" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontSize=12;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="650" y="620" width="214" height="22" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="cwIcon" value="" style="shape=mxgraph.aws4.cloudwatch;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="540" width="74" height="74" as="geometry"/>
+        </mxCell>
+        <mxCell id="cwLabel" value="CloudWatch Logs / Health Checks" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontSize=12;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="620" width="234" height="22" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell id="e1" value="Code Push" style="endArrow=block;endFill=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#5F6B7A;fontSize=12;fontColor=#232F3E;" edge="1" parent="1" source="userIcon" target="githubIcon">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e2" value="Webhook Trigger" style="endArrow=block;endFill=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#5F6B7A;fontSize=12;fontColor=#232F3E;" edge="1" parent="1" source="githubIcon" target="internetIcon">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e3" value="HTTPS /github-webhook/" style="endArrow=block;endFill=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#5F6B7A;fontSize=12;fontColor=#232F3E;" edge="1" parent="1" source="internetIcon" target="ec2Icon">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e4" value="Assume Role / AWS Auth" style="endArrow=block;endFill=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#5F6B7A;fontSize=12;fontColor=#232F3E;" edge="1" parent="1" source="ec2Icon" target="roleIcon">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e5" value="Pipeline Execution" style="endArrow=block;endFill=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#5F6B7A;fontSize=12;fontColor=#232F3E;" edge="1" parent="1" source="roleIcon" target="tfText">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e6" value="Provision / Destroy" style="endArrow=block;endFill=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#5F6B7A;fontSize=12;fontColor=#232F3E;" edge="1" parent="1" source="tfText" target="s3Icon">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e7" value="Read Credentials" style="endArrow=block;endFill=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;dashed=1;strokeColor=#7F8C8D;fontSize=11;fontColor=#232F3E;" edge="1" parent="1" source="secretsIcon" target="ec2Icon">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="757" y="500"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e8" value="Logs / Validation" style="endArrow=block;endFill=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;dashed=1;strokeColor=#7F8C8D;fontSize=11;fontColor=#232F3E;" edge="1" parent="1" source="ec2Icon" target="cwIcon">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="675" y="500"/>
+              <mxPoint x="1147" y="500"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Footer -->
+        <mxCell id="footer" value="Icon-based architecture draft for diagrams.net (.drawio). Edit labels or add AWS/GCP components as your portfolio grows." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontColor=#7F8C8D;" vertex="1" parent="1">
+          <mxGeometry x="340" y="770" width="920" height="20" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

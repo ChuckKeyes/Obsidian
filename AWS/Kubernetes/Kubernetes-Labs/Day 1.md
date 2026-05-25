@@ -13,29 +13,30 @@ Apply complete! Resources: 9 added, 0 changed, 0 destroyed.
 
 Outputs:
 
-k8s_master_elastic_ip = "3.151.106.241"
-k8s_worker1_elastic_ip = "16.58.91.123"
-k8s_worker2_elastic_ip = "18.216.95.49"
+k8s_master_elastic_ip = "3.132.178.158"
+k8s_worker1_elastic_ip = "3.12.65.252"
+k8s_worker2_elastic_ip = "3.129.185.9"
 kubernetes_dns = "kubernetes.keyescloudsolutions.com"
-master_public_ip = "3.16.214.45"
-ssh_master = "ssh -i ~/.ssh/id_rsa ubuntu@3.16.214.45"
-ssh_worker1 = "ssh -i ~/.ssh/id_rsa ubuntu@18.216.61.184"
-ssh_worker2 = "ssh -i ~/.ssh/id_rsa ubuntu@18.218.191.242"
-worker1_public_ip = "18.216.61.184"
-worker2_public_ip = "18.218.191.242"
+master_public_ip = "52.15.73.9"
+ssh_master = "ssh -i ~/.ssh/id_rsa ubuntu@52.15.73.9"
+ssh_worker1 = "ssh -i ~/.ssh/id_rsa ubuntu@18.220.52.61"
+ssh_worker2 = "ssh -i ~/.ssh/id_rsa ubuntu@16.59.212.180"
+worker1_public_ip = "18.220.52.61"
+worker2_public_ip = "16.59.212.180"
 ## Tasks
 
 ### Create EC2 Instances
 
 Launch:
 
-- master      ssh -i ~/.ssh/id_rsa ubuntu@3.151.106.241
-		   sudo hostnamectl set-hostname k8s-master   sudo reboot
+- master      ssh -i ~/.ssh/id_rsa ubuntu@3.132.178.158
+		   sudo hostnamectl set-hostname k8s-master   
+		   sudo reboot
 		   
-- worker1    ssh -i ~/.ssh/id_rsa ubuntu@16.58.91.123
+- worker1    ssh -i ~/.ssh/id_rsa ubuntu@18.220.52.61
 		-     sudo hostnamectl set-hostname k8s-worker1   sudo reboot
 		- 
-- worker2    ssh -i ~/.ssh/id_rsa ubuntu@18.216.95.49
+- worker2    ssh -i ~/.ssh/id_rsa ubuntu@16.59.212.180
 		-    sudo hostnamectl set-hostname k8s-worker2   sudo reboot
 		- 
 ## After reboot, SSH back in using the Elastic IPs.

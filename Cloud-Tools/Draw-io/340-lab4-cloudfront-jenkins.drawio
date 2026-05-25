@@ -1,0 +1,79 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Lab4 Architecture with CloudFront">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" connect="1" arrows="1">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- User -->
+        <mxCell id="user" value="User" style="ellipse;fillColor=#dae8fc;" vertex="1" parent="1">
+          <mxGeometry x="520" y="20" width="120" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Route53 -->
+        <mxCell id="dns" value="Route53 DNS" style="rounded=1;fillColor=#fff2cc;" vertex="1" parent="1">
+          <mxGeometry x="500" y="90" width="160" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- CloudFront -->
+        <mxCell id="cf" value="CloudFront (Global Edge)&#xa;WAF + TLS" style="rounded=1;fillColor=#cce5ff;" vertex="1" parent="1">
+          <mxGeometry x="480" y="170" width="200" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- ALB -->
+        <mxCell id="alb" value="ALB (Tokyo)" style="rounded=1;fillColor=#d5e8d4;" vertex="1" parent="1">
+          <mxGeometry x="510" y="270" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Jenkins -->
+        <mxCell id="jenkins" value="Jenkins CI/CD&#xa;Terraform" style="rounded=1;fillColor=#f8cecc;" vertex="1" parent="1">
+          <mxGeometry x="480" y="350" width="200" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- AWS Tokyo -->
+        <mxCell id="tokyo" value="AWS Tokyo&#xa;VPC&#xa;TGW" style="rounded=1;fillColor=#ffe6cc;" vertex="1" parent="1">
+          <mxGeometry x="100" y="500" width="200" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- AWS Sao Paulo -->
+        <mxCell id="sp" value="AWS São Paulo&#xa;VPC&#xa;TGW" style="rounded=1;fillColor=#ffe6cc;" vertex="1" parent="1">
+          <mxGeometry x="100" y="650" width="200" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- GCP NY -->
+        <mxCell id="ny" value="GCP New York&#xa;VPC" style="rounded=1;fillColor=#e1d5e7;" vertex="1" parent="1">
+          <mxGeometry x="900" y="500" width="200" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- GCP Iowa -->
+        <mxCell id="iowa" value="GCP Iowa&#xa;VPC" style="rounded=1;fillColor=#e1d5e7;" vertex="1" parent="1">
+          <mxGeometry x="900" y="630" width="200" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- NCC -->
+        <mxCell id="ncc" value="GCP NCC Hub/Spoke" style="rounded=1;fillColor=#d4e1f5;" vertex="1" parent="1">
+          <mxGeometry x="880" y="760" width="240" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell edge="1" parent="1" source="user" target="dns"/>
+        <mxCell edge="1" parent="1" source="dns" target="cf"/>
+        <mxCell edge="1" parent="1" source="cf" target="alb"/>
+        <mxCell edge="1" parent="1" source="alb" target="jenkins"/>
+
+        <mxCell edge="1" parent="1" source="jenkins" target="tokyo"/>
+        <mxCell edge="1" parent="1" source="jenkins" target="sp"/>
+        <mxCell edge="1" parent="1" source="jenkins" target="ny"/>
+        <mxCell edge="1" parent="1" source="jenkins" target="iowa"/>
+
+        <mxCell edge="1" parent="1" source="tokyo" target="sp" value="TGW Peering"/>
+
+        <mxCell edge="1" parent="1" source="ny" target="ncc"/>
+        <mxCell edge="1" parent="1" source="iowa" target="ncc"/>
+
+        <mxCell edge="1" parent="1" source="ncc" target="tokyo" value="HA VPN + BGP"/>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
