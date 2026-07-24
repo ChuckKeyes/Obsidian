@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>10-Day Kubernetes Plan</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <h1>10-Day Kubernetes Learning Plan</h1>
+  <p>AWS + VS Code + Bash + Docker on AWS EC2</p>
+  <p><strong>kubernetes.keyescloudsolutions.com</strong></p>
+</header>
+
+<section>
+  <h2>End Goal</h2>
+  <ul>
+    <li>Build Kubernetes clusters</li>
+    <li>Use kubectl quickly</li>
+    <li>Create YAML from memory</li>
+    <li>Troubleshoot pods, nodes, and networking</li>
+    <li>Configure storage, Ingress, RBAC, and etcd backups</li>
+    <li>Prepare for Killer.sh and CKA practice exams</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Lab Architecture</h2>
+  <table>
+    <tr><th>Node</th><th>Purpose</th></tr>
+    <tr><td>k8s-master</td><td>Control Plane</td></tr>
+    <tr><td>k8s-worker1</td><td>Worker Node</td></tr>
+    <tr><td>k8s-worker2</td><td>Worker Node</td></tr>
+    <tr><td>bastion</td><td>Optional VS Code SSH Jump Box</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>10-Day Plan</h2>
+
+  <div class="day"><h3>Day 1 — Linux + Docker + AWS Setup</h3><p>Create EC2 instances, install Docker/containerd, and connect using VS Code Remote SSH.</p></div>
+
+  <div class="day"><h3>Day 2 — Install Kubernetes Cluster</h3><p>Install kubeadm, kubelet, kubectl, initialize the control plane, install Calico, and join workers.</p></div>
+
+  <div class="day"><h3>Day 3 — Pods + YAML</h3><p>Create Pods, export YAML, practice labels, annotations, commands, and environment variables.</p></div>
+
+  <div class="day"><h3>Day 4 — Deployments + Scaling</h3><p>Create Deployments, scale replicas, test rolling updates, and practice rollbacks.</p></div>
+
+  <div class="day"><h3>Day 5 — Services + Networking</h3><p>Create ClusterIP and NodePort services. Troubleshoot labels, selectors, and endpoints.</p></div>
+
+  <div class="day"><h3>Day 6 — Ingress + Helm</h3><p>Install Helm, deploy NGINX Ingress Controller, and test hostname/path routing.</p></div>
+
+  <div class="day"><h3>Day 7 — Storage</h3><p>Create PersistentVolumes, PersistentVolumeClaims, and mount storage into Pods.</p></div>
+
+  <div class="day"><h3>Day 8 — ConfigMaps + Secrets + RBAC</h3><p>Create ConfigMaps, Secrets, ServiceAccounts, Roles, and RoleBindings using least privilege.</p></div>
+
+  <div class="day"><h3>Day 9 — Troubleshooting + etcd</h3><p>Practice fixing kubelet, DNS, networking, bad manifests, image pulls, and etcd backups.</p></div>
+
+  <div class="day"><h3>Day 10 — Mock CKA Exam</h3><p>Timed practice using only Bash, kubectl, YAML, and official-style troubleshooting.</p></div>
+</section>
+
+<section>
+  <h2>Most Important Commands</h2>
+  <pre>
+kubectl get
+kubectl describe
+kubectl logs
+kubectl exec
+kubectl apply
+kubectl edit
+kubectl delete
+kubectl expose
+kubectl scale
+kubectl rollout
+kubectl cordon
+kubectl drain
+kubectl taint
+kubectl label
+kubectl top
+  </pre>
+</section>
+
+<section>
+  <h2>Expected Outcome</h2>
+  <table>
+    <tr><th>Skill</th><th>Expected</th></tr>
+    <tr><td>Build cluster</td><td>Yes</td></tr>
+    <tr><td>Deploy apps</td><td>Yes</td></tr>
+    <tr><td>Networking</td><td>Good</td></tr>
+    <tr><td>Storage</td><td>Good</td></tr>
+    <tr><td>Troubleshooting</td><td>Decent</td></tr>
+    <tr><td>RBAC</td><td>Good</td></tr>
+    <tr><td>etcd</td><td>Basic</td></tr>
+    <tr><td>Exam readiness</td><td>Practice Test Ready</td></tr>
+  </table>
+</section>
+
+<footer>
+  <p>Keyes Cloud Solutions — Kubernetes Training Lab</p>
+</footer>
+
+</body>
+</html>

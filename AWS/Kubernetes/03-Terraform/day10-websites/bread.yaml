@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bread
+  namespace: websites
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bread
+  template:
+    metadata:
+      labels:
+        app: bread
+    spec:
+      containers:
+        - name: bread
+          image: nginx
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bread-service
+  namespace: websites
+spec:
+  selector:
+    app: bread
+  ports:
+    - port: 80
+      targetPort: 80

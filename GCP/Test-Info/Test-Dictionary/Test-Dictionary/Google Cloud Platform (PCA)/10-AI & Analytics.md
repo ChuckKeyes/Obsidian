@@ -1,0 +1,26 @@
+# 10 - AI & Analytics
+
+- Vertex AI
+- Machine Learning / MLOps
+- Large Language Model / LLM
+- BigQuery ML
+- Vertex AI Vizier
+- Vertex AI Vision
+- Vertex AI Prediction
+- Vertex AI Pipelines
+- Vertex AI Workbench
+- Vertex AI Model Garden
+- Explainable AI
+- RAG
+- Cloud Natural Language API
+- AutoML Natural Language
+- AutoML Tables
+- Dialogflow ES
+- Dialogflow CX
+- Gemini Code Assist
+- NotebookLM
+- Colab Enterprise
+- Vision API
+- TensorFlow
+- PyTorch
+- Looker Studio

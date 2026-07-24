@@ -1,0 +1,515 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charles Keyes Sr. - 10 Day Kubernetes Learning Project</title>
+
+    <style>
+
+        body{
+            font-family:Arial,Helvetica,sans-serif;
+            background:#f4f6f8;
+            color:#222;
+            margin:40px;
+            line-height:1.6;
+        }
+
+        .container{
+            max-width:1000px;
+            margin:auto;
+            background:white;
+            padding:30px;
+            border-radius:12px;
+            box-shadow:0 0 12px rgba(0,0,0,.12);
+        }
+
+        h1,h2{
+            color:#1f4e79;
+        }
+
+        .status{
+            color:green;
+            font-weight:bold;
+            font-size:18px;
+        }
+
+        .day{
+            border-left:5px solid #1f4e79;
+            padding-left:15px;
+            margin-bottom:22px;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-bottom:25px;
+        }
+
+        th{
+            background:#1f4e79;
+            color:white;
+        }
+
+        th,td{
+            border:1px solid #ccc;
+            padding:10px;
+            text-align:left;
+        }
+
+        footer{
+            margin-top:40px;
+            text-align:center;
+            color:#666;
+            font-size:14px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>10 Day Kubernetes Learning Project</h1>
+
+<h2>Charles Keyes Sr. | Keyes Cloud Solutions</h2>
+
+<p>
+
+This project documents my ten-day Kubernetes learning journey using Terraform,
+AWS, Linux, Docker, Kubernetes, Route53, Bash, YAML and Infrastructure as Code.
+The goal is to build a production-style Kubernetes environment while documenting
+every step of the process.
+
+</p>
+
+<p class="status">
+
+Current Status:
+Terraform infrastructure deployed successfully.
+DNS is active at
+<strong>kubernetes.keyescloudsolutions.com</strong>
+
+</p>
+
+<hr>
+
+<h2>Current Project Progress</h2>
+
+<ul>
+
+<li>✅ Terraform Infrastructure Complete</li>
+
+<li>✅ AWS VPC, Subnets, Internet Gateway and Route Tables</li>
+
+<li>✅ Security Groups Configured</li>
+
+<li>✅ Elastic IP Addresses Assigned</li>
+
+<li>✅ Route53 DNS Configured</li>
+
+<li>✅ Kubernetes Control Plane VM Running</li>
+
+<li>✅ Two Kubernetes Worker Nodes Running</li>
+
+<li>✅ Linux Server Configuration Complete</li>
+
+<li>✅ Docker Installed</li>
+
+<li>🔄 Initializing Kubernetes Cluster (kubeadm)</li>
+
+<li>⏳ Installing Calico Networking</li>
+
+<li>⏳ Joining Worker Nodes</li>
+
+<li>⏳ Deploying First Kubernetes Website</li>
+
+</ul>
+
+<hr>
+
+<h2>Current Infrastructure</h2>
+
+<ul>
+
+<li>✔ AWS EC2 (1 Control Plane + 2 Worker Nodes)</li>
+
+<li>✔ Terraform Infrastructure as Code</li>
+
+<li>✔ Ubuntu 22.04 LTS</li>
+
+<li>✔ containerd Runtime</li>
+
+<li>✔ Docker Installed</li>
+
+<li>✔ Route53 DNS</li>
+
+<li>✔ Kubernetes DNS Active</li>
+
+<li>✔ kubernetes.keyescloudsolutions.com</li>
+
+</ul>
+
+<hr>
+
+<h2>Live Environment</h2>
+
+<table>
+
+<tr>
+
+<th>Resource</th>
+
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>Cloud Provider</td>
+
+<td>AWS EC2</td>
+
+</tr>
+
+<tr>
+
+<td>Infrastructure</td>
+
+<td>Terraform</td>
+
+</tr>
+
+<tr>
+
+<td>Operating System</td>
+
+<td>Ubuntu 22.04 LTS</td>
+
+</tr>
+
+<tr>
+
+<td>Container Runtime</td>
+
+<td>containerd + Docker</td>
+
+</tr>
+
+<tr>
+
+<td>Kubernetes Version</td>
+
+<td>v1.30.x</td>
+
+</tr>
+
+<tr>
+
+<td>DNS</td>
+
+<td>kubernetes.keyescloudsolutions.com</td>
+
+</tr>
+
+</table>
+
+<hr>
+
+<h2>10 Day Learning Progress</h2>
+
+<div class="day">
+
+<h2>Day 1 — Kubernetes Foundation</h2>
+
+<p>
+
+Learned Kubernetes architecture including nodes, pods,
+deployments, services, namespaces, labels and selectors.
+
+</p>
+
+</div>
+
+<div class="day">
+
+<h2>Day 2 — Building the Cluster</h2>
+
+<p>
+
+Used Terraform to deploy AWS infrastructure and create
+the Kubernetes Control Plane and Worker Nodes.
+
+</p>
+
+</div>
+
+<div class="day">
+
+<h2>Day 3 — Pods and Deployments</h2>
+
+<p>
+
+Created pods and deployments while learning scaling,
+rolling updates and self-healing.
+
+</p>
+
+</div>
+
+<div class="day">
+
+<h2>Day 4 — Networking and Services</h2>
+
+<p>
+
+Configured Services and learned how applications communicate
+inside the Kubernetes cluster.
+
+</p>
+
+</div>
+
+<div class="day">
+
+<h2>Day 5 — YAML</h2>
+
+<p>
+
+Created reusable Kubernetes YAML manifests for pods,
+deployments and services.
+
+</p>
+
+</div>
+
+<div class="day">
+
+<h2>Day 6 — Ingress and DNS</h2>
+
+<p>
+
+Studied Route53, Kubernetes Ingress Controllers,
+DNS routing and website publishing.
+
+</p>
+
+</div>
+
+<div class="day">
+
+<h2>Day 7 — Persistent Storage</h2>
+
+<p>
+
+Created Persistent Volumes, Persistent Volume Claims,
+and learned storage concepts.
+
+</p>
+
+</div>
+
+<div class="day">
+
+<h2>Day 8 — ConfigMaps, Secrets and RBAC</h2>
+
+<p>
+
+Configured ConfigMaps, Secrets, Service Accounts,
+Roles and Role Bindings.
+
+</p>
+
+</div>
+
+<div class="day">
+
+<h2>Day 9 — Troubleshooting</h2>
+
+<p>
+
+Practiced kubeadm troubleshooting, DNS issues,
+network debugging, image pull failures,
+bad manifests and etcd backup concepts.
+
+</p>
+
+</div>
+
+<div class="day">
+
+<h2>Day 10 — Final Project</h2>
+
+<p>
+
+Deploy production-style websites inside Kubernetes,
+including Bread Website, Portfolio and
+Keyes Cloud Solutions.
+
+</p>
+
+</div>
+
+<hr>
+
+<h2>Upcoming Project Goals</h2>
+
+<ul>
+
+<li>Deploy NGINX Ingress Controller</li>
+
+<li>Deploy Calico Networking</li>
+
+<li>Join Worker Nodes</li>
+
+<li>Deploy bread.keyescloudsolutions.com</li>
+
+<li>Deploy portfolio.keyescloudsolutions.com</li>
+
+<li>Install Prometheus</li>
+
+<li>Install Grafana</li>
+
+<li>Configure HTTPS using cert-manager</li>
+
+<li>Complete CKA Practice Labs</li>
+
+</ul>
+
+<hr>
+
+<h2>Next Milestones</h2>
+
+<table>
+
+<tr>
+
+<th>Task</th>
+
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>Initialize Kubernetes Cluster</td>
+
+<td>In Progress</td>
+
+</tr>
+
+<tr>
+
+<td>Install Calico</td>
+
+<td>Pending</td>
+
+</tr>
+
+<tr>
+
+<td>Join Worker Nodes</td>
+
+<td>Pending</td>
+
+</tr>
+
+<tr>
+
+<td>Install NGINX Ingress</td>
+
+<td>Pending</td>
+
+</tr>
+
+<tr>
+
+<td>Deploy Bread Website</td>
+
+<td>Pending</td>
+
+</tr>
+
+<tr>
+
+<td>Deploy Portfolio Website</td>
+
+<td>Pending</td>
+
+</tr>
+
+<tr>
+
+<td>Install Prometheus</td>
+
+<td>Pending</td>
+
+</tr>
+
+<tr>
+
+<td>Install Grafana</td>
+
+<td>Pending</td>
+
+</tr>
+
+<tr>
+
+<td>Complete 10 Day Kubernetes Project</td>
+
+<td>Pending</td>
+
+</tr>
+
+</table>
+
+<hr>
+
+<h2>Tools Used</h2>
+
+<p>
+
+AWS • Terraform • EC2 • Route53 • Ubuntu Linux • Bash •
+Docker • containerd • Kubernetes • kubeadm • kubectl •
+YAML • Git • GitHub • VS Code • Obsidian • NGINX
+
+</p>
+
+<hr>
+
+<h2>Project Goal</h2>
+
+<p>
+
+The purpose of this project is to demonstrate practical cloud engineering
+skills by designing, deploying and operating a Kubernetes cluster using
+Infrastructure as Code. The completed project will host multiple websites,
+implement monitoring, demonstrate networking and security concepts,
+and serve as a professional portfolio showcasing hands-on experience
+with AWS, Terraform and Kubernetes.
+
+</p>
+
+<footer>
+
+Kubernetes Learning Project<br>
+
+Charles Keyes Sr.<br>
+
+Keyes Cloud Solutions<br>
+
+2026
+
+</footer>
+
+</div>
+
+</body>
+
+</html>
+```

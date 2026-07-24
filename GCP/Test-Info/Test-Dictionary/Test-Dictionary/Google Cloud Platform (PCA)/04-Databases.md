@@ -1,0 +1,21 @@
+# 04 - Databases
+
+- Cloud SQL
+- SQL Server
+- Cloud Spanner
+- Cloud Spanner Emulator
+- BigQuery
+- Bigtable
+- Firestore
+- Datastore
+- AlloyDB
+- MongoDB
+- NoSQL
+- RDB
+- Pub/Sub
+- Datastream
+- Dataproc
+- Dataflow
+- Apache Spark
+- Hadoop
+- Blobstore

@@ -1,0 +1,263 @@
+Portfolio Tree (Clean View)
+----------------------------------------
+.
+  00-Overview
+    00-Overview.md.md
+    AWS + GCP.md
+    About-Me.md
+    Final-Results.md.md
+  01-Architecture
+    Architecture-Diagram.md
+    Global Architecture Overview.md
+    Network-Flow.md
+    Overview.md
+    Security-Design.md
+  02-AWS
+    AWS Deep Dive – Tokyo Authority (ap-northeast-1).md
+    Tokyo-Region.md.md
+  03-GCP
+    GCP Networking – NCC + HA VPN + BGP.md
+    GCP-Architecture.md.md
+  04-Networking
+    BGP-VPN-Flow.md.md
+    Networking Deep Dive.md
+  05-Terraform
+    800-provider.tf
+    805-main.tf
+    890-outputs.tf
+    892-outputs.tf
+    895-variables.tf
+    898-Lab 3.docx
+    Deliverables
+      All the deliverables.md
+      Final Report Outline – Lab3 & Lab4.md
+      Final throughts.md
+      Lab3 Deliverables.md
+      Lab3-Architecture.drawio
+      Lab4-Deliverables.md
+      malgus_collect_evidence.py
+      outputs.md
+    Infrastructure as Code.md
+    Load-S3-web-site.sh
+    Module-Structure.md.md
+    Terraform-Architecture.md.md
+    deploy_site_to_s3_and_invalidate.sh
+    green
+      Load-S3-web-site.sh
+      download.jpg
+      download2.jpeg
+      download3.jpeg
+      download4.jpeg
+      download5.jpeg
+      images1.jpeg
+      images10.jpeg
+      images11.jpeg
+      images12.jpeg
+      images13.jpeg
+      images14.jpeg
+      images15.jpeg
+      images6.jpeg
+      images7.jpeg
+      images8.jpeg
+      images9.jpeg
+      index.html
+      run-on-EC2-script
+    index.html
+    lab3-s3-read-staff-photos.json
+    lab3_verify.sh
+    main.tf
+    modules
+      Temp-folder
+        100-aws_security_group.chewbacca_rds_sg01.tf
+        200-provider.tf
+        300-sao_paulo_routes.tf
+        400-sao_paulo_tgw.tf
+        500-tokyo_routes.tf
+        600-tokyo_tgw.tf
+      aws_tokyo_tgw_vpn
+        main.tf
+        outputs.tf
+        variables.tf
+        versions.tf
+      cross-region routes
+        100-tokyo-tgw-route-table.tf
+        110-tokyo_routes.tf.old
+        120-São-Paulo-TGW-RT.tf
+        130-Tokyo private RTs.tf
+      edge_public
+        200-terraform.tf
+        201-locals.tf
+        205-route53_zone.tf
+        210-route53-cloudfront.tf
+        215-acm_use1_cloudfront.tf
+        220-waf_cloudfront.tf
+        225-origin_header_secret.tf
+        230-cloudfront.tf
+        235-cloudfront_cache_policies.tf
+        245-lab2b_honors_origin_driven.tf
+        250-edge_public.tf
+        255-lab2b_cache_correctness.tf
+        290-variables.tf
+        295-outputs.tf
+        299-origin_cloaking_rules.old
+      gcp_ha_vpn_to_aws
+        20-vpn-tunnels.tf
+        main.tf
+        outputs.tf
+        variables.tf
+        versions.tf
+      gcp_iowa_network
+        10-main.tf
+        20-iowa_test_vm.tf
+        30-firewall.tf
+        80-outputs.tf
+        90-variables.tf
+      gcp_ncc
+        10-hub.tf
+        20-spokes.tf
+        outputs.tf
+        variables.tf
+        versions.tf
+      gcp_ny_branch_network
+        15-ny_test_vm.tf
+        25-firewall.tf
+        5-main.tf
+        85-outputs.tf
+        95-variables.tf
+      gcp_transit_vpc
+        main.tf
+        outputs.tf
+        variables.tf
+      peering_resources
+        200-providers.tf
+        210-tgw-peering.tf
+        220-sao-paulo-accepts-peering.tf
+        230-route-tokyo-saopaulo.tf
+        240-route-saopaulo-tokyo.tf
+        300-vpc-attachment-peering.tf
+        310-vpc-attachment-peering.tf
+        350-variables.tf
+        360-outputs.tf
+      saopaulo_core
+        1-VPC.txt
+        2-subnet.txt
+        4-nat.txt
+        400-provider.tf
+        405-vpc.tf
+        410-subnets.tf
+        415-routes-public.tf
+        420-routes-private.tf
+        425-nat.tf
+        430-ec2-sg.tf
+        435-alb-sg.tf
+        440-ec2-app.tf
+        490-outputs.tf
+        495-variables.tf
+        496-get-Tokyo endpoints.md
+        497-README.MD
+        498-Sao-Paulo-outline.md
+        499-test-commands.md
+        5-Route Tables.txt
+        7-EC2.txt
+        9-Load Balancer.txt
+      saopaulo_tgw
+        500-provider.tf
+        510-main.tf
+        590-outputs.tf
+        595-variables.tf
+      terraform.tfstate
+      tokyo_core
+        450-Tokyo-RDS-allows-São Paulo-sg.tf.off
+        601-variables.tf
+        603-locals.tf
+        605-vpc.tf
+        610-routes-public.tf
+        615-routes-private.tf
+        620-subnets.tf
+        625-alb-sg.tf
+        630-ec2-sg.tf
+        635-rds-sg.tf
+        640-alb.txt
+        641-alb-targetgroup-listeners.tf
+        645-nat.tf
+        650-ec2-app.tf
+        656-iam_s3_read.tf
+        660-rds.tf
+        665-secretsmanager.tf
+        666-s3-staff-photos.tf
+        667-iam-s3-photos.tf
+        674-acm_tokyo_alb.tf
+        695-origin_cloaking_rules.tf
+        699-IAM-role-for-EC2.tf
+        700-outputs.tf
+        710-index.html.old
+      tokyo_tgw
+        700-provider.tf
+        710-tokyo_tgw.tf
+        790-outputs.tf
+        795-variables.tf
+        799-remote-state-tokyo-core.txt
+    outputs.tf
+    paste.md
+    terraform.tfstate
+    terraform.tfvars
+    variables.tf
+    versions.tf
+  06-Compute
+    Automated Infrastructure Deployment with Jenkins, Terraform, and AWS.md
+    EC2, scaling, and application design.md
+    Jenkins.md
+  07-Databases
+    Database-Architecture.md.md
+  08-Logging-Monitoring
+    Logging & Monitoring (Observability).md
+    Observability-Architecture.md.md
+    Prometheus-Grafana-Monitoring.md.md
+  09-CI-CD
+    CI-CD Pipeline (Jenkins + Terraform).md
+  10-Challenges
+    Challenges & Solutions.md
+  11-Final-Results
+    Final Results.md
+  Diagrams
+    lab4-architecture.png
+  How-TO.md
+  Jenkins
+    jenkins-diagram.png
+    jenkins-success.png
+    terraform-output.png
+  Lab4
+    Global Secure Multi-Cloud Architecture (AWS, GCP, BGP VPN).md
+    README.md
+    Resume.md
+  Portfolio.md
+  Screenshots
+    aws
+      aws-ec2-running.png
+      aws-security-groups.png
+      aws-subnets.png
+      aws-transit-gateway.png
+      aws-vpc-console.png
+    gcp
+      BGP-VPN.png
+      gcp-ncc-hub.png
+      gcp-ncc-spokes.png
+      gcp-vm-instances.png
+      gcp-vpc-network.png
+      gcp-vpn-status.png
+    jenkins-success.png
+    terraform
+    terraform-output.png
+      project-structure.png
+      terraform-apply.png
+      terraform-init.png
+      terraform-outputs.png
+      terraform-plan.png
+      terraform-validate.png
+  Second-Design.md
+  Web-Site Instructions.md
+  bigquery-dlp
+  global-testing-platform
+  index.html
+  ncc-global-hub
+  portfolio_tree_clean.txt

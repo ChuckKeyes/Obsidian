@@ -131,9 +131,46 @@ Learn:
 
 - [Persistent Volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/?utm_source=chatgpt.com)
 
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pv-recycler
+  namespace: default
+spec:
+  restartPolicy: Never
+  volumes:
+  - name: vol
+    hostPath:
+      path: /any/path/it/will/be/replaced
+  containers:
+  - name: pv-recycler
+    image: "registry.k8s.io/busybox"
+    command: ["/bin/sh", "-c", "test -e /scrub && rm -rf /scrub/..?* /scrub/.[!.]* /scrub/*  && test -z \"$(ls -A /scrub)\" || exit 1"]
+    volumeMounts:
+    - name: vol
+      mountPath: /scrub
+```
+
 ### Storage Classes
 
 - [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/?utm_source=chatgpt.com)
+
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: low-latency
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "false"
+provisioner: csi-driver.example-vendor.example
+reclaimPolicy: Retain # default value is Delete
+allowVolumeExpansion: true
+mountOptions:
+  - discard # this might enable UNMAP / TRIM at the block storage layer
+volumeBindingMode: WaitForFirstConsumer
+parameters:
+  guaranteedReadWriteLatency: "true" # provider-specific
+
 
 ---
 

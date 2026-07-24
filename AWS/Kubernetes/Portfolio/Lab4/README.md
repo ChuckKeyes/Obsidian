@@ -1,0 +1,2 @@
+
+This project implements a global multi-cloud architecture connecting AWS and GCP environments using HA VPN and BGP routing. AWS serves as the primary infrastructure hub with Transit Gateway managing inter-VPC communication, while GCP uses Network Connectivity Center to connect remote sites. The design enforces security and compliance by ensuring sensitive data remains in the primary region while enabling controlled connectivity across international locations.
