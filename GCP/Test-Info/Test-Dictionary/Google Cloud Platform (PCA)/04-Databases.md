@@ -13,7 +13,8 @@
 ## BigQuery
 
 **Definition:** Google's fully managed, serverless data warehouse used for large-scale SQL analytics and business intelligence.
-
+http://cloud.google.com/bigquery/docs/dataset-access-controls
+http://cloud.google.com/billing/docs/how-to/export-data-bigquery
 ---
 ## Bigtable
 
@@ -75,7 +76,7 @@ If the question asks how to inspect a BigQuery table, dataset, schema, or resour
 ## Datastore
 
 **Definition:** Google's original NoSQL document database for App Engine applications. It is now part of Firestore in Datastore mode.
-
+http://cloud.google.com/datastore/docs/concepts/overview
 ---
 ## Datastream
 
@@ -84,7 +85,25 @@ If the question asks how to inspect a BigQuery table, dataset, schema, or resour
 ---
 ## Dataflow
 
-**Definition:** Google's fully managed stream and batch data processing service based on Apache Beam.
+**Definition:** Google's fully managed stream and batch data processing service based on Apache Beam.  Dataflow is a Google Cloud service that provides unified stream and batch data processing at scale. Use Dataflow to create data pipelines that read from one or more sources, transform the data, and write the data to a destination.
+
+Typical use cases for Dataflow include the following:
+
+- Data movement: Data ingestion or replication across subsystems.
+- [ETL](https://cloud.google.com/learn/what-is-etl) (extract-transform-load) workflows that ingest data into a data warehouse such as BigQuery.
+- Backend support for business intelligence (BI) dashboards
+- Real-time machine learning (ML) analysis of streaming data.
+- Sensor data processing or log data processing at scale.
+
+Dataflow uses the same programming model for both batch and stream analytics. Streaming pipelines can achieve low latency. You can ingest, process, and analyze fluctuating volumes of real-time data. By default, Dataflow provides [exactly-once processing](https://docs.cloud.google.com/dataflow/docs/concepts/exactly-once) of every record. For streaming pipelines that can tolerate duplicates, you can reduce cost and improve latency by enabling [at-least-once mode](https://docs.cloud.google.com/dataflow/docs/guides/streaming-modes).
+
+## Advantages for data processing with Dataflow
+
+This section describes some of the advantages of using Dataflow.
+
+### Managed data processing
+
+Dataflow is a fully managed service. That means Google manages all of the resources needed to run Dataflow. When you run a Dataflow job, the Dataflow service allocates a pool of worker VMs to execute the pipeline. You don't need to provision or manage these VMs. When the job completes or is cancelled, Dataflow automatically deletes the VMs. You're billed for the compute resources that your job uses. For more information about costs, see [Dataflow pricing](https://cloud.google.com/dataflow/pricing).
 
 ---
 ## Firestore

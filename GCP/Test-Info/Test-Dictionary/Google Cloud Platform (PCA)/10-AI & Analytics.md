@@ -322,3 +322,37 @@ If the question says **"analyze images without training a model,"** think **Visi
       AutoML Natural Language
       AutoML Tables
       Colab Enterprise
+
+# PCA AI Decision Guide
+
+Need to...
+
+Train a custom ML model?
+→ Vertex AI
+
+Build an AI chatbot?
+→ Vertex AI Agent Builder
+
+Search a product catalog?
+→ Discovery Engine
+
+Extract data from invoices?
+→ Document AI
+
+Analyze photos?
+→ Vision API
+
+Analyze sentiment?
+→ Cloud Natural Language API
+
+Use SQL to build ML models?
+→ BigQuery ML
+
+Deploy a trained model?
+→ Vertex AI Prediction
+
+Tune hyperparameters?
+→ Vertex AI Vizier
+
+Use managed notebooks?
+→ Vertex AI Workbench

@@ -8,7 +8,7 @@ Automatically records administrative actions and access events for Google Cloud 
 **PCA Exam Tip:**
 
 Use Cloud Audit Logs to track **who did what, when, and where** across Google Cloud services.
-
+http://cloud.google.com/bigquery/docs/reference/auditlogs
 ---
 ## Cloud Logging
 
@@ -30,6 +30,15 @@ Google Cloud's monitoring service that collects metrics, dashboards, uptime chec
 **PCA Exam Tip:**
 
 Use Cloud Monitoring to track resource health, performance, and availability.
+
+---
+# Cloud Monitoring metrics for Agent Platform
+
+Gemini Enterprise Agent Platform exports metrics to [Cloud Monitoring](https://docs.cloud.google.com/monitoring/docs). Agent Platform also shows some of these metrics in the Agent Platform Google Cloud console. You can use Cloud Monitoring to create dashboards or configure alerts based on the metrics. For example, you can receive alerts if a model's prediction latency in Agent Platform gets too high.
+
+The following sections describe the metrics provided in the Agent Platform Google Cloud console, which might be direct or calculated metrics that Agent Platform sends to Cloud Monitoring.
+
+To view a list of most metrics that Agent Platform exports to Cloud Monitoring, see [`aiplatform`](https://docs.cloud.google.com/monitoring/api/metrics_gcp_a_b#gcp-aiplatform). For custom training metrics, see metric types that start with `training` in the [`ml`](https://docs.cloud.google.com/monitoring/api/metrics_gcp_i_o#gcp-ml) section.
 
 ---
 ## Cloud Operations Suite (Cloud Ops)
@@ -63,6 +72,34 @@ Tracks requests as they travel through distributed applications and microservice
 **PCA Exam Tip:**
 
 Use for troubleshooting slow requests in distributed systems.
+
+---
+# Compute Engine audit logging
+
+This document describes audit logging for Compute Engine. Google Cloud services generate audit logs that record administrative and access activities within your Google Cloud resources. For more information about Cloud Audit Logs, see the following:
+
+- [Types of audit logs](https://docs.cloud.google.com/logging/docs/audit#types)
+- [Audit log entry structure](https://docs.cloud.google.com/logging/docs/audit#audit_log_entry_structure)
+- [Storing and routing audit logs](https://docs.cloud.google.com/logging/docs/audit#storing_and_routing_audit_logs)
+- [Cloud Logging pricing summary](https://docs.cloud.google.com/stackdriver/pricing#logs-pricing-summary)
+- [Enable Data Access audit logs](https://docs.cloud.google.com/logging/docs/audit/configure-data-access)
+
+## Notes
+
+Audit logs record the request and response data of the API actions that were performed. However, in the following circumstances, the request or response info is unavailable or is redacted:
+
+- For `instance.setMetadata` and `project.setCommonInstanceMetadata` API requests, the metadata portion of the request body is redacted to avoid logging sensitive information sent in the metadata.
+- Sensitive fields are redacted from requests, such as private keys for SSL certificates and customer-supplied encryption keys for disks.
+- For `get` and `list` responses, the response body is redacted to avoid logging private information.
+
+## Service name
+
+Compute Engine audit logs use the service name `compute.googleapis.com`. Filter for this service:
+
+    protoPayload.serviceName="compute.googleapis.com"
+  
+---
+
 
 ---
 ## Current Google Cloud debugging and observability tools

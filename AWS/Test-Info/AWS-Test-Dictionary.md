@@ -1,9 +1,9 @@
 
 # AWS Dictionary Index
 
-- [[01-Compute]]
-- [[02-Networking]]
-- [[03-Storage]]
+- [[GCP/Test-Info/Test-Dictionary/Google Cloud Platform (PCA)/01-Compute]]
+- [[GCP/Test-Info/Test-Dictionary/Google Cloud Platform (PCA)/02-Networking]]
+- [[GCP/Test-Info/Test-Dictionary/Google Cloud Platform (PCA)/03-Storage]]
 - [[04-Databases]]
 - [[05-Containers & Kubernetes (ECS, EKS)]]
 - [[06-IAM & Security]]

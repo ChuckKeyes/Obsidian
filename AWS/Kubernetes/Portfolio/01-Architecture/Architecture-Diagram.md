@@ -66,5 +66,5 @@ This diagram represents a secure, hybrid multi-cloud architecture connecting AWS
 
 ## 🔗 Related Diagrams
 
-- [[Network-Flow]]
+- [[AWS/Kubernetes/Portfolio/01-Architecture/Network-Flow]]
 - [[AWS Deep Dive]] (add later)

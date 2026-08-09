@@ -16,3 +16,10 @@
 | Recommender command     | 13 — Cost Optimization                 |
 | Schema versioning tool  | 04 — Databases or 08 — CI/CD           |
 | Spinnaker               | 08 — CI/CD & DevOps                    |
+Autoclass on muti-region buckets
+Cloud Monitoring alerting policies
+Vertex AI Agent Builder combined with Discovery Engine
+Discovery Engine
+Pub/Sub pipelines and Dataflow processing
+**structured schema constraints and validation logic**
+Redis

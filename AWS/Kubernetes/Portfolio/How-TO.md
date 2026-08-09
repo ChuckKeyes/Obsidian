@@ -310,7 +310,7 @@ Design a secure, highly available multi-cloud architecture connecting AWS and GC
 ![[terraform-output.png]]
 ![[jenkins-success.png]]
 
-See also: [[Network-Flow]]
+See also: [[AWS/Kubernetes/Portfolio/01-Architecture/Network-Flow]]
 See also: [[AWS Deep Dive]]
 
 See detailed AWS design: [[AWS Deep Dive]]

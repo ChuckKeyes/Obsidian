@@ -13,7 +13,6 @@
 **Related:** SSH, YAML, Terraform, Kubernetes
 
 ---
-
 ## CircleCI
 
 **Definition:** A cloud-based Continuous Integration/Continuous Deployment (CI/CD) platform that automatically builds, tests, and deploys software after code changes.
@@ -27,7 +26,6 @@
 **Related:** GitHub, Docker, Kubernetes
 
 ---
-
 ## Docker
 
 **Definition:** A container platform used to package applications and their dependencies into portable containers that run consistently across environments.
@@ -52,7 +50,6 @@ docker push
 **Related:** Kubernetes, Docker Hub, Artifact Registry
 
 ---
-
 ## ELK Stack
 
 **Definition:** A log management platform consisting of Elasticsearch, Logstash, and Kibana used for centralized log collection, storage, searching, and visualization.
@@ -70,7 +67,6 @@ docker push
 - Troubleshooting
 
 ---
-
 ## Git
 
 **Definition:** A distributed version control system that tracks changes to source code and enables collaboration between developers.
@@ -104,7 +100,6 @@ git merge
 **Related:** Git, GitHub Actions
 
 ---
-
 ## GitHub Actions
 
 **Definition:** GitHub's built-in CI/CD platform used to automate software builds, testing, deployments, and infrastructure workflows.
@@ -130,7 +125,6 @@ git merge
 - DevOps lifecycle
 
 ---
-
 ## Grafana
 
 **Definition:** A dashboard and visualization platform used to display metrics collected from systems such as Prometheus, Elasticsearch, and Cloud Monitoring.
@@ -156,7 +150,17 @@ git merge
 - Packer
 
 ---
+## JAR (Java Archive)
 
+**Definition:**
+
+A **JAR (Java Archive)** file packages compiled Java classes, libraries, configuration files, and resources into a single deployable file. Java applications are commonly distributed and executed as JAR files.
+
+**PCA Exam Tip:**
+
+If the question mentions **JarVerifier**, **SHA1 digest**, **ManifestEntryVerifier**, or **SecurityException** during deployment, think **JAR digital signature verification** rather than missing code or libraries.
+
+---
 ## Jenkins
 
 **Definition:** An open-source automation server used to build, test, and deploy software through CI/CD pipelines.
@@ -168,7 +172,6 @@ git merge
 - Automated testing
 
 ---
-
 ## Kubernetes
 
 **Definition:** An open-source container orchestration platform that automates deployment, scaling, networking, and management of containerized applications.
@@ -190,7 +193,6 @@ git merge
 - Self-healing
 
 ---
-
 ## Prometheus
 
 **Definition:** An open-source monitoring system that collects metrics from servers, containers, and Kubernetes clusters using time-series data.
@@ -206,7 +208,6 @@ git merge
 - Grafana
 
 ---
-
 ## SonarQube
 
 **Definition:** A code quality and security analysis platform that scans source code for bugs, vulnerabilities, and code smells before deployment.
@@ -218,7 +219,6 @@ git merge
 - Quality gates
 
 ---
-
 ## Terraform
 
 **Definition:** An Infrastructure as Code (IaC) tool that provisions and manages cloud infrastructure using declarative configuration files.
@@ -246,7 +246,6 @@ terraform destroy
 ```
 
 ---
-
 # How These Tools Work Together
 
 ```
@@ -284,7 +283,6 @@ ELK Stack
 ```
 
 ---
-
 ## Which Ones Should You Learn?
 
 Based on your goals (Cloud Engineer → Kubernetes → PCA → Consulting), I'd prioritize them like this:

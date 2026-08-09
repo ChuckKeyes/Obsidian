@@ -9,7 +9,7 @@ API versioning is the practice of creating a **new version of an API** whenever 
 **PCA Exam Tip:**
 
 If the question says **"public REST API,"** **"don't break existing clients,"** **"backward-incompatible changes,"** or **"API lifecycle,"** think **API Versioning**.
-
+http://cloud.google.com/endpoints/docs/openapi/versioning-an-api
 ---
 ## API Gateway
 
@@ -27,6 +27,21 @@ If the question says **"publish a REST API with minimal management,"** **"secure
 **Definition:**
 
 Google Cloud's enterprise API management platform used to design, secure, publish, monitor, analyze, and monetize APIs. It provides advanced capabilities such as developer portals, analytics, rate limiting, API versioning, and lifecycle management.
+
+Third-Party Developer
+        │
+        ▼
+      Apigee
+        │
+        ├── Authentication
+        ├── API Keys
+        ├── Quotas
+        ├── Rate Limiting
+        ├── Analytics
+        └── API Products
+        │
+        ▼
+   Backend API
 
 **PCA Exam Tip:**
 
@@ -70,6 +85,15 @@ Authorization: Bearer eyJhbGciOi...
 **PCA Exam Tip:**
 
 If the question says **signed token**, **claims**, **stateless authentication**, or **API authentication**, think **JWT**.
+
+---
+# Looker Studio
+
+**Definition:**
+
+Looker Studio is Google's **free business intelligence (BI) and data visualization** service that creates interactive dashboards and reports from data stored in **BigQuery**, Cloud SQL, Google Sheets, Cloud Storage, and many other data sources.
+
+It allows users to transform raw data into charts, graphs, maps, scorecards, and executive dashboards without writing code.
 
 ---
 ## OAuth 2.0

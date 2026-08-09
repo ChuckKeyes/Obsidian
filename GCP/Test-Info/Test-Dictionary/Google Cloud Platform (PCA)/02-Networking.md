@@ -31,6 +31,35 @@ Cloud DNS is Google's highly available and scalable Domain Name System (DNS) ser
 If the question says **"manage DNS records," "host DNS zones,"** or **"private DNS,"** the answer is **Cloud DNS**.
 
 ---
+### Global Multi-Cluster DNS
+
+**Definition:**
+
+Cloud DNS points a single hostname (such as `www.company.com`) to the **Global HTTP(S) Load Balancer's Anycast IP address**. The Global Load Balancer—not DNS—selects the nearest healthy GKE cluster using Google's global network, health checks, and latency-aware routing.
+
+**PCA Exam Tip:**
+
+If the question says:
+
+- **multi-region GKE**
+- **lowest latency**
+- **global load balancing**
+- **kubemci**
+- **multi-cluster ingress**
+
+Think:
+
+```
+Cloud DNS
+      ↓
+One Anycast IP
+      ↓
+Global HTTP(S) Load Balancer
+      ↓
+Nearest Healthy GKE Cluster
+```
+
+---
 ## Cloud Interconnect
 
 **Definition:**

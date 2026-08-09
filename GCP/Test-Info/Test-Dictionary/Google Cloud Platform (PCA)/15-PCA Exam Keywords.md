@@ -15,3 +15,6 @@
 - JMeter
 - Airflow
 - Lamp Stack
+- Cloud Operations suite
+- API facade
+- data lake/warehouse

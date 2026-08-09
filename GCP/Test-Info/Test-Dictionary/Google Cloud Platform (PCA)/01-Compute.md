@@ -53,6 +53,17 @@ Google's fully managed Platform as a Service (PaaS) that automatically builds, d
 **PCA Exam Tip:**
 
 If the question says **"minimum operational overhead,"** **"automatic scaling,"** or **"don't manage servers,"** think **App Engine Standard**.
+http://cloud.google.com/appengine/docs/standard
+---
+## App Engine Versions
+
+**Definition:**
+
+App Engine supports deploying **multiple versions** of the same service and splitting traffic between them. This enables canary deployments, gradual rollouts, A/B testing, and quick rollbacks without creating a second App Engine application.
+
+**PCA Exam Tip:**
+
+If the question says **"gradually release an update,"** **"split traffic,"** **"test a new version,"** or **"canary deployment,"** think **App Engine Versions + Traffic Splitting**.
 
 ---
 ## Cloud Deployment Manager

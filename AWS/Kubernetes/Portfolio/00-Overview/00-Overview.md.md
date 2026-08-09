@@ -14,17 +14,17 @@ Users connect through a **single global entry point** via CloudFront, which enfo
 
 ## 🔗 Quick Navigation (CLICK THESE)
 
-- [[01-Architecture/Overview.md|Architecture]]
-- [[02-AWS/AWS Deep Dive – Tokyo Authority (ap-northeast-1).md|AWS Deep Dive]]
-- [[03-GCP/GCP Networking – NCC + HA VPN + BGP.md|GCP Networking]]
-- [[04-Networking/BGP-VPN-Flow.md.md|Networking / BGP Flow]]
-- [[05-Terraform/Infrastructure as Code.md|Terraform]]
-- [[06-Compute/Automated Infrastructure Deployment with Jenkins, Terraform, and AWS.md|Compute]]
-- [[07-Databases/Database-Architecture.md.md|Database]]
-- [[08-Logging-Monitoring/Logging & Monitoring (Observability).md|Monitoring]]
-- [[09-CI-CD/CI-CD Pipeline (Jenkins + Terraform).md|CI/CD]]
-- [[10-Challenges/Challenges & Solutions.md|Challenges]]
-- [[11-Final-Results/Final Results.md|Final Results]]
+- [[Portfolio Files/Cloud-Portfolio/99-Archive/01-Architecture/Overview|Architecture]]
+- [[Portfolio Files/Cloud-Portfolio/99-Archive/02-AWS/AWS Deep Dive – Tokyo Authority (ap-northeast-1)|AWS Deep Dive]]
+- [[Portfolio Files/Cloud-Portfolio/99-Archive/03-GCP/GCP Networking – NCC + HA VPN + BGP|GCP Networking]]
+- [[Portfolio Files/Cloud-Portfolio/99-Archive/04-Networking/BGP-VPN-Flow.md|Networking / BGP Flow]]
+- [[Portfolio Files/Cloud-Portfolio/99-Archive/05-Terraform/Infrastructure as Code|Terraform]]
+- [[Portfolio Files/Cloud-Portfolio/99-Archive/06-Compute/Automated Infrastructure Deployment with Jenkins, Terraform, and AWS|Compute]]
+- [[Portfolio Files/Cloud-Portfolio/99-Archive/07-Databases/Database-Architecture.md|Database]]
+- [[Portfolio Files/Cloud-Portfolio/99-Archive/08-Logging-Monitoring/Logging & Monitoring (Observability)|Monitoring]]
+- [[Portfolio Files/Cloud-Portfolio/99-Archive/09-CI-CD/CI-CD Pipeline (Jenkins + Terraform)|CI/CD]]
+- [[Portfolio Files/Cloud-Portfolio/99-Archive/10-Challenges/Challenges & Solutions|Challenges]]
+- [[Portfolio Files/Cloud-Portfolio/99-Archive/11-Final-Results/Final Results|Final Results]]
 
 ---
 
@@ -32,89 +32,89 @@ Users connect through a **single global entry point** via CloudFront, which enfo
 
 - Build a **multi-cloud architecture (AWS + GCP)**
 - Implement **secure connectivity using HA VPN + BGP**
-- Use **Transit Gateway (TGW)** for AWS routing → [[04-Networking/BGP-VPN-Flow.md.md]]
-- Use **Network Connectivity Center (NCC)** → [[03-GCP/GCP Networking – NCC + HA VPN + BGP.md]]
-- Enforce **centralized database compliance** → [[07-Databases/Database-Architecture.md.md]]
-- Deploy infrastructure using **Terraform (IaC)** → [[05-Terraform/Infrastructure as Code.md]]
-- Automate deployments with **Jenkins CI/CD** → [[09-CI-CD/CI-CD Pipeline (Jenkins + Terraform).md]]
-- Implement **monitoring and observability** → [[08-Logging-Monitoring/Logging & Monitoring (Observability).md]]
+- Use **Transit Gateway (TGW)** for AWS routing → [[Portfolio Files/Cloud-Portfolio/99-Archive/04-Networking/BGP-VPN-Flow.md]]
+- Use **Network Connectivity Center (NCC)** → [[Portfolio Files/Cloud-Portfolio/99-Archive/03-GCP/GCP Networking – NCC + HA VPN + BGP]]
+- Enforce **centralized database compliance** → [[Portfolio Files/Cloud-Portfolio/99-Archive/07-Databases/Database-Architecture.md]]
+- Deploy infrastructure using **Terraform (IaC)** → [[Portfolio Files/Cloud-Portfolio/99-Archive/05-Terraform/Infrastructure as Code]]
+- Automate deployments with **Jenkins CI/CD** → [[Portfolio Files/Cloud-Portfolio/99-Archive/09-CI-CD/CI-CD Pipeline (Jenkins + Terraform)]]
+- Implement **monitoring and observability** → [[Portfolio Files/Cloud-Portfolio/99-Archive/08-Logging-Monitoring/Logging & Monitoring (Observability)]]
 
 ---
 
 ## 🌍 Regions & Topology
 
 ### AWS Regions
-- Tokyo (Primary / Database) → [[02-AWS/AWS Deep Dive – Tokyo Authority (ap-northeast-1).md]]
-- São Paulo (Compute) → [[06-Compute/Automated Infrastructure Deployment with Jenkins, Terraform, and AWS.md]]
+- Tokyo (Primary / Database) → [[Portfolio Files/Cloud-Portfolio/99-Archive/02-AWS/AWS Deep Dive – Tokyo Authority (ap-northeast-1)]]
+- São Paulo (Compute) → [[Portfolio Files/Cloud-Portfolio/99-Archive/06-Compute/Automated Infrastructure Deployment with Jenkins, Terraform, and AWS]]
 
 ### GCP Regions
-- Iowa → [[03-GCP/GCP Networking – NCC + HA VPN + BGP.md]]
-- New York (Branch VPC) → [[03-GCP/GCP Networking – NCC + HA VPN + BGP.md]]
+- Iowa → [[Portfolio Files/Cloud-Portfolio/99-Archive/03-GCP/GCP Networking – NCC + HA VPN + BGP]]
+- New York (Branch VPC) → [[Portfolio Files/Cloud-Portfolio/99-Archive/03-GCP/GCP Networking – NCC + HA VPN + BGP]]
 
 ---
 
 ## 🧱 Core Architecture Components
 
 ### 🌐 Global Entry Layer
-- CloudFront → [[01-Architecture/Overview.md]]
-- Route 53 (DNS) → [[01-Architecture/Overview.md]]
-- WAF (Security) → [[02-AWS/AWS Deep Dive – Tokyo Authority (ap-northeast-1).md]]
+- CloudFront → [[Portfolio Files/Cloud-Portfolio/99-Archive/01-Architecture/Overview]]
+- Route 53 (DNS) → [[Portfolio Files/Cloud-Portfolio/99-Archive/01-Architecture/Overview]]
+- WAF (Security) → [[Portfolio Files/Cloud-Portfolio/99-Archive/02-AWS/AWS Deep Dive – Tokyo Authority (ap-northeast-1)]]
 
 ---
 
 ### 🖥️ Application Layer
-- EC2 instances (private subnets) → [[06-Compute/Automated Infrastructure Deployment with Jenkins, Terraform, and AWS.md]]
-- Nginx (web layer) → [[06-Compute/Automated Infrastructure Deployment with Jenkins, Terraform, and AWS.md]]
+- EC2 instances (private subnets) → [[Portfolio Files/Cloud-Portfolio/99-Archive/06-Compute/Automated Infrastructure Deployment with Jenkins, Terraform, and AWS]]
+- Nginx (web layer) → [[Portfolio Files/Cloud-Portfolio/99-Archive/06-Compute/Automated Infrastructure Deployment with Jenkins, Terraform, and AWS]]
 - Stateless scaling design
 
 ---
 
 ### 🗄️ Data Layer
-- RDS (Tokyo primary DB) → [[07-Databases/Database-Architecture.md.md]]
+- RDS (Tokyo primary DB) → [[Portfolio Files/Cloud-Portfolio/99-Archive/07-Databases/Database-Architecture.md]]
 - Centralized data model for compliance
 
 ---
 
 ### 🔀 Networking Layer
-- Transit Gateway (TGW) → [[04-Networking/BGP-VPN-Flow.md.md]]
-- TGW Peering (Tokyo ↔ São Paulo) → [[04-Networking/BGP-VPN-Flow.md.md]]
-- HA VPN (AWS ↔ GCP) → [[03-GCP/GCP Networking – NCC + HA VPN + BGP.md]]
-- NCC Hub → [[03-GCP/GCP Networking – NCC + HA VPN + BGP.md]]
-- BGP Routing → [[04-Networking/BGP-VPN-Flow.md.md]]
+- Transit Gateway (TGW) → [[Portfolio Files/Cloud-Portfolio/99-Archive/04-Networking/BGP-VPN-Flow.md]]
+- TGW Peering (Tokyo ↔ São Paulo) → [[Portfolio Files/Cloud-Portfolio/99-Archive/04-Networking/BGP-VPN-Flow.md]]
+- HA VPN (AWS ↔ GCP) → [[Portfolio Files/Cloud-Portfolio/99-Archive/03-GCP/GCP Networking – NCC + HA VPN + BGP]]
+- NCC Hub → [[Portfolio Files/Cloud-Portfolio/99-Archive/03-GCP/GCP Networking – NCC + HA VPN + BGP]]
+- BGP Routing → [[Portfolio Files/Cloud-Portfolio/99-Archive/04-Networking/BGP-VPN-Flow.md]]
 
 ---
 
 ### 📊 Monitoring & Observability
-- CloudWatch → [[08-Logging-Monitoring/Logging & Monitoring (Observability).md]]
-- GCP Monitoring → [[08-Logging-Monitoring/Logging & Monitoring (Observability).md]]
-- Prometheus + Grafana → [[08-Logging-Monitoring/Logging & Monitoring (Observability).md]]
+- CloudWatch → [[Portfolio Files/Cloud-Portfolio/99-Archive/08-Logging-Monitoring/Logging & Monitoring (Observability)]]
+- GCP Monitoring → [[Portfolio Files/Cloud-Portfolio/99-Archive/08-Logging-Monitoring/Logging & Monitoring (Observability)]]
+- Prometheus + Grafana → [[Portfolio Files/Cloud-Portfolio/99-Archive/08-Logging-Monitoring/Logging & Monitoring (Observability)]]
 
 ---
 
 ### 🔄 CI/CD & Automation
-- Jenkins → [[09-CI-CD/CI-CD Pipeline (Jenkins + Terraform).md]]
-- GitHub → [[09-CI-CD/CI-CD Pipeline (Jenkins + Terraform).md]]
-- Terraform → [[05-Terraform/Infrastructure as Code.md]]
+- Jenkins → [[Portfolio Files/Cloud-Portfolio/99-Archive/09-CI-CD/CI-CD Pipeline (Jenkins + Terraform)]]
+- GitHub → [[Portfolio Files/Cloud-Portfolio/99-Archive/09-CI-CD/CI-CD Pipeline (Jenkins + Terraform)]]
+- Terraform → [[Portfolio Files/Cloud-Portfolio/99-Archive/05-Terraform/Infrastructure as Code]]
 
 ---
 
 ## 🔐 Security Design
 
-- CloudFront + WAF protects all inbound traffic → [[02-AWS/AWS Deep Dive – Tokyo Authority (ap-northeast-1).md]]
-- ALB restricted to CloudFront only → [[02-AWS/AWS Deep Dive – Tokyo Authority (ap-northeast-1).md]]
-- Private subnets for compute → [[06-Compute/Automated Infrastructure Deployment with Jenkins, Terraform, and AWS.md]]
-- No direct DB access → [[07-Databases/Database-Architecture.md.md]]
-- Secure VPN tunnels → [[03-GCP/GCP Networking – NCC + HA VPN + BGP.md]]
+- CloudFront + WAF protects all inbound traffic → [[Portfolio Files/Cloud-Portfolio/99-Archive/02-AWS/AWS Deep Dive – Tokyo Authority (ap-northeast-1)]]
+- ALB restricted to CloudFront only → [[Portfolio Files/Cloud-Portfolio/99-Archive/02-AWS/AWS Deep Dive – Tokyo Authority (ap-northeast-1)]]
+- Private subnets for compute → [[Portfolio Files/Cloud-Portfolio/99-Archive/06-Compute/Automated Infrastructure Deployment with Jenkins, Terraform, and AWS]]
+- No direct DB access → [[Portfolio Files/Cloud-Portfolio/99-Archive/07-Databases/Database-Architecture.md]]
+- Secure VPN tunnels → [[Portfolio Files/Cloud-Portfolio/99-Archive/03-GCP/GCP Networking – NCC + HA VPN + BGP]]
 
 ---
 
 ## 🧠 Architecture Highlights
 
-- Multi-cloud connectivity using BGP → [[04-Networking/BGP-VPN-Flow.md.md]]
-- Centralized database design → [[07-Databases/Database-Architecture.md.md]]
-- Stateless compute → [[06-Compute/Automated Infrastructure Deployment with Jenkins, Terraform, and AWS.md]]
-- Secure global entry point → [[01-Architecture/Overview.md]]
-- Fully automated deployment → [[05-Terraform/Infrastructure as Code.md]] + [[09-CI-CD/CI-CD Pipeline (Jenkins + Terraform).md]]
+- Multi-cloud connectivity using BGP → [[Portfolio Files/Cloud-Portfolio/99-Archive/04-Networking/BGP-VPN-Flow.md]]
+- Centralized database design → [[Portfolio Files/Cloud-Portfolio/99-Archive/07-Databases/Database-Architecture.md]]
+- Stateless compute → [[Portfolio Files/Cloud-Portfolio/99-Archive/06-Compute/Automated Infrastructure Deployment with Jenkins, Terraform, and AWS]]
+- Secure global entry point → [[Portfolio Files/Cloud-Portfolio/99-Archive/01-Architecture/Overview]]
+- Fully automated deployment → [[Portfolio Files/Cloud-Portfolio/99-Archive/05-Terraform/Infrastructure as Code]] + [[Portfolio Files/Cloud-Portfolio/99-Archive/09-CI-CD/CI-CD Pipeline (Jenkins + Terraform)]]
 
 ---
 
@@ -143,4 +143,4 @@ This project demonstrates a **production-style global system** with:
 
 ## 👉 Start Here
 
-➡️ [[01-Architecture/Overview.md|Architecture (Main Diagram + Full System View)]]
+➡️ [[Portfolio Files/Cloud-Portfolio/99-Archive/01-Architecture/Overview|Architecture (Main Diagram + Full System View)]]

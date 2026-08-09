@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # go to your Obsidian vault
-# cd "/d/New Obsidian/New Obsidian"
+# cd "/d/New Obsidian/New Obsidian"....... YOUR FOLDER
 
 # always pull first
 git pull

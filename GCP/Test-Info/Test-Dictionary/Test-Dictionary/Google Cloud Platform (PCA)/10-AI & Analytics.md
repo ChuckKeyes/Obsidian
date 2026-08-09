@@ -24,3 +24,6 @@
 - TensorFlow
 - PyTorch
 - Looker Studio
+- **Discovery Engine** → _Search and recommendations_ (retail catalogs, websites, document search)
+- **Vertex AI Agent Builder** → _Build conversational AI agents_ that can use services like Discovery Engine as a knowledge source.
+- **Vertex AI** → _Train, deploy, and manage machine learning and generative AI models._
